@@ -12,10 +12,12 @@ import type {
   CreateInviteResponse,
 } from '@workspace/shared';
 import { TenantScope } from '../common/tenant-scope/tenant-scope.service';
-import { OrganizationsRepository } from '../organizations/organizations.repository';
 import { UsersService } from '../users/users.service';
 import type { CreateInviteDto } from './dto/create-invite.dto';
-import { InvitesRepository } from './invites.repository';
+import {
+  InviteAlreadyConsumedError,
+  InvitesRepository,
+} from './invites.repository';
 
 const INVITE_TTL_DAYS = 7;
 
@@ -23,7 +25,6 @@ const INVITE_TTL_DAYS = 7;
 export class InvitesService {
   constructor(
     private readonly invitesRepository: InvitesRepository,
-    private readonly organizationsRepository: OrganizationsRepository,
     private readonly usersService: UsersService,
     private readonly tenantScope: TenantScope,
   ) {}
@@ -92,15 +93,26 @@ export class InvitesService {
 
     const user = await this.usersService.syncCurrentUser(clerkUserId);
 
-    const membership = await this.organizationsRepository.createMembership({
-      organizationId: invite.organizationId,
-      userId: user.id,
-      role: invite.role,
-    });
+    if (invite.email.trim().toLowerCase() !== user.email.trim().toLowerCase()) {
+      throw new ForbiddenException(
+        'This invite was sent to a different email address',
+      );
+    }
 
-    await this.invitesRepository.markConsumed(invite.id);
+    try {
+      return await this.invitesRepository.acceptInvite({
+        inviteId: invite.id,
+        organizationId: invite.organizationId,
+        userId: user.id,
+        role: invite.role,
+      });
+    } catch (error) {
+      if (error instanceof InviteAlreadyConsumedError) {
+        throw new GoneException('Invite has already been used');
+      }
 
-    return membership;
+      throw error;
+    }
   }
 
   private hashToken(token: string): string {

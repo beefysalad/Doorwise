@@ -82,7 +82,7 @@ export class OrganizationsService {
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '')
-      .slice(0, 48);
+      .slice(0, 43);
 
     if (!base) {
       throw new ConflictException('Could not derive an organization slug');
