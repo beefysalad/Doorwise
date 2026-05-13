@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { motion } from "framer-motion"
-import { fadeUp, staggerContainer } from "../home/motion-presets"
+import { fadeUp, staggerContainer } from "@/components/motion/presets"
 import { Button } from "@workspace/ui/components/button"
 import { RiArrowLeftLine, RiRefreshLine } from "@remixicon/react"
 import {

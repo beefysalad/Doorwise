@@ -5,7 +5,7 @@ import { RiArrowLeftLine } from "@remixicon/react"
 import { motion } from "framer-motion"
 
 import { Button } from "@workspace/ui/components/button"
-import { fadeUp, staggerContainer } from "@/components/home/motion-presets"
+import { fadeUp, staggerContainer } from "@/components/motion/presets"
 
 const NotFoundPage = () => {
   return (
