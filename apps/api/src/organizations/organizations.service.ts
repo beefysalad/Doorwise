@@ -4,6 +4,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { randomBytes } from 'node:crypto';
 import type {
   CreateOrganizationResponse,
   GetMyOrganizationsResponse,
@@ -90,7 +91,7 @@ export class OrganizationsService {
     for (let attempt = 0; attempt < 6; attempt++) {
       const exists = await this.repository.slugExists(candidate);
       if (!exists) return candidate;
-      candidate = `${base}-${Math.random().toString(36).slice(2, 6)}`;
+      candidate = `${base}-${randomBytes(2).toString('hex')}`;
     }
 
     throw new ConflictException('Could not allocate a unique slug');

@@ -1,4 +1,4 @@
-const ACTIVE_ORG_HEADER = "X-Active-Org"
+const ACTIVE_ORG_HEADER = "x-active-org"
 
 function authHeaders(token: string): Record<string, string> {
   return {
