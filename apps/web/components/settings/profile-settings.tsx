@@ -113,7 +113,7 @@ export function ProfileSettings() {
       </div>
 
       <div className="space-y-6">
-        <Card className="bg-muted/30">
+        <Card className="bg-muted">
           <CardHeader>
             <CardTitle className="text-sm">Account Status</CardTitle>
           </CardHeader>

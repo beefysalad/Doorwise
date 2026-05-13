@@ -8,6 +8,7 @@ import {
   RiSunLine,
 } from "@remixicon/react"
 import { BrandThemeSettings } from "@/components/dashboard/brand-theme-settings"
+import { Button } from "@workspace/ui/components/button"
 import {
   Card,
   CardContent,
@@ -53,21 +54,22 @@ export function AppearanceSettings() {
             const isActive = theme === option.value
 
             return (
-              <button
+              <Button
                 key={option.value}
                 type="button"
+                variant="outline"
                 aria-pressed={isActive}
                 onClick={() => setTheme(option.value)}
                 className={cn(
-                  "bg-background hover:border-primary/50 hover:bg-accent/50 relative flex flex-col items-center gap-3 rounded-xl border p-6 text-center transition-all",
+                  "relative h-auto flex-col items-center gap-3 rounded-xl bg-background p-6 text-center transition-all hover:border-primary hover:bg-accent",
                   isActive &&
-                    "border-primary bg-primary/[0.02] ring-primary ring-1"
+                    "border-primary bg-accent ring-primary ring-1"
                 )}
               >
                 <div
                   className={cn(
                     "bg-muted flex size-12 items-center justify-center rounded-full transition-colors",
-                    isActive && "bg-primary/10 text-primary"
+                    isActive && "bg-primary text-primary-foreground"
                   )}
                 >
                   <Icon className="size-6" />
@@ -80,7 +82,7 @@ export function AppearanceSettings() {
                     <RiCheckLine className="text-primary size-5" />
                   </div>
                 )}
-              </button>
+              </Button>
             )
           })}
         </CardContent>

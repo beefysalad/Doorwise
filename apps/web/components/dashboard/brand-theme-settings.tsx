@@ -3,6 +3,7 @@
 import { RiCheckLine } from "@remixicon/react"
 
 import { useBrandTheme } from "@/components/theme/brand-theme-provider"
+import { Button } from "@workspace/ui/components/button"
 import {
   Card,
   CardContent,
@@ -29,13 +30,14 @@ function BrandThemeSettings() {
             const isActive = preset.id === activeTheme.id
 
             return (
-              <button
+              <Button
                 key={preset.id}
                 type="button"
+                variant="outline"
                 aria-pressed={isActive}
                 onClick={() => setBrandTheme(preset.id)}
                 className={cn(
-                  "bg-background hover:border-primary flex min-h-20 flex-col items-start justify-between rounded-lg border p-3 text-left text-sm transition-colors",
+                  "h-auto min-h-20 flex-col items-start justify-between rounded-lg bg-background p-3 text-left text-sm transition-colors hover:border-primary",
                   isActive && "border-primary ring-ring/25 ring-2"
                 )}
               >
@@ -49,7 +51,7 @@ function BrandThemeSettings() {
                     <RiCheckLine className="text-primary size-4" />
                   ) : null}
                 </span>
-              </button>
+              </Button>
             )
           })}
         </div>

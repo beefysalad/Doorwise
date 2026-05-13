@@ -1,4 +1,5 @@
 import { auth } from "@clerk/nextjs/server"
+import type { ReactNode } from "react"
 
 import { OrganizationGate } from "@/components/auth/organization-gate"
 import { DashboardShell } from "@/components/dashboard/dashboard-shell"
@@ -8,7 +9,7 @@ import { getCurrentDashboardUser } from "@/lib/auth/current-dashboard-user"
 export default async function WorkspaceLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   await auth.protect()
 

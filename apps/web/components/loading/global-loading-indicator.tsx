@@ -23,7 +23,7 @@ function GlobalLoadingIndicator() {
       aria-live="polite"
       aria-atomic="true"
       className={cn(
-        "bg-background/70 pointer-events-none fixed inset-0 z-[100] grid place-items-center backdrop-blur-sm transition-opacity duration-200",
+        "pointer-events-none fixed inset-0 z-[100] grid place-items-center bg-background transition-opacity duration-200",
         isVisible ? "opacity-100" : "opacity-0"
       )}
     >

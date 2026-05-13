@@ -1,6 +1,7 @@
 import { ClerkProvider } from "@clerk/nextjs"
 import { Geist_Mono, Inter, Roboto } from "next/font/google"
 import NextTopLoader from "nextjs-toploader"
+import type { ReactNode } from "react"
 
 import "@workspace/ui/globals.css"
 import { AppProviders } from "@/components/providers/app-providers"
@@ -18,7 +19,7 @@ const fontMono = Geist_Mono({
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: ReactNode
 }>) {
   return (
     <html

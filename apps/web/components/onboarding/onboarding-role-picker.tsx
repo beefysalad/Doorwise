@@ -2,6 +2,7 @@
 
 import { RiBuilding2Line, RiUserSmileLine } from "@remixicon/react"
 
+import { Button } from "@workspace/ui/components/button"
 import { cn } from "@workspace/ui/lib/utils"
 
 type OnboardingRole = "owner" | "tenant"
@@ -41,16 +42,17 @@ function OnboardingRolePicker({ value, onChange }: OnboardingRolePickerProps) {
         const isActive = value === option.value
 
         return (
-          <button
+          <Button
             key={option.value}
             type="button"
+            variant="outline"
             onClick={() => onChange(option.value)}
             aria-pressed={isActive}
             className={cn(
-              "flex w-full items-start gap-4 rounded-2xl border bg-card p-5 text-left transition-colors",
-              "hover:border-primary/60 hover:bg-accent/40",
+              "h-auto w-full justify-start gap-4 rounded-2xl bg-card p-5 text-left transition-colors",
+              "hover:border-primary hover:bg-accent",
               isActive
-                ? "border-primary bg-primary/5 ring-1 ring-primary"
+                ? "border-primary bg-accent ring-1 ring-primary"
                 : "border-border"
             )}
           >
@@ -70,7 +72,7 @@ function OnboardingRolePicker({ value, onChange }: OnboardingRolePickerProps) {
                 {option.description}
               </span>
             </span>
-          </button>
+          </Button>
         )
       })}
     </div>

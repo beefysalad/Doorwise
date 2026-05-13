@@ -1,10 +1,10 @@
 "use client"
 
-import * as React from "react"
+import type { ReactNode } from "react"
 
 import { useSyncCurrentUser } from "@/hooks/api/use-sync-current-user"
 
-function UserSyncProvider({ children }: { children: React.ReactNode }) {
+function UserSyncProvider({ children }: { children: ReactNode }) {
   useSyncCurrentUser()
 
   return children

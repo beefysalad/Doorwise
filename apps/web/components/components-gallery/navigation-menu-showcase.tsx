@@ -11,7 +11,6 @@ import {
   RiReceiptLine,
   RiScales3Line,
   RiSearchLine,
-  RiSparklingLine,
 } from "@remixicon/react"
 
 import { Avatar, AvatarFallback } from "@workspace/ui/components/avatar"
@@ -104,7 +103,7 @@ function NavigationMenuShowcase() {
             <div className="hidden items-center gap-2 lg:flex">
               <HeaderIconButton icon={RiAddLine} label="Create" />
               <HeaderIconButton icon={RiSearchLine} label="Search" />
-              <HeaderIconButton icon={RiSparklingLine} label="Quick actions" />
+              <HeaderIconButton icon={RiAddLine} label="Quick actions" />
               <HeaderIconButton icon={RiQuestionLine} label="Help" />
               <HeaderIconButton
                 icon={RiNotification3Line}
@@ -222,15 +221,15 @@ function NavigationMenuShowcase() {
               </div>
 
               <div className="mt-4 flex flex-wrap gap-2">
-                <button className="bg-muted/40 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-medium">
+                <Button variant="outline" size="sm" className="rounded-full">
                   Active
-                </button>
-                <button className="text-muted-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm">
+                </Button>
+                <Button variant="outline" size="sm" className="rounded-full">
                   Inventory tracked
-                </button>
-                <button className="text-muted-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm">
+                </Button>
+                <Button variant="outline" size="sm" className="rounded-full">
                   Sellable
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -271,13 +270,15 @@ function HeaderIconButton({
   label: string
 }) {
   return (
-    <button
+    <Button
       type="button"
+      variant="ghost"
+      size="icon"
       aria-label={label}
-      className="hover:bg-white/16 flex size-10 items-center justify-center rounded-full bg-white/10 transition-colors"
+      className="size-10 rounded-full text-primary-foreground hover:bg-primary-foreground hover:text-primary"
     >
       <Icon className="size-4.5" />
-    </button>
+    </Button>
   )
 }
 

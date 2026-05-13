@@ -2,6 +2,7 @@
 
 import {
   createContext,
+  type ReactNode,
   useCallback,
   useContext,
   useEffect,
@@ -31,7 +32,7 @@ const defaultLabels: Record<LoadingKind, string> = {
 
 const LoadingContext = createContext<LoadingContextValue | null>(null)
 
-function LoadingProvider({ children }: { children: React.ReactNode }) {
+function LoadingProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname()
   const previousPathnameRef = useRef(pathname)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)

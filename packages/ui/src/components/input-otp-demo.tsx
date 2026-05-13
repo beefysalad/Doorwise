@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import { useState } from "react"
 
 import {
   InputOTP,
@@ -11,7 +11,7 @@ import {
 import { Label } from "@workspace/ui/components/label"
 
 function InputOTPDemo() {
-  const [value, setValue] = React.useState("")
+  const [value, setValue] = useState("")
 
   return (
     <div className="grid gap-3 rounded-lg border p-4">

@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes"
 import {
   createContext,
+  type ReactNode,
   useCallback,
   useContext,
   useEffect,
@@ -286,7 +287,7 @@ const defaultBrandTheme = brandThemePresets[0] as BrandThemePreset
 
 const BrandThemeContext = createContext<BrandThemeContextValue | null>(null)
 
-function BrandThemeProvider({ children }: { children: React.ReactNode }) {
+function BrandThemeProvider({ children }: { children: ReactNode }) {
   const { resolvedTheme } = useTheme()
   const brandThemeId = useSyncExternalStore(
     subscribeToBrandTheme,

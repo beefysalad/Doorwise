@@ -14,7 +14,7 @@ function AuthHeader() {
   }
 
   return (
-    <header className="border-border bg-background/80 fixed inset-x-0 top-0 z-50 border-b px-6 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background px-6">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4">
         <Link href="/" className="text-sm font-semibold tracking-tight">
           Doorwise

@@ -414,19 +414,19 @@ function ComponentsGalleryPage() {
                 </TabsList>
                 <TabsContent
                   value="preview"
-                  className="bg-muted/30 rounded-lg border p-4"
+                  className="rounded-lg border bg-muted p-4"
                 >
                   Components should hold up in light and dark mode.
                 </TabsContent>
                 <TabsContent
                   value="tokens"
-                  className="bg-muted/30 rounded-lg border p-4"
+                  className="rounded-lg border bg-muted p-4"
                 >
                   Brand colors drive primary, ring, and sidebar highlights.
                 </TabsContent>
                 <TabsContent
                   value="usage"
-                  className="bg-muted/30 rounded-lg border p-4"
+                  className="rounded-lg border bg-muted p-4"
                 >
                   Prefer shared primitives from `packages/ui`.
                 </TabsContent>
@@ -991,7 +991,7 @@ function ComponentsGalleryPage() {
                     {Array.from({ length: 12 }, (_, index) => (
                       <div
                         key={index}
-                        className="bg-muted/30 rounded-lg border p-3 text-sm"
+                        className="rounded-lg border bg-muted p-3 text-sm"
                       >
                         Component audit item {index + 1}
                       </div>
@@ -1141,7 +1141,7 @@ function ComponentsGalleryPage() {
                     </DrawerDescription>
                   </DrawerHeader>
                   <div className="grid gap-3 px-4 pb-4">
-                    <div className="bg-muted/30 rounded-lg border p-4 text-sm">
+                    <div className="rounded-lg border bg-muted p-4 text-sm">
                       Production will receive the current component theme.
                     </div>
                   </div>
@@ -1213,7 +1213,7 @@ function ComponentsGalleryPage() {
                       key={item}
                       className="basis-full md:basis-1/2"
                     >
-                      <div className="bg-muted/30 flex h-36 items-center justify-center rounded-lg border text-sm font-medium">
+                      <div className="flex h-36 items-center justify-center rounded-lg border bg-muted text-sm font-medium">
                         {item}
                       </div>
                     </CarouselItem>
@@ -1240,7 +1240,7 @@ function ComponentsGalleryPage() {
                     <RiArrowDownSLine />
                   </Button>
                 </CollapsibleTrigger>
-                <CollapsibleContent className="bg-muted/30 text-muted-foreground rounded-lg border p-4 text-sm">
+                <CollapsibleContent className="rounded-lg border bg-muted p-4 text-sm text-muted-foreground">
                   Run typecheck, build, and migration deploy before promoting an
                   API release.
                 </CollapsibleContent>

@@ -1,13 +1,13 @@
 "use client"
 
-import { useEffect } from "react"
+import { type ReactNode, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Spinner } from "@workspace/ui/components/spinner"
 
 import { useMyOrganizations } from "@/hooks/api/use-my-organizations"
 import { useActiveOrg } from "@/hooks/use-active-org"
 
-function OrganizationGate({ children }: { children: React.ReactNode }) {
+function OrganizationGate({ children }: { children: ReactNode }) {
   const router = useRouter()
   const { activeOrgId, setActiveOrgId } = useActiveOrg()
   const { data, isLoading, isError } = useMyOrganizations()

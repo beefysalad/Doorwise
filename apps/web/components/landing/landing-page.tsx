@@ -9,7 +9,6 @@ import {
   RiHomeSmile2Line,
   RiNotification3Line,
   RiShieldCheckLine,
-  RiSparklingLine,
   RiUserSmileLine,
 } from "@remixicon/react"
 
@@ -104,12 +103,12 @@ export function LandingPage() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-transparent from-60% to-muted/40"
+        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-transparent from-60% to-muted"
       />
 
       {/* Nav */}
       <header className="sticky top-0 z-50 mx-auto w-full">
-        <div className="mx-auto mt-4 flex max-w-6xl items-center justify-between rounded-full border border-border/60 bg-background/70 px-4 py-2 shadow-sm backdrop-blur-xl">
+        <div className="mx-auto mt-4 flex max-w-6xl items-center justify-between rounded-full border border-border bg-background px-4 py-2 shadow-sm">
           <Link href="/" className="flex items-center gap-2.5 pl-2">
             <span className="flex size-8 items-center justify-center rounded-xl bg-primary text-primary-foreground">
               <RiBuilding2Line className="size-4" />
@@ -227,7 +226,7 @@ export function LandingPage() {
 
             {/* Mock table */}
             <div className="mt-4 overflow-hidden rounded-2xl border border-border">
-              <div className="grid grid-cols-[1.4fr_1fr_1fr_0.8fr] gap-4 border-b border-border bg-muted/60 px-5 py-3 text-xs font-medium text-muted-foreground">
+              <div className="grid grid-cols-[1.4fr_1fr_1fr_0.8fr] gap-4 border-b border-border bg-muted px-5 py-3 text-xs font-medium text-muted-foreground">
                 <span>Tenant</span>
                 <span>Room</span>
                 <span className="hidden sm:block">Method</span>
@@ -266,7 +265,7 @@ export function LandingPage() {
       </section>
 
       {/* Metrics strip */}
-      <section className="border-y border-border bg-muted/30">
+      <section className="border-y border-border bg-muted">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px overflow-hidden bg-border md:grid-cols-4">
           {metrics.map((m) => (
             <div
@@ -288,7 +287,7 @@ export function LandingPage() {
       <section id="features" className="mx-auto max-w-6xl px-6 py-24">
         <div className="mx-auto max-w-2xl text-center">
           <Badge variant="outline" className="rounded-full">
-            <RiSparklingLine className="mr-1.5 size-3" />
+            <RiFlashlightLine className="mr-1.5 size-3" />
             Everything you need
           </Badge>
           <h2 className="mt-5 font-heading text-4xl font-semibold tracking-tight text-balance md:text-5xl">
@@ -327,7 +326,7 @@ export function LandingPage() {
       {/* Workflow — centered stepper */}
       <section
         id="workflow"
-        className="relative border-y border-border bg-muted/40 px-6 py-24"
+        className="relative border-y border-border bg-muted px-6 py-24"
       >
         <div className="mx-auto max-w-2xl text-center">
           <Badge variant="outline" className="rounded-full">
@@ -369,7 +368,7 @@ export function LandingPage() {
       {/* Why — outcomes */}
       <section id="why" className="mx-auto max-w-4xl px-6 py-24 text-center">
         <Badge variant="outline" className="rounded-full">
-          <RiSparklingLine className="mr-1.5 size-3" />
+          <RiFlashlightLine className="mr-1.5 size-3" />
           Why landlords switch
         </Badge>
         <h2 className="mt-5 font-heading text-4xl font-semibold tracking-tight text-balance md:text-5xl">

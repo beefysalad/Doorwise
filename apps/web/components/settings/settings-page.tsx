@@ -126,7 +126,7 @@ function SettingsPage() {
             </CardHeader>
             <CardContent>
               <FieldGroup>
-                <div className="bg-muted/30 flex flex-col gap-4 rounded-lg border p-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex flex-col gap-4 rounded-lg border bg-muted p-4 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-4">
                     <Avatar className="size-16" size="lg">
                       {user.imageUrl ? (
@@ -189,7 +189,7 @@ function SettingsPage() {
               ].map(([label, value]) => (
                 <div
                   key={label}
-                  className="bg-muted/30 flex items-center justify-between gap-4 rounded-lg border px-4 py-3 text-sm"
+                  className="flex items-center justify-between gap-4 rounded-lg border bg-muted px-4 py-3 text-sm"
                 >
                   <span className="text-muted-foreground">{label}</span>
                   <span className="font-medium">{value}</span>
@@ -213,13 +213,14 @@ function SettingsPage() {
                 const isActive = theme === option.value
 
                 return (
-                  <button
+                  <Button
                     key={option.value}
                     type="button"
+                    variant="outline"
                     aria-pressed={isActive}
                     onClick={() => setTheme(option.value)}
                     className={cn(
-                      "bg-background hover:border-primary flex min-h-24 items-center justify-between rounded-lg border p-4 text-left transition-colors",
+                      "h-auto min-h-24 justify-between rounded-lg bg-background p-4 text-left transition-colors hover:border-primary",
                       isActive && "border-primary ring-ring/25 ring-2"
                     )}
                   >
@@ -232,7 +233,7 @@ function SettingsPage() {
                     {isActive ? (
                       <RiCheckLine className="text-primary size-5" />
                     ) : null}
-                  </button>
+                  </Button>
                 )
               })}
             </CardContent>
@@ -297,7 +298,7 @@ function SettingsPage() {
                   onCheckedChange={setSessionReviewEnabled}
                 />
                 <Separator />
-                <div className="bg-muted/30 flex flex-col gap-3 rounded-lg border p-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex flex-col gap-3 rounded-lg border bg-muted p-4 sm:flex-row sm:items-center sm:justify-between">
                   <div className="space-y-1">
                     <p className="text-sm font-medium">Active sessions</p>
                     <p className="text-muted-foreground text-sm">
