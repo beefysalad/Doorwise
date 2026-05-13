@@ -6,15 +6,14 @@ import type {
 } from "@workspace/shared"
 
 import { apiClient } from "@/lib/axios"
+import { authHeaders } from "@/lib/api/request"
 
 async function syncCurrentUser(token: string): Promise<CurrentUserResponse> {
   const response = await apiClient.post<CurrentUserResponse>(
     "/users/me/sync",
     undefined,
     {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: authHeaders(token),
     }
   )
 
@@ -23,9 +22,7 @@ async function syncCurrentUser(token: string): Promise<CurrentUserResponse> {
 
 async function getAllUsers(token: string): Promise<GetAllUsersResponse> {
   const response = await apiClient.get<GetAllUsersResponse>("/users/all", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    headers: authHeaders(token),
   })
 
   return response.data
@@ -38,7 +35,7 @@ async function setIntendedRole(
   const response = await apiClient.patch<SetIntendedRoleResponse>(
     "/users/me/role",
     { role },
-    { headers: { Authorization: `Bearer ${token}` } }
+    { headers: authHeaders(token) }
   )
 
   return response.data
