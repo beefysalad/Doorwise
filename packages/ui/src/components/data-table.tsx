@@ -61,6 +61,7 @@ function DataTable<TData, TValue>({
     React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({})
 
+  // eslint-disable-next-line react-hooks/incompatible-library -- TanStack Table return is intentionally not memoized
   const table = useReactTable({
     data,
     columns,

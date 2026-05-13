@@ -14,7 +14,6 @@ import {
 } from "@remixicon/react"
 
 import { Badge } from "@workspace/ui/components/badge"
-import { Button } from "@workspace/ui/components/button"
 import {
   LandingFinalAction,
   LandingHeaderActions,

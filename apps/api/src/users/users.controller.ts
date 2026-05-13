@@ -1,33 +1,45 @@
-import { Controller, Get, Post, UseGuards } from "@nestjs/common"
+import { Body, Controller, Get, Patch, Post, UseGuards } from '@nestjs/common';
 import type {
   CurrentUserResponse,
   GetAllUsersResponse,
-} from "@workspace/shared"
-import { ClerkUserId } from "../common/decorators/clerk-user-id.decorator"
-import { ClerkAuthGuard } from "../common/guards/clerk-auth.guard"
-import { UsersService } from "./users.service"
+  SetIntendedRoleResponse,
+} from '@workspace/shared';
+import { ClerkUserId } from '../common/decorators/clerk-user-id.decorator';
+import { ClerkAuthGuard } from '../common/guards/clerk-auth.guard';
+import { parseWithZod } from '../common/validation/parse-with-zod';
+import { setIntendedRoleSchema } from './dto/set-intended-role.dto';
+import { UsersService } from './users.service';
 
-@Controller("users")
+@Controller('users')
 @UseGuards(ClerkAuthGuard)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post("me/sync")
+  @Post('me/sync')
   syncCurrentUser(
-    @ClerkUserId() clerkUserId: string
+    @ClerkUserId() clerkUserId: string,
   ): Promise<CurrentUserResponse> {
-    return this.usersService.syncCurrentUser(clerkUserId)
+    return this.usersService.syncCurrentUser(clerkUserId);
   }
 
-  @Get("me")
+  @Get('me')
   getCurrentUser(
-    @ClerkUserId() clerkUserId: string
+    @ClerkUserId() clerkUserId: string,
   ): Promise<CurrentUserResponse> {
-    return this.usersService.syncCurrentUser(clerkUserId)
+    return this.usersService.syncCurrentUser(clerkUserId);
   }
 
-  @Get("all")
+  @Patch('me/role')
+  setIntendedRole(
+    @ClerkUserId() clerkUserId: string,
+    @Body() body: unknown,
+  ): Promise<SetIntendedRoleResponse> {
+    const dto = parseWithZod(setIntendedRoleSchema, body);
+    return this.usersService.setIntendedRole(clerkUserId, dto.role);
+  }
+
+  @Get('all')
   async getAllUsers(): Promise<GetAllUsersResponse> {
-    return await this.usersService.getAllUsers()
+    return await this.usersService.getAllUsers();
   }
 }

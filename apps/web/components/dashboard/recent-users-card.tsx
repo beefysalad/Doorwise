@@ -1,6 +1,5 @@
 "use client"
 
-import { RiUser3Line } from "@remixicon/react"
 import {
   Avatar,
   AvatarFallback,

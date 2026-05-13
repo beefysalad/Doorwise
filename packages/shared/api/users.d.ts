@@ -1,9 +1,12 @@
+export type SignupRole = "owner" | "tenant"
+
 export type CurrentUserResponse = {
   id: string
   clerkId: string
   email: string
   name: string
   imageUrl: string | null
+  intendedRole: SignupRole | null
 }
 
 export type User = {
@@ -17,3 +20,9 @@ export type User = {
 export type GetAllUsersResponse = {
   users: User[]
 }
+
+export type SetIntendedRoleRequest = {
+  role: SignupRole
+}
+
+export type SetIntendedRoleResponse = CurrentUserResponse

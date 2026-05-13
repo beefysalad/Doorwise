@@ -50,7 +50,7 @@ export function DataPage() {
     dataUpdatedAt: usersUpdatedAt,
   } = useAllUsers()
 
-  const users = data?.users ?? []
+  const users = useMemo(() => data?.users ?? [], [data?.users])
 
   const withAvatarCount = useMemo(
     () => users.filter((user) => Boolean(user.imageUrl)).length,
