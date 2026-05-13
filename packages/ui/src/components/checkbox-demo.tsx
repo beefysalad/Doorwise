@@ -1,12 +1,12 @@
 "use client"
 
-import * as React from "react"
+import { useState } from "react"
 
 import { Checkbox } from "@workspace/ui/components/checkbox"
 import { Label } from "@workspace/ui/components/label"
 
 function CheckboxDemo() {
-  const [checked, setChecked] = React.useState<boolean>(true)
+  const [checked, setChecked] = useState<boolean>(true)
 
   return (
     <div className="flex items-start gap-3 rounded-lg border p-4">

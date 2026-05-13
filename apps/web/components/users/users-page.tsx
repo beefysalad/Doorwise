@@ -56,7 +56,7 @@ export function UsersPage() {
             <RiSearchLine className="text-muted-foreground absolute top-1/2 left-3 size-4 -translate-y-1/2" />
             <Input
               placeholder="Search members..."
-              className="bg-muted/40 h-9 w-full border-none pl-9 focus-visible:ring-1"
+              className="h-9 w-full border-input bg-muted pl-9 focus-visible:ring-1"
             />
           </div>
           <Button variant="outline" size="sm" className="gap-2 sm:w-auto">
@@ -66,10 +66,10 @@ export function UsersPage() {
         </div>
       </section>
 
-      <div className="border-border/50 bg-background/50 overflow-hidden rounded-xl border shadow-sm">
+      <div className="overflow-hidden rounded-xl border border-border bg-background shadow-sm">
         <Table>
           <TableHeader>
-            <TableRow className="bg-muted/20 hover:bg-transparent">
+            <TableRow className="bg-muted hover:bg-muted">
               <TableHead className="w-[300px] px-6 py-4">User</TableHead>
               <TableHead>Email</TableHead>
               <TableHead>Clerk ID</TableHead>
@@ -112,11 +112,11 @@ export function UsersPage() {
               users.map((user: User) => (
                 <TableRow
                   key={user.id}
-                  className="group hover:bg-muted/30 transition-colors"
+                  className="group transition-colors hover:bg-muted"
                 >
                   <TableCell className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <Avatar className="border-border/50 size-9 border">
+                      <Avatar className="size-9 border border-border">
                         <AvatarImage
                           src={user.imageUrl ?? undefined}
                           alt={user.name}

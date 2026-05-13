@@ -1,39 +1,80 @@
-import { Injectable } from "@nestjs/common"
+import { Injectable } from '@nestjs/common';
 import type {
   CurrentUserResponse,
   GetAllUsersResponse,
-} from "@workspace/shared"
-import { PrismaService } from "../prisma/prisma.service"
+  SignupRole,
+} from '@workspace/shared';
+import { PrismaService } from '../prisma/prisma.service';
 
 type UpsertClerkUserInput = {
-  clerkId: string
-  email: string
-  name: string
-  imageUrl: string | null
-}
+  clerkId: string;
+  email: string;
+  name: string;
+  imageUrl: string | null;
+};
+
+type UserRow = {
+  id: string;
+  email: string;
+  name: string;
+  imageUrl: string | null;
+  intendedRole: SignupRole | null;
+};
+
+const userResponseSelect = {
+  id: true,
+  email: true,
+  name: true,
+  imageUrl: true,
+  intendedRole: true,
+} as const;
 
 @Injectable()
 export class UsersRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async upsertClerkUser(
-    input: UpsertClerkUserInput
+    input: UpsertClerkUserInput,
   ): Promise<CurrentUserResponse> {
     const user = await this.prisma.db.user.upsert({
-      where: {
-        clerkId: input.clerkId,
-      },
+      where: { clerkId: input.clerkId },
       update: input,
       create: input,
-    })
+      select: userResponseSelect,
+    });
 
+    return this.toResponse(user, input.clerkId);
+  }
+
+  async setIntendedRole(
+    clerkId: string,
+    role: SignupRole,
+  ): Promise<CurrentUserResponse> {
+    const user = await this.prisma.db.user.update({
+      where: { clerkId },
+      data: { intendedRole: role },
+      select: userResponseSelect,
+    });
+
+    return this.toResponse(user, clerkId);
+  }
+
+  async clearIntendedRole(clerkId: string): Promise<void> {
+    await this.prisma.db.user.update({
+      where: { clerkId },
+      data: { intendedRole: null },
+    });
+  }
+
+  private toResponse(user: UserRow, clerkId: string): CurrentUserResponse {
     return {
       id: user.id,
-      clerkId: input.clerkId,
+      clerkId,
       email: user.email,
       name: user.name,
       imageUrl: user.imageUrl,
-    }
+      intendedRole: user.intendedRole,
+    };
   }
 
   async deleteByClerkId(clerkId: string): Promise<void> {
@@ -41,7 +82,7 @@ export class UsersRepository {
       where: {
         clerkId,
       },
-    })
+    });
   }
   async getAllUsers(): Promise<GetAllUsersResponse> {
     const users = await this.prisma.db.user.findMany({
@@ -57,7 +98,7 @@ export class UsersRepository {
         name: true,
         imageUrl: true,
       },
-    })
+    });
 
     return {
       users: users.map((user) => ({
@@ -67,6 +108,6 @@ export class UsersRepository {
         name: user.name,
         imageUrl: user.imageUrl,
       })),
-    }
+    };
   }
 }

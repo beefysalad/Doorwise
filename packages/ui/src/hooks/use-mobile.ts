@@ -1,9 +1,9 @@
-import * as React from "react"
+import { useSyncExternalStore } from "react"
 
 const MOBILE_BREAKPOINT = 768
 
 function useIsMobile() {
-  return React.useSyncExternalStore(
+  return useSyncExternalStore(
     subscribeToViewport,
     getIsMobileSnapshot,
     getServerSnapshot

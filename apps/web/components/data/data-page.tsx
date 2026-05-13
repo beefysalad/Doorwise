@@ -7,7 +7,7 @@ import {
   RiStackLine,
   RiUser3Line,
 } from "@remixicon/react"
-import { useMemo } from "react"
+import { type ReactNode, useMemo } from "react"
 
 import { useDashboardUser } from "@/components/dashboard/dashboard-user-provider"
 import { useApiHealth } from "@/hooks/api/use-api-health"
@@ -50,7 +50,7 @@ export function DataPage() {
     dataUpdatedAt: usersUpdatedAt,
   } = useAllUsers()
 
-  const users = data?.users ?? []
+  const users = useMemo(() => data?.users ?? [], [data?.users])
 
   const withAvatarCount = useMemo(
     () => users.filter((user) => Boolean(user.imageUrl)).length,
@@ -140,7 +140,7 @@ export function DataPage() {
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
-        <Card className="border-border/60">
+        <Card className="border-border">
           <CardHeader className="gap-2">
             <CardTitle className="text-base font-semibold">
               Synced account records
@@ -150,10 +150,10 @@ export function DataPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="border-border/50 overflow-hidden rounded-xl border">
+            <div className="overflow-hidden rounded-xl border border-border">
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-muted/20 hover:bg-muted/20">
+                  <TableRow className="bg-muted hover:bg-muted">
                     <TableHead className="px-6 py-4">Name</TableHead>
                     <TableHead>Email</TableHead>
                     <TableHead>Avatar</TableHead>
@@ -227,7 +227,7 @@ export function DataPage() {
         </Card>
 
         <div className="grid gap-6">
-          <Card className="border-border/60">
+          <Card className="border-border">
             <CardHeader className="gap-2">
               <CardTitle className="text-base font-semibold">
                 Profile completeness
@@ -270,7 +270,7 @@ export function DataPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-border/60">
+          <Card className="border-border">
             <CardHeader className="gap-2">
               <CardTitle className="text-base font-semibold">
                 Data source status
@@ -332,10 +332,10 @@ function MetricCard({
   title: string
   value: string
   description: string
-  icon: React.ReactNode
+  icon: ReactNode
 }) {
   return (
-    <Card className="border-border/60">
+    <Card className="border-border">
       <CardHeader className="flex flex-row items-start justify-between space-y-0">
         <div className="space-y-1">
           <CardDescription>{title}</CardDescription>
@@ -343,7 +343,7 @@ function MetricCard({
             {value}
           </CardTitle>
         </div>
-        <div className="border-border/60 bg-muted/30 text-muted-foreground rounded-lg border p-2">
+        <div className="rounded-lg border border-border bg-muted p-2 text-muted-foreground">
           {icon}
         </div>
       </CardHeader>

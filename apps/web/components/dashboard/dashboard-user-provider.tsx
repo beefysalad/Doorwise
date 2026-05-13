@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext } from "react"
+import { createContext, type ReactNode, useContext } from "react"
 
 import type { DashboardUser } from "@/lib/auth/current-dashboard-user"
 
@@ -10,7 +10,7 @@ function DashboardUserProvider({
   children,
   user,
 }: {
-  children: React.ReactNode
+  children: ReactNode
   user: DashboardUser
 }) {
   return (

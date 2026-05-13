@@ -18,12 +18,17 @@ const COLORS = [
   "#22d3ee", // cyan
 ]
 
+function pseudoRandom(seed: number): number {
+  const x = Math.sin(seed * 9301 + 49297) * 233280
+  return x - Math.floor(x)
+}
+
 export function useUsageData() {
   const data = useMemo(() => {
     return [...Array(12)].map((_, i) => {
       const hour = i * 2
       const time = `${hour.toString().padStart(2, "0")}:00`
-      const revenue = Math.floor(Math.random() * 85000) + 15000
+      const revenue = Math.floor(pseudoRandom(i + 1) * 85000) + 15000
       return {
         time,
         revenue,

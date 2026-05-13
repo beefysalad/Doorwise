@@ -13,11 +13,71 @@ datasource db {
 }
 
 model User {
+  id           String               @id @default(uuid())
+  clerkId      String?              @unique
+  email        String               @unique
+  name         String
+  imageUrl     String?
+  intendedRole SignupRole?
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @default(now()) @updatedAt
+  memberships  OrganizationMember[]
+}
+
+enum OrgRole {
+  owner
+  staff
+  tenant
+}
+
+enum SignupRole {
+  owner
+  tenant
+}
+
+model Organization {
   id        String   @id @default(uuid())
-  clerkId   String?  @unique
-  email     String   @unique
   name      String
-  imageUrl  String?
+  slug      String   @unique
+  address   String?
+  phone     String?
+  logoUrl   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
+
+  members OrganizationMember[]
+  invites OrganizationInvite[]
+}
+
+model OrganizationMember {
+  id             String    @id @default(uuid())
+  organizationId String
+  userId         String
+  role           OrgRole
+  joinedAt       DateTime  @default(now())
+  deletedAt      DateTime?
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, userId])
+  @@index([userId])
+  @@index([organizationId, deletedAt])
+}
+
+model OrganizationInvite {
+  id              String    @id @default(uuid())
+  organizationId  String
+  email           String
+  role            OrgRole
+  tokenHash       String    @unique
+  tenantProfileId String?
+  expiresAt       DateTime
+  consumedAt      DateTime?
+  createdAt       DateTime  @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+  @@index([email])
 }

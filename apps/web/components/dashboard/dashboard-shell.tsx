@@ -1,6 +1,6 @@
 "use client"
 
-import { Fragment } from "react"
+import { Fragment, type ReactNode } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -22,7 +22,7 @@ import {
 import { TooltipProvider } from "@workspace/ui/components/tooltip"
 
 type DashboardShellProps = {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 function DashboardShell({ children }: DashboardShellProps) {

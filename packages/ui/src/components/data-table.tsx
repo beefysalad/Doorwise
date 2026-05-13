@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useState } from "react"
 import type {
   ColumnDef,
   ColumnFiltersState,
@@ -53,14 +54,15 @@ function DataTable<TData, TValue>({
   noResultsMessage = "No results.",
   pageSizeOptions,
 }: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = React.useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+  const [sorting, setSorting] = useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
     []
   )
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
-  const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({})
+    useState<VisibilityState>({})
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
 
+  // eslint-disable-next-line react-hooks/incompatible-library -- TanStack Table return is intentionally not memoized
   const table = useReactTable({
     data,
     columns,

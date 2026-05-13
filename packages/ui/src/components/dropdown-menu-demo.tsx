@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import { useState } from "react"
 import {
   RiMore2Line,
   RiShareLine,
@@ -19,7 +19,7 @@ import {
 } from "@workspace/ui/components/dropdown-menu"
 
 function DropdownMenuDemo() {
-  const [starred, setStarred] = React.useState(false)
+  const [starred, setStarred] = useState(false)
 
   return (
     <DropdownMenu>

@@ -1,6 +1,5 @@
 "use client"
 
-import { RiUser3Line } from "@remixicon/react"
 import {
   Avatar,
   AvatarFallback,
@@ -47,7 +46,7 @@ export function RecentUsersCard() {
         ) : (
           users.map((user: User) => (
             <div key={user.id} className="flex items-center gap-4">
-              <Avatar className="border-border/50 size-9 border">
+              <Avatar className="size-9 border border-border">
                 <AvatarImage src={user.imageUrl ?? undefined} alt={user.name} />
                 <AvatarFallback className="text-xs font-bold">
                   {user.name

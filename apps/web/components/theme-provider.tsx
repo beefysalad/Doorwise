@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import { type ComponentProps, useEffect } from "react"
 import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes"
 
 import { BrandThemeProvider } from "@/components/theme/brand-theme-provider"
@@ -8,7 +8,7 @@ import { BrandThemeProvider } from "@/components/theme/brand-theme-provider"
 function ThemeProvider({
   children,
   ...props
-}: React.ComponentProps<typeof NextThemesProvider>) {
+}: ComponentProps<typeof NextThemesProvider>) {
   return (
     <NextThemesProvider
       attribute="class"
@@ -39,7 +39,7 @@ function isTypingTarget(target: EventTarget | null) {
 function ThemeHotkey() {
   const { resolvedTheme, setTheme } = useTheme()
 
-  React.useEffect(() => {
+  useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.defaultPrevented || event.repeat) {
         return
