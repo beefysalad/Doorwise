@@ -36,7 +36,7 @@ const options: Array<{
 
 function OnboardingRolePicker({ value, onChange }: OnboardingRolePickerProps) {
   return (
-    <div className="grid gap-3">
+    <div className="grid gap-3 sm:grid-cols-2">
       {options.map((option) => {
         const Icon = option.icon
         const isActive = value === option.value
@@ -49,7 +49,7 @@ function OnboardingRolePicker({ value, onChange }: OnboardingRolePickerProps) {
             onClick={() => onChange(option.value)}
             aria-pressed={isActive}
             className={cn(
-              "h-auto w-full justify-start gap-4 rounded-2xl bg-card p-5 text-left transition-colors",
+              "h-full min-h-44 w-full items-start justify-start gap-4 rounded-2xl bg-card p-5 text-left leading-normal whitespace-normal transition-colors sm:flex-col sm:gap-5",
               "hover:border-primary hover:bg-accent",
               isActive
                 ? "border-primary bg-accent ring-1 ring-primary"
@@ -58,7 +58,7 @@ function OnboardingRolePicker({ value, onChange }: OnboardingRolePickerProps) {
           >
             <span
               className={cn(
-                "flex size-10 shrink-0 items-center justify-center rounded-xl",
+                "flex size-11 shrink-0 items-center justify-center rounded-xl",
                 isActive
                   ? "bg-primary text-primary-foreground"
                   : "bg-muted text-muted-foreground"
@@ -66,9 +66,11 @@ function OnboardingRolePicker({ value, onChange }: OnboardingRolePickerProps) {
             >
               <Icon className="size-5" />
             </span>
-            <span className="flex-1">
-              <span className="block font-medium">{option.label}</span>
-              <span className="mt-1 block text-sm text-muted-foreground">
+            <span className="min-w-0 flex-1 space-y-2">
+              <span className="block text-base leading-6 font-semibold">
+                {option.label}
+              </span>
+              <span className="block text-sm leading-6 text-muted-foreground">
                 {option.description}
               </span>
             </span>
