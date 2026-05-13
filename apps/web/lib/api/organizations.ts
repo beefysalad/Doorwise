@@ -7,16 +7,7 @@ import type {
 } from "@workspace/shared"
 
 import { apiClient } from "@/lib/axios"
-
-function authHeader(token: string, organizationId?: string | null) {
-  const headers: Record<string, string> = {
-    Authorization: `Bearer ${token}`,
-  }
-  if (organizationId) {
-    headers["X-Active-Org"] = organizationId
-  }
-  return headers
-}
+import { authHeaders, tenantHeaders } from "@/lib/api/request"
 
 async function createOrganization(
   token: string,
@@ -25,7 +16,7 @@ async function createOrganization(
   const response = await apiClient.post<CreateOrganizationResponse>(
     "/organizations",
     payload,
-    { headers: authHeader(token) }
+    { headers: authHeaders(token) }
   )
   return response.data
 }
@@ -35,7 +26,7 @@ async function getMyOrganizations(
 ): Promise<GetMyOrganizationsResponse> {
   const response = await apiClient.get<GetMyOrganizationsResponse>(
     "/organizations/me",
-    { headers: authHeader(token) }
+    { headers: authHeaders(token) }
   )
   return response.data
 }
@@ -48,7 +39,7 @@ async function updateCurrentOrganization(
   const response = await apiClient.patch<UpdateCurrentOrganizationResponse>(
     "/organizations/current",
     payload,
-    { headers: authHeader(token, organizationId) }
+    { headers: tenantHeaders(token, organizationId) }
   )
   return response.data
 }

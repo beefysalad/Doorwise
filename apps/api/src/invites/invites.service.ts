@@ -11,7 +11,7 @@ import type {
   AcceptInviteResponse,
   CreateInviteResponse,
 } from '@workspace/shared';
-import { TenantScope } from '../common/tenant-scope/tenant-scope.service';
+import type { ResolvedScope } from '../common/tenant-scope/tenant-scope.service';
 import { UsersService } from '../users/users.service';
 import type { CreateInviteDto } from './dto/create-invite.dto';
 import {
@@ -26,12 +26,12 @@ export class InvitesService {
   constructor(
     private readonly invitesRepository: InvitesRepository,
     private readonly usersService: UsersService,
-    private readonly tenantScope: TenantScope,
   ) {}
 
-  async createInvite(dto: CreateInviteDto): Promise<CreateInviteResponse> {
-    const scope = await this.tenantScope.require();
-
+  async createInvite(
+    scope: ResolvedScope,
+    dto: CreateInviteDto,
+  ): Promise<CreateInviteResponse> {
     if (scope.role !== 'owner') {
       throw new ForbiddenException('Only owners can send invites');
     }

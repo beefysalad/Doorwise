@@ -9,7 +9,7 @@ import type {
   GetMyOrganizationsResponse,
   UpdateCurrentOrganizationResponse,
 } from '@workspace/shared';
-import { TenantScope } from '../common/tenant-scope/tenant-scope.service';
+import type { ResolvedScope } from '../common/tenant-scope/tenant-scope.service';
 import { UsersService } from '../users/users.service';
 import { OrganizationsRepository } from './organizations.repository';
 import type { CreateOrganizationDto } from './dto/create-organization.dto';
@@ -20,7 +20,6 @@ export class OrganizationsService {
   constructor(
     private readonly repository: OrganizationsRepository,
     private readonly usersService: UsersService,
-    private readonly tenantScope: TenantScope,
   ) {}
 
   async createOrganization(
@@ -52,10 +51,9 @@ export class OrganizationsService {
   }
 
   async updateCurrentOrganization(
+    scope: ResolvedScope,
     dto: UpdateOrganizationDto,
   ): Promise<UpdateCurrentOrganizationResponse> {
-    const scope = await this.tenantScope.require();
-
     if (scope.role !== 'owner') {
       throw new ForbiddenException('Only owners can update the organization');
     }

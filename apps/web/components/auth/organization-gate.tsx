@@ -4,37 +4,38 @@ import { type ReactNode, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Spinner } from "@workspace/ui/components/spinner"
 
-import { useMyOrganizations } from "@/hooks/api/use-my-organizations"
-import { useActiveOrg } from "@/hooks/use-active-org"
+import { useCurrentOrganizationState } from "@/components/organizations/current-organization-provider"
 
 function OrganizationGate({ children }: { children: ReactNode }) {
   const router = useRouter()
-  const { activeOrgId, setActiveOrgId } = useActiveOrg()
-  const { data, isLoading, isError } = useMyOrganizations()
+  const {
+    data,
+    isError,
+    isLoading,
+    setActiveOrganizationId,
+    workspaceMode,
+    memberships,
+  } = useCurrentOrganizationState()
 
   useEffect(() => {
     if (!data) return
 
-    if (data.memberships.length === 0) {
+    if (workspaceMode === "none") {
       router.replace("/onboarding")
       return
     }
 
-    const stillMember =
-      activeOrgId &&
-      data.memberships.some((m) => m.organization.id === activeOrgId)
-
-    if (!stillMember) {
-      const first = data.memberships[0]
-      if (first) setActiveOrgId(first.organization.id)
+    if (workspaceMode === "select") {
+      const first = memberships[0]
+      if (first) setActiveOrganizationId(first.organization.id)
     }
-  }, [data, activeOrgId, setActiveOrgId, router])
+  }, [data, memberships, router, setActiveOrganizationId, workspaceMode])
 
-  if (data && data.memberships.length > 0) {
+  if (data && workspaceMode === "auto") {
     return <>{children}</>
   }
 
-  if (data && data.memberships.length === 0) {
+  if (data && workspaceMode === "none") {
     return null
   }
 
@@ -49,7 +50,7 @@ function OrganizationGate({ children }: { children: ReactNode }) {
   if (isLoading) {
     return (
       <div className="flex min-h-svh items-center justify-center">
-        <Spinner className="text-muted-foreground size-6" />
+        <Spinner className="size-6 text-muted-foreground" />
       </div>
     )
   }

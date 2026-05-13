@@ -5,7 +5,10 @@ import type {
   UpdateCurrentOrganizationResponse,
 } from '@workspace/shared';
 import { ClerkUserId } from '../common/decorators/clerk-user-id.decorator';
+import { OrganizationAccess } from '../common/decorators/organization-access.decorator';
 import { ClerkAuthGuard } from '../common/guards/clerk-auth.guard';
+import { OrganizationAccessGuard } from '../common/guards/organization-access.guard';
+import type { ResolvedScope } from '../common/tenant-scope/tenant-scope.service';
 import { parseWithZod } from '../common/validation/parse-with-zod';
 import { createOrganizationSchema } from './dto/create-organization.dto';
 import { updateOrganizationSchema } from './dto/update-organization.dto';
@@ -33,10 +36,15 @@ export class OrganizationsController {
   }
 
   @Patch('current')
+  @UseGuards(OrganizationAccessGuard)
   updateCurrentOrganization(
+    @OrganizationAccess() organizationAccess: ResolvedScope,
     @Body() body: unknown,
   ): Promise<UpdateCurrentOrganizationResponse> {
     const dto = parseWithZod(updateOrganizationSchema, body);
-    return this.organizationsService.updateCurrentOrganization(dto);
+    return this.organizationsService.updateCurrentOrganization(
+      organizationAccess,
+      dto,
+    );
   }
 }

@@ -5,6 +5,7 @@ import type {
 } from "@workspace/shared"
 
 import { apiClient } from "@/lib/axios"
+import { authHeaders, tenantHeaders } from "@/lib/api/request"
 
 async function createInvite(
   token: string,
@@ -15,10 +16,7 @@ async function createInvite(
     "/organizations/current/invites",
     payload,
     {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "X-Active-Org": organizationId,
-      },
+      headers: tenantHeaders(token, organizationId),
     }
   )
   return response.data
@@ -31,7 +29,7 @@ async function acceptInvite(
   const response = await apiClient.post<AcceptInviteResponse>(
     `/invites/${encodeURIComponent(inviteToken)}/accept`,
     undefined,
-    { headers: { Authorization: `Bearer ${token}` } }
+    { headers: authHeaders(token) }
   )
   return response.data
 }
