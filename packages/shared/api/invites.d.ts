@@ -1,4 +1,4 @@
-import type { OrgRole, Organization } from "./organizations"
+import type { OrganizationMembership, OrgRole } from "./organizations"
 
 export type CreateInviteRequest = {
   email: string
@@ -14,7 +14,4 @@ export type CreateInviteResponse = {
   inviteUrl: string
 }
 
-export type AcceptInviteResponse = {
-  organization: Organization
-  role: OrgRole
-}
+export type AcceptInviteResponse = OrganizationMembership

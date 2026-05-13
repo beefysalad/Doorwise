@@ -21,6 +21,14 @@ type UserRow = {
   intendedRole: SignupRole | null;
 };
 
+const userResponseSelect = {
+  id: true,
+  email: true,
+  name: true,
+  imageUrl: true,
+  intendedRole: true,
+} as const;
+
 @Injectable()
 export class UsersRepository {
   constructor(private readonly prisma: PrismaService) {}
@@ -28,11 +36,12 @@ export class UsersRepository {
   async upsertClerkUser(
     input: UpsertClerkUserInput,
   ): Promise<CurrentUserResponse> {
-    const user = (await this.prisma.db.user.upsert({
+    const user = await this.prisma.db.user.upsert({
       where: { clerkId: input.clerkId },
       update: input,
       create: input,
-    })) as UserRow;
+      select: userResponseSelect,
+    });
 
     return this.toResponse(user, input.clerkId);
   }
@@ -41,10 +50,11 @@ export class UsersRepository {
     clerkId: string,
     role: SignupRole,
   ): Promise<CurrentUserResponse> {
-    const user = (await this.prisma.db.user.update({
+    const user = await this.prisma.db.user.update({
       where: { clerkId },
       data: { intendedRole: role },
-    })) as UserRow;
+      select: userResponseSelect,
+    });
 
     return this.toResponse(user, clerkId);
   }

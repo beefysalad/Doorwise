@@ -100,10 +100,7 @@ export class InvitesService {
 
     await this.invitesRepository.markConsumed(invite.id);
 
-    return {
-      organization: membership.organization,
-      role: membership.role,
-    };
+    return membership;
   }
 
   private hashToken(token: string): string {

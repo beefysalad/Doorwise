@@ -19,24 +19,16 @@ function useAcceptInvite() {
       if (!token) throw new Error("Missing Clerk token")
       return acceptInvite(token, inviteToken)
     },
-    onSuccess: (result: AcceptInviteResponse) => {
+    onSuccess: (newMembership: AcceptInviteResponse) => {
       queryClient.setQueryData<GetMyOrganizationsResponse>(
         ["organizations", "me"],
         (prev) => {
-          const next = prev?.memberships ?? []
-          if (next.some((m) => m.organization.id === result.organization.id)) {
-            return { memberships: next }
+          const memberships = prev?.memberships ?? []
+          if (memberships.some((m) => m.id === newMembership.id)) {
+            return { memberships }
           }
           return {
-            memberships: [
-              ...next,
-              {
-                id: result.organization.id,
-                role: result.role,
-                joinedAt: new Date().toISOString(),
-                organization: result.organization,
-              },
-            ],
+            memberships: [...memberships, newMembership],
           }
         }
       )
