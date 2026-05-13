@@ -166,7 +166,7 @@ function SettingsPage() {
                   </FieldLabel>
                   <Input
                     id="settings-workspace"
-                    defaultValue="Nexion"
+                    defaultValue="Doorwise"
                     disabled
                   />
                 </Field>

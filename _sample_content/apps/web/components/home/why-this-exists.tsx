@@ -42,7 +42,7 @@ export function WhyThisExists() {
           <div className="flex flex-wrap justify-center gap-3 pt-2">
             <Button size="default" className="gap-2 rounded-xl" asChild>
               <a
-                href="https://github.com/beefysalad/nexion-monorepo"
+                href="https://github.com/beefysalad/doorwise"
                 target="_blank"
                 rel="noreferrer"
               >

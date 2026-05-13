@@ -33,7 +33,7 @@ function DashboardSidebar() {
           <SidebarMenuItem className="group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:justify-center">
             <SidebarMenuButton
               asChild
-              tooltip="Nexion"
+              tooltip="Doorwise"
               className="group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0!"
             >
               <Link href="/dashboard">
@@ -42,7 +42,7 @@ function DashboardSidebar() {
                   <RiFlashlightLine className="size-5" />
                 </span>
                 <span className="grid min-w-0 leading-tight group-data-[collapsible=icon]:hidden">
-                  <span className="truncate font-semibold">Nexion</span>
+                  <span className="truncate font-semibold">Doorwise</span>
                   <span className="text-sidebar-foreground/70 truncate text-xs">
                     Workspace
                   </span>

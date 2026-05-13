@@ -43,25 +43,25 @@ const payments: Payment[] = [
     id: "f91c6a21",
     amount: 342,
     status: "success",
-    email: "ops@nexion.dev",
+    email: "ops@doorwise.dev",
   },
   {
     id: "07f5ab12",
     amount: 89,
     status: "failed",
-    email: "alerts@nexion.dev",
+    email: "alerts@doorwise.dev",
   },
   {
     id: "8c44de19",
     amount: 560,
     status: "success",
-    email: "finance@nexion.dev",
+    email: "finance@doorwise.dev",
   },
   {
     id: "c38f91d7",
     amount: 214,
     status: "processing",
-    email: "patrick@nexion.dev",
+    email: "patrick@doorwise.dev",
   },
 ]
 

@@ -45,8 +45,8 @@ type BrandThemeContextValue = {
   setBrandTheme: (themeId: BrandThemeId) => void
 }
 
-const BRAND_THEME_STORAGE_KEY = "nexion-brand-theme"
-const BRAND_THEME_CHANGE_EVENT = "nexion-brand-theme-change"
+const BRAND_THEME_STORAGE_KEY = "doorwise-brand-theme"
+const BRAND_THEME_CHANGE_EVENT = "doorwise-brand-theme-change"
 
 const brandThemePresets: BrandThemePreset[] = [
   {

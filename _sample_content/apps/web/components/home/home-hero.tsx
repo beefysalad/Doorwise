@@ -77,7 +77,7 @@ export function HomeHero() {
                 asChild
               >
                 <a
-                  href="https://github.com/beefysalad/nexion-monorepo"
+                  href="https://github.com/beefysalad/doorwise"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -127,7 +127,7 @@ export function HomeHero() {
                   <div className="flex flex-1 items-center justify-center gap-1.5">
                     <RiTerminalBoxLine className="text-muted-foreground/60 size-3" />
                     <span className="text-muted-foreground/60 font-mono text-[10px] tracking-wider">
-                      nexion — bash
+                      doorwise — bash
                     </span>
                   </div>
                 </div>

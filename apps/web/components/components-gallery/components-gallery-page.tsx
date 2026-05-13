@@ -585,7 +585,7 @@ function ComponentsGalleryPage() {
                     <FieldLabel htmlFor="workspace-name">
                       Workspace name
                     </FieldLabel>
-                    <Input id="workspace-name" defaultValue="Nexion" />
+                    <Input id="workspace-name" defaultValue="Doorwise" />
                     <FieldDescription>
                       This appears in project navigation.
                     </FieldDescription>

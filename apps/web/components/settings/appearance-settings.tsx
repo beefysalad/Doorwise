@@ -44,7 +44,7 @@ export function AppearanceSettings() {
         <CardHeader>
           <CardTitle>Display theme</CardTitle>
           <CardDescription>
-            Select how Nexion looks on your device.
+            Select how Doorwise looks on your device.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4 md:grid-cols-3">
