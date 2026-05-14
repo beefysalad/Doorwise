@@ -2,6 +2,7 @@ import {
   CanActivate,
   ExecutionContext,
   Injectable,
+  InternalServerErrorException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { verifyToken } from '@clerk/backend';
@@ -42,7 +43,7 @@ export class ClerkAuthGuard implements CanActivate {
     const secretKey = process.env.CLERK_SECRET_KEY;
 
     if (!secretKey) {
-      throw new UnauthorizedException('Missing CLERK_SECRET_KEY');
+      throw new InternalServerErrorException('Missing CLERK_SECRET_KEY');
     }
 
     try {

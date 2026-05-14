@@ -34,7 +34,7 @@ function NavigationMenuShowcase() {
           <p className="text-sm font-medium">Xero-style product header</p>
           <p className="text-muted-foreground text-sm">
             A full-width application bar with module navigation, utility
-            actions, and a clean secondary workspace row.
+            actions, and a clean secondary organization row.
           </p>
         </div>
 
@@ -121,7 +121,7 @@ function NavigationMenuShowcase() {
             <div className="space-y-1">
               <p className="text-lg font-semibold tracking-tight">Atlas</p>
               <p className="text-muted-foreground text-sm">
-                Inventory, purchasing, and accounting workspace
+                Inventory, purchasing, and accounting organization
               </p>
             </div>
 
@@ -139,7 +139,7 @@ function NavigationMenuShowcase() {
         <div className="space-y-1">
           <p className="text-sm font-medium">Section header variant</p>
           <p className="text-muted-foreground text-sm">
-            Same general feel, but more grounded for a module-level workspace
+            Same general feel, but more grounded for a module-level product
             screen.
           </p>
         </div>

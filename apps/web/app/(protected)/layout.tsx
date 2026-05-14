@@ -2,12 +2,12 @@ import { auth } from "@clerk/nextjs/server"
 import type { ReactNode } from "react"
 
 import { OrganizationGate } from "@/components/auth/organization-gate"
-import { DashboardShell } from "@/components/dashboard/dashboard-shell"
 import { DashboardUserProvider } from "@/components/dashboard/dashboard-user-provider"
+import { OwnerShell } from "@/components/owner/owner-shell"
 import { CurrentOrganizationProvider } from "@/components/organizations/current-organization-provider"
 import { getCurrentDashboardUser } from "@/lib/auth/current-dashboard-user"
 
-export default async function WorkspaceLayout({
+export default async function ProtectedLayout({
   children,
 }: {
   children: ReactNode
@@ -20,7 +20,7 @@ export default async function WorkspaceLayout({
     <DashboardUserProvider user={user}>
       <CurrentOrganizationProvider>
         <OrganizationGate>
-          <DashboardShell>{children}</DashboardShell>
+          <OwnerShell>{children}</OwnerShell>
         </OrganizationGate>
       </CurrentOrganizationProvider>
     </DashboardUserProvider>

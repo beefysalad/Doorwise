@@ -38,7 +38,7 @@ export function DashboardGrowthChart() {
       <CardHeader>
         <CardTitle className="text-lg">Growth Trend</CardTitle>
         <CardDescription>
-          Weekly active account expansion across the workspace.
+          Weekly active account expansion across Doorwise.
         </CardDescription>
       </CardHeader>
       <CardContent className="p-4">

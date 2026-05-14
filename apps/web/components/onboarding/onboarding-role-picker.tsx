@@ -1,8 +1,7 @@
 "use client"
 
-import { RiBuilding2Line, RiUserSmileLine } from "@remixicon/react"
+import { RiArrowRightLine, RiBuilding2Line, RiKey2Line } from "@remixicon/react"
 
-import { Button } from "@workspace/ui/components/button"
 import { cn } from "@workspace/ui/lib/utils"
 
 type OnboardingRole = "owner" | "tenant"
@@ -20,61 +19,54 @@ const options: Array<{
 }> = [
   {
     value: "owner",
-    label: "I'm a property owner",
+    label: "I'm a landlord or property owner",
     description:
-      "Set up a workspace for your rooms, tenants, bills, and payments.",
+      "I manage properties and collect rent from tenants. Set up an organization, add rooms, and start billing.",
     icon: RiBuilding2Line,
   },
   {
     value: "tenant",
-    label: "I'm a tenant",
+    label: "I'm a tenant or renter",
     description:
-      "Join your landlord's workspace to view your bills and payment history.",
-    icon: RiUserSmileLine,
+      "I rent a room or unit from a landlord. Use an invite code or request access by their email.",
+    icon: RiKey2Line,
   },
 ]
 
 function OnboardingRolePicker({ value, onChange }: OnboardingRolePickerProps) {
   return (
-    <div className="grid gap-3 sm:grid-cols-2">
+    <div className="grid gap-4.5 sm:grid-cols-2">
       {options.map((option) => {
         const Icon = option.icon
         const isActive = value === option.value
 
         return (
-          <Button
+          <button
             key={option.value}
             type="button"
-            variant="outline"
             onClick={() => onChange(option.value)}
             aria-pressed={isActive}
             className={cn(
-              "h-full min-h-44 w-full items-start justify-start gap-4 rounded-2xl bg-card p-5 text-left leading-normal whitespace-normal transition-colors sm:flex-col sm:gap-5",
-              "hover:border-primary hover:bg-accent",
-              isActive
-                ? "border-primary bg-accent ring-1 ring-primary"
-                : "border-border"
+              "bg-card flex min-h-50 flex-col gap-3.5 rounded-2xl border p-7 text-left transition-colors",
+              "hover:border-primary",
+              isActive ? "border-primary ring-primary ring-1" : "border-input",
             )}
           >
-            <span
-              className={cn(
-                "flex size-11 shrink-0 items-center justify-center rounded-xl",
-                isActive
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground"
-              )}
-            >
-              <Icon className="size-5" />
+            <span className="bg-accent text-primary flex size-14 items-center justify-center rounded-lg">
+              <Icon className="size-7" />
             </span>
-            <span className="min-w-0 flex-1 space-y-2">
-              <span className="block text-base leading-6 font-semibold">
+            <div>
+              <div className="mb-1.5 text-[17px] font-semibold">
                 {option.label}
-              </span>
-              <span className="block text-sm leading-6 text-muted-foreground">
+              </div>
+              <div className="text-muted-foreground text-[13.5px] leading-relaxed">
                 {option.description}
-              </span>
-            </span>
-          </Button>
+              </div>
+            </div>
+            <div className="text-primary mt-auto flex items-center gap-1.5 text-[13px] font-medium">
+              Continue <RiArrowRightLine className="size-3.5" />
+            </div>
+          </button>
         )
       })}
     </div>

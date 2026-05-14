@@ -44,7 +44,7 @@ function DashboardSidebar() {
                 <span className="grid min-w-0 leading-tight group-data-[collapsible=icon]:hidden">
                   <span className="truncate font-semibold">Doorwise</span>
                   <span className="text-sidebar-foreground/70 truncate text-xs">
-                    Workspace
+                    Property OS
                   </span>
                 </span>
 
@@ -60,7 +60,7 @@ function DashboardSidebar() {
 
       <SidebarContent className="group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:gap-0">
         <SidebarGroup className="group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:pt-0">
-          <SidebarGroupLabel>Workspace</SidebarGroupLabel>
+          <SidebarGroupLabel>Doorwise</SidebarGroupLabel>
           <SidebarGroupContent className="group-data-[collapsible=icon]:w-full">
             <SidebarMenu className="group-data-[collapsible=icon]:items-center">
               {dashboardNavItems.map((item, index) => {

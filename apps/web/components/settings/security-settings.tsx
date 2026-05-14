@@ -46,7 +46,7 @@ export function SecuritySettings() {
                     Sensitive action review
                   </FieldTitle>
                   <FieldDescription className="max-w-md">
-                    Require a fresh sign-in before making sensitive workspace
+                    Require a fresh sign-in before making sensitive organization
                     changes.
                   </FieldDescription>
                 </div>

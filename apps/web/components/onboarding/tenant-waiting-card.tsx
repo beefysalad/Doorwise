@@ -1,32 +1,40 @@
 "use client"
 
-import { RiArrowLeftLine, RiMailLine } from "@remixicon/react"
+import { RiArrowLeftLine, RiNotification3Line } from "@remixicon/react"
 
+import { StatusBadge } from "@/components/doorwise/status-badge"
 import { Button } from "@workspace/ui/components/button"
 
 function TenantWaitingCard({ onBack }: { onBack: () => void }) {
   return (
-    <div className="space-y-5 text-center">
-      <span className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-secondary text-secondary-foreground">
-        <RiMailLine className="size-6" />
+    <div className="flex flex-col items-center gap-5 text-center">
+      <span className="bg-partial text-partial-foreground flex size-22 items-center justify-center rounded-full">
+        <RiNotification3Line className="size-9" />
       </span>
       <div className="space-y-2">
-        <h2 className="font-heading text-xl font-semibold tracking-tight">
-          Ask your landlord for an invite
+        <h2 className="font-heading text-2xl font-bold tracking-tight">
+          Join your landlord 🔑
         </h2>
-        <p className="text-sm leading-6 text-muted-foreground">
+        <p className="text-muted-foreground mx-auto max-w-sm text-sm leading-relaxed">
           Tenants join Doorwise through their landlord. Ask them to send you an
           invite link — open it here while signed in and you&apos;ll be added to
-          their workspace automatically.
+          their organization automatically.
         </p>
+      </div>
+      <div className="bg-card flex w-full max-w-xs items-center gap-3 rounded-xl border p-3.5 text-left">
+        <StatusBadge status="pending" dot />
+        <div className="text-muted-foreground text-xs">
+          Waiting for an invite link
+        </div>
       </div>
       <Button
         variant="outline"
-        className="h-11 w-full rounded-2xl"
+        size="lg"
+        className="w-full rounded-md"
         onClick={onBack}
       >
-        <RiArrowLeftLine className="size-4" />
-        Back
+        <RiArrowLeftLine />
+        Change role
       </Button>
     </div>
   )

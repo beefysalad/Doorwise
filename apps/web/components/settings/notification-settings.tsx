@@ -40,7 +40,7 @@ export function NotificationSettings() {
         <FieldGroup>
           <SettingSwitch
             checked={weeklyDigestEnabled}
-            description="A compact summary of workspace activity and sync status."
+            description="A compact summary of organization activity and sync status."
             icon={RiMailLine}
             label="Weekly digest"
             onCheckedChange={setWeeklyDigestEnabled}

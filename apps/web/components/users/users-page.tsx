@@ -105,7 +105,7 @@ export function UsersPage() {
                   colSpan={4}
                   className="text-muted-foreground h-32 text-center"
                 >
-                  No members found in this workspace.
+                  No members found in this organization.
                 </TableCell>
               </TableRow>
             ) : (

@@ -3,6 +3,7 @@ import {
   Body,
   Controller,
   Headers,
+  InternalServerErrorException,
   Post,
   Req,
   UnauthorizedException,
@@ -51,7 +52,7 @@ export class ClerkWebhooksController {
   @Post()
   async handleClerkWebhook(
     @Req() request: RawBodyRequest<Request>,
-    @Body() body: unknown,
+    @Body() _body: unknown,
     @Headers('webhook-id') webhookId?: string,
     @Headers('webhook-timestamp') webhookTimestamp?: string,
     @Headers('webhook-signature') webhookSignature?: string,
@@ -59,7 +60,7 @@ export class ClerkWebhooksController {
     @Headers('svix-timestamp') svixTimestamp?: string,
     @Headers('svix-signature') svixSignature?: string,
   ): Promise<{ received: true }> {
-    const event = this.verifyWebhookEvent(request, body, {
+    const event = this.verifyWebhookEvent(request, {
       'webhook-id': webhookId ?? svixId,
       'webhook-timestamp': webhookTimestamp ?? svixTimestamp,
       'webhook-signature': webhookSignature ?? svixSignature,
@@ -80,7 +81,6 @@ export class ClerkWebhooksController {
 
   private verifyWebhookEvent(
     request: RawBodyRequest<Request>,
-    body: unknown,
     headers: {
       'webhook-id'?: string;
       'webhook-timestamp'?: string;
@@ -92,7 +92,9 @@ export class ClerkWebhooksController {
       process.env.CLERK_WEBHOOK_SECRET;
 
     if (!secret) {
-      throw new BadRequestException('Missing CLERK_WEBHOOK_SIGNING_SECRET');
+      throw new InternalServerErrorException(
+        'Missing CLERK_WEBHOOK_SIGNING_SECRET',
+      );
     }
 
     if (
@@ -105,7 +107,13 @@ export class ClerkWebhooksController {
       );
     }
 
-    const payload = request.rawBody ?? JSON.stringify(body);
+    if (!request.rawBody) {
+      throw new InternalServerErrorException(
+        'Raw request body is required for Clerk webhook verification',
+      );
+    }
+
+    const payload = request.rawBody;
 
     try {
       return new Webhook(secret).verify(payload, {

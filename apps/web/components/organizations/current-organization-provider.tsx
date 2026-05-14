@@ -12,15 +12,15 @@ import type { OrganizationMembership } from "@workspace/shared"
 import { useMyOrganizations } from "@/hooks/api/use-my-organizations"
 import { useActiveOrg } from "@/hooks/use-active-org"
 
-type OrganizationWorkspaceMode = "none" | "auto" | "select"
+type OrganizationMode = "none" | "auto" | "select"
 
 type CurrentOrganizationContextValue = ReturnType<typeof useMyOrganizations> & {
   activeMembership: OrganizationMembership | null
   activeOrganizationId: string | null
   memberships: OrganizationMembership[]
+  organizationMode: OrganizationMode
   organizationCount: number
   setActiveOrganizationId: (organizationId: string | null) => void
-  workspaceMode: OrganizationWorkspaceMode
 }
 
 const CurrentOrganizationContext =
@@ -55,7 +55,7 @@ function CurrentOrganizationProvider({ children }: { children: ReactNode }) {
     return null
   }, [activeOrgId, memberships])
 
-  const workspaceMode: OrganizationWorkspaceMode =
+  const organizationMode: OrganizationMode =
     memberships.length === 0 ? "none" : activeMembership ? "auto" : "select"
 
   useEffect(() => {
@@ -76,9 +76,9 @@ function CurrentOrganizationProvider({ children }: { children: ReactNode }) {
         activeMembership,
         activeOrganizationId: activeMembership?.organization.id ?? null,
         memberships,
+        organizationMode,
         organizationCount: memberships.length,
         setActiveOrganizationId: setActiveOrgId,
-        workspaceMode,
       }}
     >
       {children}

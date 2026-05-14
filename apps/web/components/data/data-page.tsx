@@ -79,7 +79,7 @@ export function DataPage() {
         <div className="space-y-1">
           <p className="text-muted-foreground text-sm">Data</p>
           <h1 className="font-heading text-3xl font-semibold tracking-normal md:text-4xl">
-            Data Workspace
+            Data Center
           </h1>
           <p className="text-muted-foreground max-w-2xl text-sm">
             Monitor synced records, API readiness, and profile completeness
@@ -276,7 +276,7 @@ export function DataPage() {
                 Data source status
               </CardTitle>
               <CardDescription>
-                Snapshot of the live backend connection for this workspace.
+                Snapshot of the live backend connection for this organization.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
