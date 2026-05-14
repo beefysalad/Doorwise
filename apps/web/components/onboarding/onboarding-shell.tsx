@@ -32,9 +32,11 @@ function OnboardingShell() {
     override === "cleared" ? null : (override ?? user?.intendedRole ?? null)
 
   const handleChoose = (next: OnboardingRole) => {
-    setOverride(next)
-    if (next === "owner") setOwnerStep("plan")
     setRoleMutation.mutate(next, {
+      onSuccess: () => {
+        setOverride(next)
+        if (next === "owner") setOwnerStep("plan")
+      },
       onError: () => {
         toast.error("Could not save your selection. Please try again.")
       },

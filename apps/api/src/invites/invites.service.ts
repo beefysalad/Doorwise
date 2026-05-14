@@ -20,6 +20,7 @@ import {
 } from './invites.repository';
 
 const INVITE_TTL_DAYS = 7;
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
 @Injectable()
 export class InvitesService {
@@ -39,7 +40,7 @@ export class InvitesService {
     const token = randomBytes(32).toString('base64url');
     const tokenHash = this.hashToken(token);
     const expiresAt = new Date(
-      Date.now() + INVITE_TTL_DAYS * 24 * 60 * 60 * 1000,
+      Date.now() + INVITE_TTL_DAYS * MS_PER_DAY,
     );
 
     const invite = await this.invitesRepository.create({

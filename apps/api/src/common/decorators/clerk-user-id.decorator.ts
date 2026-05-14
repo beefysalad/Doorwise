@@ -1,4 +1,8 @@
-import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+import {
+  createParamDecorator,
+  ExecutionContext,
+  UnauthorizedException,
+} from '@nestjs/common';
 import type { RequestWithClerkAuth } from '../guards/clerk-auth.guard';
 
 export const ClerkUserId = createParamDecorator(
@@ -6,7 +10,7 @@ export const ClerkUserId = createParamDecorator(
     const request = context.switchToHttp().getRequest<RequestWithClerkAuth>();
 
     if (!request.clerkAuth?.userId) {
-      throw new Error('Clerk user id is missing from request');
+      throw new UnauthorizedException('Clerk user id is missing from request');
     }
 
     return request.clerkAuth.userId;
