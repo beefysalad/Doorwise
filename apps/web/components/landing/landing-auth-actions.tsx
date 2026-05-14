@@ -1,76 +1,57 @@
 "use client"
 
+import type { ComponentProps, ReactNode } from "react"
 import { Show, SignInButton, SignUpButton } from "@clerk/nextjs"
 import Link from "next/link"
 
 import { Button } from "@workspace/ui/components/button"
 
-function LandingHeaderActions() {
-  return (
-    <div className="flex items-center gap-3">
-      <Show when="signed-out">
-        <SignInButton mode="modal" fallbackRedirectUrl="/dashboard">
-          <Button variant="ghost" className="hidden sm:inline-flex">
-            Sign in
-          </Button>
-        </SignInButton>
-        <SignUpButton mode="modal" fallbackRedirectUrl="/dashboard">
-          <Button>Sign Up</Button>
-        </SignUpButton>
-      </Show>
-      <Show when="signed-in">
-        <Button asChild>
-          <Link href="/dashboard">Open workspace</Link>
-        </Button>
-      </Show>
-    </div>
-  )
-}
+type ButtonProps = ComponentProps<typeof Button>
 
-function LandingHeroActions() {
-  return (
-    <div className="flex flex-col gap-3 sm:flex-row">
-      <Show when="signed-out">
-        <SignUpButton mode="modal" fallbackRedirectUrl="/dashboard">
-          <Button size="lg" className="h-12 rounded-2xl px-6">
-            Start managing rentals
-          </Button>
-        </SignUpButton>
-      </Show>
-      <Show when="signed-in">
-        <Button asChild size="lg" className="h-12 rounded-2xl px-6">
-          <Link href="/dashboard">Start managing rentals</Link>
-        </Button>
-      </Show>
-      <Button
-        asChild
-        size="lg"
-        variant="outline"
-        className="h-12 rounded-2xl px-6"
-      >
-        <Link href="#workflow">See how it works</Link>
-      </Button>
-    </div>
-  )
-}
-
-function LandingFinalAction() {
+/** Clerk-wired CTA: opens sign-up when signed out, links to /dashboard when in. */
+function LandingSignUpAction({
+  children,
+  ...buttonProps
+}: { children: ReactNode } & ButtonProps) {
   return (
     <>
       <Show when="signed-out">
         <SignUpButton mode="modal" fallbackRedirectUrl="/dashboard">
-          <Button size="lg" variant="secondary" className="rounded-2xl">
-            Open Doorwise
-          </Button>
+          <Button {...buttonProps}>{children}</Button>
         </SignUpButton>
       </Show>
       <Show when="signed-in">
-        <Button asChild size="lg" variant="secondary" className="rounded-2xl">
-          <Link href="/dashboard">Open Doorwise</Link>
+        <Button {...buttonProps} asChild>
+          <Link href="/dashboard">{children}</Link>
         </Button>
       </Show>
     </>
   )
 }
 
-export { LandingFinalAction, LandingHeaderActions, LandingHeroActions }
+/** Nav header — Sign in (ghost) + Get started (primary). */
+function LandingHeaderActions() {
+  return (
+    <div className="flex items-center gap-2">
+      <Show when="signed-out">
+        <SignInButton mode="modal" fallbackRedirectUrl="/dashboard">
+          <Button variant="ghost" size="sm" className="hidden rounded-md sm:inline-flex">
+            Sign in
+          </Button>
+        </SignInButton>
+        <SignUpButton mode="modal" fallbackRedirectUrl="/dashboard">
+          <Button size="sm" className="rounded-md">
+            Get started
+          </Button>
+        </SignUpButton>
+      </Show>
+      <Show when="signed-in">
+        <Button asChild size="sm" className="rounded-md">
+          <Link href="/dashboard">Open Doorwise</Link>
+        </Button>
+      </Show>
+    </div>
+  )
+}
+
+export { LandingHeaderActions, LandingSignUpAction }

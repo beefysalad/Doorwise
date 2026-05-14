@@ -28,7 +28,7 @@ export function ProfileSettings() {
           <CardHeader>
             <CardTitle>Profile information</CardTitle>
             <CardDescription>
-              This is how you will appear to others in the workspace.
+              This is how you will appear to others in Doorwise.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -91,20 +91,20 @@ export function ProfileSettings() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Workspace details</CardTitle>
+            <CardTitle>Organization details</CardTitle>
             <CardDescription>
-              Information about your current workspace.
+              Information about your current organization.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <FieldGroup>
               <Field>
-                <FieldLabel htmlFor="settings-workspace">
-                  Workspace name
+                <FieldLabel htmlFor="settings-organization">
+                  Organization name
                 </FieldLabel>
-                <Input id="settings-workspace" defaultValue="Doorwise" disabled />
+                <Input id="settings-organization" defaultValue="Doorwise" disabled />
                 <p className="text-muted-foreground mt-1 text-xs">
-                  Workspace names can only be changed by administrators.
+                  Organization names can only be changed by administrators.
                 </p>
               </Field>
             </FieldGroup>

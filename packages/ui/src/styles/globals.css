@@ -42,6 +42,26 @@
     --sidebar-accent-foreground: oklch(0.2 0 0);
     --sidebar-border: oklch(0.88 0 0);
     --sidebar-ring: oklch(0.55 0.22 264 / 40%);
+
+    /* Doorwise status tokens — semantic */
+    --paid: #dcfce7;
+    --paid-foreground: #15803d;
+    --paid-border: #bbf7d0;
+    --partial: #fef3c7;
+    --partial-foreground: #a16207;
+    --partial-border: #fde68a;
+    --overdue: #fee2e2;
+    --overdue-foreground: #b91c1c;
+    --overdue-border: #fecaca;
+    --reserved: #ede9fe;
+    --reserved-foreground: #5b21b6;
+    --reserved-border: #ddd6fe;
+    --maintenance: #ffedd5;
+    --maintenance-foreground: #9a3412;
+    --maintenance-border: #fed7aa;
+    --status-info: #dbeafe;
+    --status-info-foreground: #1e40af;
+    --status-info-border: #bfdbfe;
 }
 
 .dark {
@@ -78,6 +98,26 @@
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(1 0 0 / 8%);
     --sidebar-ring: oklch(0.556 0 0);
+
+    /* Doorwise status tokens — semantic (dark) */
+    --paid: oklch(0.27 0.06 150);
+    --paid-foreground: oklch(0.82 0.15 150);
+    --paid-border: oklch(0.36 0.07 150);
+    --partial: oklch(0.28 0.06 75);
+    --partial-foreground: oklch(0.84 0.14 85);
+    --partial-border: oklch(0.38 0.07 75);
+    --overdue: oklch(0.28 0.08 25);
+    --overdue-foreground: oklch(0.78 0.16 25);
+    --overdue-border: oklch(0.38 0.09 25);
+    --reserved: oklch(0.29 0.07 295);
+    --reserved-foreground: oklch(0.82 0.13 295);
+    --reserved-border: oklch(0.39 0.08 295);
+    --maintenance: oklch(0.30 0.07 55);
+    --maintenance-foreground: oklch(0.82 0.13 55);
+    --maintenance-border: oklch(0.40 0.08 55);
+    --status-info: oklch(0.29 0.07 260);
+    --status-info-foreground: oklch(0.82 0.13 260);
+    --status-info-border: oklch(0.39 0.08 260);
 }
 
 @theme inline {
@@ -123,6 +163,24 @@
     --color-sidebar-ring: var(--sidebar-ring);
     --font-sans: var(--font-sans);
     --font-heading: var(--font-heading);
+    --color-paid: var(--paid);
+    --color-paid-foreground: var(--paid-foreground);
+    --color-paid-border: var(--paid-border);
+    --color-partial: var(--partial);
+    --color-partial-foreground: var(--partial-foreground);
+    --color-partial-border: var(--partial-border);
+    --color-overdue: var(--overdue);
+    --color-overdue-foreground: var(--overdue-foreground);
+    --color-overdue-border: var(--overdue-border);
+    --color-reserved: var(--reserved);
+    --color-reserved-foreground: var(--reserved-foreground);
+    --color-reserved-border: var(--reserved-border);
+    --color-maintenance: var(--maintenance);
+    --color-maintenance-foreground: var(--maintenance-foreground);
+    --color-maintenance-border: var(--maintenance-border);
+    --color-status-info: var(--status-info);
+    --color-status-info-foreground: var(--status-info-foreground);
+    --color-status-info-border: var(--status-info-border);
 }
 
 @layer base {

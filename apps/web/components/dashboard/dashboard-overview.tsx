@@ -45,7 +45,7 @@ function DashboardOverview() {
           </Button>
           <Button size="sm" className="w-full sm:w-auto">
             <RiArrowRightLine data-icon="inline-start" className="rotate-180" />
-            Go to workspace
+            Go to Doorwise
           </Button>
         </div>
       </section>

@@ -79,9 +79,9 @@ function SettingsPage() {
     <main className="flex flex-1 flex-col gap-6 p-4 md:p-8">
       <section className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div className="space-y-1">
-          <p className="text-muted-foreground text-sm">Settings</p>
+          <p className="text-muted-foreground text-sm">Modify your settings</p>
           <h1 className="font-heading text-3xl font-semibold tracking-normal md:text-4xl">
-            Workspace settings
+             Settings
           </h1>
         </div>
         <Button className="w-full sm:w-auto">
@@ -121,7 +121,7 @@ function SettingsPage() {
             <CardHeader>
               <CardTitle>Profile</CardTitle>
               <CardDescription>
-                Identity used across the workspace shell.
+                Identity used across Doorwise.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -160,16 +160,7 @@ function SettingsPage() {
                     disabled
                   />
                 </Field>
-                <Field>
-                  <FieldLabel htmlFor="settings-workspace">
-                    Workspace name
-                  </FieldLabel>
-                  <Input
-                    id="settings-workspace"
-                    defaultValue="Doorwise"
-                    disabled
-                  />
-                </Field>
+                
               </FieldGroup>
             </CardContent>
           </Card>
@@ -184,7 +175,7 @@ function SettingsPage() {
             <CardContent className="space-y-4">
               {[
                 ["Authentication", "Clerk connected"],
-                ["Plan", "Development workspace"],
+                ["Plan", "Development account"],
                 ["API sync", "Current user synced"],
               ].map(([label, value]) => (
                 <div
@@ -247,14 +238,14 @@ function SettingsPage() {
             <CardHeader>
               <CardTitle>Notifications</CardTitle>
               <CardDescription>
-                Email preferences for workspace activity.
+                Email preferences for Doorwise activity.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <FieldGroup>
                 <SettingSwitch
                   checked={weeklyDigestEnabled}
-                  description="A compact summary of workspace activity and sync status."
+                  description="A compact summary of organization activity and sync status."
                   icon={RiMailLine}
                   label="Weekly digest"
                   onCheckedChange={setWeeklyDigestEnabled}
@@ -285,14 +276,14 @@ function SettingsPage() {
             <CardHeader>
               <CardTitle>Security</CardTitle>
               <CardDescription>
-                Session controls for the authenticated workspace.
+                Session controls for the authenticated account.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <FieldGroup>
                 <SettingSwitch
                   checked={sessionReviewEnabled}
-                  description="Require a fresh sign-in before sensitive workspace changes."
+                  description="Require a fresh sign-in before sensitive organization changes."
                   icon={RiLockPasswordLine}
                   label="Sensitive action review"
                   onCheckedChange={setSessionReviewEnabled}

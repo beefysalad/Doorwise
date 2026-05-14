@@ -25,7 +25,7 @@ export function RecentUsersCard() {
       <CardHeader>
         <CardTitle className="text-lg">Recent Users</CardTitle>
         <CardDescription>
-          Latest accounts synced to your workspace.
+          Latest accounts synced to this organization.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">

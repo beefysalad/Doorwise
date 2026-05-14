@@ -1,39 +1,39 @@
 "use client"
 
 import { useState } from "react"
-import { RiArrowLeftLine, RiBuilding2Line } from "@remixicon/react"
+import { RiArrowLeftLine, RiArrowRightLine, RiDoorClosedLine } from "@remixicon/react"
 import { toast } from "sonner"
 
+import { StepIndicator } from "@/components/doorwise/step-indicator"
 import { Button } from "@workspace/ui/components/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@workspace/ui/components/card"
 
 import { useSetIntendedRole } from "@/hooks/api/use-set-intended-role"
 import { useSyncCurrentUser } from "@/hooks/api/use-sync-current-user"
 import { CreateOrganizationForm } from "./create-organization-form"
+import { OnboardingPlanPicker } from "./onboarding-plan-picker"
 import {
   OnboardingRolePicker,
   type OnboardingRole,
 } from "./onboarding-role-picker"
 import { TenantWaitingCard } from "./tenant-waiting-card"
 
+type OwnerStep = "plan" | "details"
+
 function OnboardingShell() {
   const { data: user } = useSyncCurrentUser()
   const setRoleMutation = useSetIntendedRole()
   const [override, setOverride] = useState<OnboardingRole | null | "cleared">(
-    null
+    null,
   )
+  const [ownerStep, setOwnerStep] = useState<OwnerStep>("plan")
+  const [selectedPlanId, setSelectedPlanId] = useState<string>("free")
 
   const role: OnboardingRole | null =
     override === "cleared" ? null : (override ?? user?.intendedRole ?? null)
 
   const handleChoose = (next: OnboardingRole) => {
     setOverride(next)
+    if (next === "owner") setOwnerStep("plan")
     setRoleMutation.mutate(next, {
       onError: () => {
         toast.error("Could not save your selection. Please try again.")
@@ -41,92 +41,117 @@ function OnboardingShell() {
     })
   }
 
-  const handleBack = () => setOverride("cleared")
+  const handleBackToRole = () => {
+    setOverride("cleared")
+    setOwnerStep("plan")
+  }
+
+  // Step 1 role · Step 2 plan · Step 3 workspace details
+  const step =
+    role === null ? 1 : role === "owner" && ownerStep === "details" ? 3 : 2
 
   return (
-    <main className="relative min-h-svh overflow-hidden bg-background px-4 py-8 text-foreground sm:px-6 lg:px-8">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-gradient-to-b from-muted to-transparent"
-      />
-      <div className="mx-auto flex min-h-[calc(100svh-4rem)] w-full max-w-5xl items-center justify-center">
-        <div className="w-full space-y-6">
-          <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
-            <span className="flex size-14 items-center justify-center rounded-3xl bg-primary text-primary-foreground shadow-sm">
-              <RiBuilding2Line className="size-6" />
-            </span>
-            <div className="space-y-3">
-              <p className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
-                Welcome to Doorwise
-              </p>
-              <h1 className="font-heading text-3xl font-semibold tracking-tight text-balance sm:text-4xl md:text-5xl">
-                {role === "owner"
-                  ? "Set up your workspace"
-                  : role === "tenant"
-                    ? "Join your landlord's workspace"
-                    : "Tell us who you are"}
-              </h1>
-              <p className="mx-auto max-w-xl text-sm leading-6 text-muted-foreground sm:text-base sm:leading-7">
-                {role === "owner"
-                  ? "Create a workspace for your properties, tenants, and rent records. You can invite staff and tenants later."
-                  : role === "tenant"
-                    ? "Tenants join through an invite from their landlord."
-                    : "We'll set up your account based on how you use Doorwise."}
-              </p>
+    <main className="bg-background text-foreground flex min-h-svh flex-col px-6 py-8 sm:px-10">
+      {/* Top bar */}
+      <div className="mx-auto flex w-full max-w-5xl items-center gap-2.5">
+        <span className="bg-primary text-primary-foreground flex size-7.5 items-center justify-center rounded-lg">
+          <RiDoorClosedLine className="size-4.5" />
+        </span>
+        <span className="font-heading text-base font-bold tracking-tight">
+          Doorwise
+        </span>
+        <span className="text-muted-foreground ml-auto text-[13px]">
+          Step {step} of 3
+        </span>
+      </div>
+
+      {/* Content */}
+      <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center py-10">
+        <StepIndicator step={step} total={3} className="mb-8" />
+
+        {role === null && (
+          <div className="text-center">
+            <h1 className="font-heading text-3xl font-bold tracking-tight md:text-4xl">
+              Hi! Who are you? 👋
+            </h1>
+            <p className="text-muted-foreground mx-auto mt-3 max-w-md text-balance">
+              Tell us a little about yourself so we can set things up just
+              right.
+            </p>
+            <div className="mt-9 text-left">
+              <OnboardingRolePicker value={role} onChange={handleChoose} />
+            </div>
+            <p className="text-muted-foreground/70 mt-8 text-[12.5px]">
+              Need both? You can switch roles later in account settings.
+            </p>
+          </div>
+        )}
+
+        {role === "owner" && ownerStep === "plan" && (
+          <div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleBackToRole}
+              className="mb-5 -ml-2 gap-1.5 rounded-md"
+            >
+              <RiArrowLeftLine className="size-4" />
+              Change role
+            </Button>
+            <h1 className="font-heading text-2xl font-bold tracking-tight">
+              Pick a plan that fits 📦
+            </h1>
+            <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+              Start free and upgrade anytime. You can change this later — no
+              card needed to begin.
+            </p>
+            <div className="mt-7">
+              <OnboardingPlanPicker
+                value={selectedPlanId}
+                onChange={setSelectedPlanId}
+              />
+            </div>
+            <div className="mt-7 flex justify-end">
+              <Button
+                size="lg"
+                className="rounded-md"
+                onClick={() => setOwnerStep("details")}
+              >
+                Continue
+                <RiArrowRightLine />
+              </Button>
             </div>
           </div>
+        )}
 
-          {role === null && (
-            <Card className="mx-auto w-full max-w-3xl rounded-3xl shadow-sm">
-              <CardHeader className="gap-2 px-5 pt-5 sm:px-6 sm:pt-6">
-                <CardTitle className="text-xl">Choose your role</CardTitle>
-                <CardDescription className="leading-6">
-                  You can change this later, but it helps us start you in the
-                  right place.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="px-5 pb-5 sm:px-6 sm:pb-6">
-                <OnboardingRolePicker value={role} onChange={handleChoose} />
-              </CardContent>
-            </Card>
-          )}
+        {role === "owner" && ownerStep === "details" && (
+          <div className="mx-auto w-full max-w-md">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setOwnerStep("plan")}
+              className="mb-5 -ml-2 gap-1.5 rounded-md"
+            >
+              <RiArrowLeftLine className="size-4" />
+              Change plan
+            </Button>
+            <h1 className="font-heading text-2xl font-bold tracking-tight">
+              Let&apos;s set up your place 🏠
+            </h1>
+            <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+              This is your organization. You can add more properties later.
+            </p>
+            <div className="mt-7">
+              <CreateOrganizationForm planId={selectedPlanId} />
+            </div>
+          </div>
+        )}
 
-          {role === "owner" && (
-            <Card className="mx-auto w-full max-w-xl rounded-[2rem] shadow-sm">
-              <CardHeader className="gap-5 px-5 pt-5 sm:px-7 sm:pt-7">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleBack}
-                  className="w-fit gap-2 rounded-2xl px-2"
-                >
-                  <RiArrowLeftLine className="size-4" />
-                  Change role
-                </Button>
-                <div className="space-y-2">
-                  <CardTitle className="font-heading text-2xl tracking-tight">
-                    Workspace details
-                  </CardTitle>
-                  <CardDescription className="leading-6">
-                    Use the name tenants and staff will recognize. You can edit
-                    these details later.
-                  </CardDescription>
-                </div>
-              </CardHeader>
-              <CardContent className="px-5 pb-5 sm:px-7 sm:pb-7">
-                <CreateOrganizationForm />
-              </CardContent>
-            </Card>
-          )}
-
-          {role === "tenant" && (
-            <Card className="mx-auto w-full max-w-xl rounded-3xl shadow-sm">
-              <CardContent className="p-5 sm:p-6">
-                <TenantWaitingCard onBack={handleBack} />
-              </CardContent>
-            </Card>
-          )}
-        </div>
+        {role === "tenant" && (
+          <div className="mx-auto w-full max-w-md">
+            <TenantWaitingCard onBack={handleBackToRole} />
+          </div>
+        )}
       </div>
     </main>
   )

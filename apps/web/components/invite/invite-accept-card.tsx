@@ -47,7 +47,7 @@ function InviteAcceptCard({ token }: { token: string }) {
           <span className="flex size-12 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
             <RiMailCheckLine className="size-6" />
           </span>
-          <CardTitle className="mt-3">Joining workspace</CardTitle>
+          <CardTitle className="mt-3">Joining organization</CardTitle>
           <CardDescription>
             {acceptInvite.isPending && "Accepting your invite..."}
             {acceptInvite.isError && "We couldn't accept this invite."}
@@ -58,14 +58,14 @@ function InviteAcceptCard({ token }: { token: string }) {
           <CardContent className="space-y-3">
             <p className="text-sm text-muted-foreground">
               The invite may have expired or already been used. Ask the
-              workspace owner for a new one.
+              organization owner for a new one.
             </p>
             <Button
               variant="outline"
               className="w-full"
               onClick={() => router.push("/onboarding")}
             >
-              Start a new workspace instead
+              Start a new organization instead
             </Button>
           </CardContent>
         )}

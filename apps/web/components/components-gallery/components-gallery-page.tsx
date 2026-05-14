@@ -323,7 +323,7 @@ const radarChartConfig = {
 } satisfies ChartConfig
 
 const radioOptions = [
-  { value: "solo", title: "Solo", description: "One-person workspace." },
+  { value: "solo", title: "Solo", description: "One-person setup." },
   { value: "team", title: "Team", description: "Shared access for operators." },
   {
     value: "enterprise",
@@ -570,20 +570,20 @@ function ComponentsGalleryPage() {
             </CardHeader>
             <CardContent>
               <FieldSet>
-                <FieldLegend>Workspace Settings</FieldLegend>
+                <FieldLegend>Organization Settings</FieldLegend>
                 <FieldGroup>
                   <Field>
-                    <FieldLabel htmlFor="workspace-name">
-                      Workspace name
+                    <FieldLabel htmlFor="organization-name">
+                      Organization name
                     </FieldLabel>
-                    <Input id="workspace-name" defaultValue="Doorwise" />
+                    <Input id="organization-name" defaultValue="Doorwise" />
                     <FieldDescription>
                       This appears in project navigation.
                     </FieldDescription>
                   </Field>
                   <Field data-invalid={true}>
-                    <FieldLabel htmlFor="workspace-slug">Slug</FieldLabel>
-                    <Input id="workspace-slug" aria-invalid defaultValue="" />
+                    <FieldLabel htmlFor="organization-slug">Slug</FieldLabel>
+                    <Input id="organization-slug" aria-invalid defaultValue="" />
                     <FieldError>Slug is required.</FieldError>
                   </Field>
                   <FieldSeparator>Visibility</FieldSeparator>
@@ -592,7 +592,7 @@ function ComponentsGalleryPage() {
                     <FieldContent>
                       <FieldTitle>Public profile</FieldTitle>
                       <FieldDescription>
-                        Show this workspace in shared links.
+                        Show this organization in shared links.
                       </FieldDescription>
                     </FieldContent>
                   </Field>
