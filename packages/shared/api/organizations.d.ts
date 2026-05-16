@@ -25,7 +25,6 @@ export type CreateOrganizationRequest = {
   slug?: string
   address?: string
   phone?: string
-  plan?: PlanTier
 }
 
 export type CreateOrganizationResponse = OrganizationMembership

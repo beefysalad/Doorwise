@@ -26,7 +26,7 @@ import {
 } from "@/lib/validations/organization"
 
 type CreateOrganizationFormProps = {
-  /** Plan chosen in the onboarding plan step. Persisted on the org. */
+  /** Plan chosen in onboarding. Billing upgrades must be verified server-side. */
   planId?: PlanTier
 }
 
@@ -47,7 +47,6 @@ function CreateOrganizationForm({ planId }: CreateOrganizationFormProps) {
         name: values.name,
         address: values.address || undefined,
         phone: values.phone || undefined,
-        plan: planId,
       })
       setActiveOrgId(membership.organization.id)
       toast.success(`Welcome to ${membership.organization.name}`)

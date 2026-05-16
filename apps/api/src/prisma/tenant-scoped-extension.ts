@@ -6,8 +6,8 @@ import { Prisma } from '../generated/prisma/client';
  * operations performed via the scoped client.
  *
  * Operations that take a unique-where (findUnique, upsert, single-row update by
- * unique key) are NOT auto-scoped — they require explicit scoping at the call
- * site. For those, use the raw PrismaService.db client and validate scope by hand.
+ * unique key, delete) are NOT auto-scoped — they require explicit scoping at the
+ * call site. For those, use updateMany/deleteMany or validate scope manually.
  */
 export const SCOPED_MODELS = new Set<string>([
   'OrganizationMember',
@@ -18,9 +18,7 @@ const SCOPED_OPERATIONS = new Set<string>([
   'findFirst',
   'findFirstOrThrow',
   'findMany',
-  'update',
   'updateMany',
-  'delete',
   'deleteMany',
   'count',
   'aggregate',
@@ -47,7 +45,7 @@ export function buildTenantScopedExtension(organizationId: string) {
             return query(args);
           }
 
-          const next = args as Record<string, unknown>;
+          const next = args;
 
           if (operation === 'create') {
             next.data = injectScopeIntoData(next.data, organizationId);

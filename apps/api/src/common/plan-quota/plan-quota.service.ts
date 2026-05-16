@@ -1,4 +1,4 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable, Scope } from '@nestjs/common';
 import { PLAN_LIMITS, type PlanTier } from '@workspace/shared';
 import { PrismaService } from '../../prisma/prisma.service';
 import type { ResolvedScope } from '../tenant-scope/tenant-scope.service';
@@ -11,8 +11,10 @@ import type { ResolvedScope } from '../tenant-scope/tenant-scope.service';
  * the placeholder counts below with real `count()` queries. The assertion
  * shape is in place so feature controllers can call it from day one.
  */
-@Injectable()
+@Injectable({ scope: Scope.REQUEST })
 export class PlanQuotaService {
+  private readonly planCache = new Map<string, PlanTier>();
+
   constructor(private readonly prisma: PrismaService) {}
 
   async assertCanCreateProperty(scope: ResolvedScope): Promise<void> {
@@ -47,10 +49,18 @@ export class PlanQuotaService {
   }
 
   private async getPlan(organizationId: string): Promise<PlanTier> {
+    const cached = this.planCache.get(organizationId);
+    if (cached) {
+      return cached;
+    }
+
     const org = await this.prisma.db.organization.findUnique({
       where: { id: organizationId },
       select: { plan: true },
     });
-    return org?.plan ?? 'free';
+
+    const plan = org?.plan ?? 'free';
+    this.planCache.set(organizationId, plan);
+    return plan;
   }
 }
