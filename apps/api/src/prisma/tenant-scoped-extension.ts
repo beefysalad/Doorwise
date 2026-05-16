@@ -47,7 +47,7 @@ export function buildTenantScopedExtension(organizationId: string) {
             return query(args);
           }
 
-          const next = args;
+          const next = args as Record<string, unknown>;
 
           if (operation === 'create') {
             next.data = injectScopeIntoData(next.data, organizationId);
@@ -64,7 +64,7 @@ export function buildTenantScopedExtension(organizationId: string) {
             next.where = mergeWhereWithScope(next.where, organizationId);
           }
 
-          return query(next);
+          return query(args);
         },
       },
     },
