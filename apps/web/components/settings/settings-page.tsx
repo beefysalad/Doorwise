@@ -2,15 +2,17 @@
 
 import { useState } from "react"
 import {
-  RiCheckLine,
   RiLockPasswordLine,
   RiMailLine,
   RiNotification3Line,
   RiShieldCheckLine,
+  RiShieldUserLine,
   RiUser3Line,
+  RiVerifiedBadgeLine,
 } from "@remixicon/react"
 
 import { useDashboardUser } from "@/components/dashboard/dashboard-user-provider"
+import { OwnerPage } from "@/components/doorwise/page-header"
 import {
   Avatar,
   AvatarFallback,
@@ -51,20 +53,7 @@ function SettingsPage() {
   const [sessionReviewEnabled, setSessionReviewEnabled] = useState(false)
 
   return (
-    <main className="flex flex-1 flex-col gap-6 p-4 md:p-8">
-      <section className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-        <div className="space-y-1">
-          <p className="text-sm text-muted-foreground">Modify your settings</p>
-          <h1 className="font-heading text-3xl font-semibold tracking-normal md:text-4xl">
-            Settings
-          </h1>
-        </div>
-        <Button className="w-full sm:w-auto">
-          <RiCheckLine data-icon="inline-start" />
-          Save changes
-        </Button>
-      </section>
-
+    <OwnerPage title="Settings" sub="Modify your Doorwise account settings">
       <Tabs defaultValue="profile" className="gap-5">
         <TabsList
           variant="line"
@@ -86,76 +75,126 @@ function SettingsPage() {
 
         <TabsContent
           value="profile"
-          className="grid gap-4 lg:grid-cols-[1fr_0.8fr]"
+          className="grid gap-4 xl:grid-cols-[1fr_360px]"
         >
-          <Card className="rounded-lg shadow-sm">
-            <CardHeader>
-              <CardTitle>Profile</CardTitle>
-              <CardDescription>Identity used across Doorwise.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <FieldGroup>
-                <div className="flex flex-col gap-4 rounded-lg border bg-muted p-4 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="flex items-center gap-4">
-                    <Avatar className="size-16" size="lg">
-                      {user.imageUrl ? (
-                        <AvatarImage alt={user.name} src={user.imageUrl} />
-                      ) : null}
-                      <AvatarFallback className="text-lg font-semibold">
-                        {initials}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="space-y-1">
-                      <p className="text-sm font-medium">Profile photo</p>
+          <div className="space-y-4">
+            <Card className="overflow-hidden rounded-xl shadow-sm">
+              <div className="border-b bg-muted px-6 py-5">
+                <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
+                  <Avatar
+                    className="size-20 border-4 border-background shadow-sm"
+                    size="lg"
+                  >
+                    {user.imageUrl ? (
+                      <AvatarImage alt={user.name} src={user.imageUrl} />
+                    ) : null}
+                    <AvatarFallback className="text-2xl font-semibold">
+                      {initials}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h2 className="font-heading text-2xl font-semibold tracking-tight">
+                        {user.name}
+                      </h2>
+                      <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
+                        <RiVerifiedBadgeLine className="size-3.5 text-primary" />
+                        Clerk synced
+                      </span>
                     </div>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <Button variant="outline">Upload</Button>
-                    <Button variant="ghost">Remove</Button>
+                    <p className="mt-1 truncate text-sm text-muted-foreground">
+                      {user.email}
+                    </p>
                   </div>
                 </div>
-                <Field>
-                  <FieldLabel htmlFor="settings-name">Display name</FieldLabel>
-                  <Input id="settings-name" defaultValue={user.name} disabled />
-                </Field>
-                <Field>
-                  <FieldLabel htmlFor="settings-email">
-                    Email address
-                  </FieldLabel>
-                  <Input
-                    id="settings-email"
-                    defaultValue={user.email}
-                    type="email"
-                    disabled
-                  />
-                </Field>
-              </FieldGroup>
-            </CardContent>
-          </Card>
+              </div>
 
-          <Card className="rounded-lg shadow-sm">
-            <CardHeader>
-              <CardTitle>Account</CardTitle>
-              <CardDescription>
-                Connected authentication and billing state.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {[
-                ["Authentication", "Clerk connected"],
-                ["Plan", "Development account"],
-                ["API sync", "Current user synced"],
-              ].map(([label, value]) => (
-                <div
-                  key={label}
-                  className="flex items-center justify-between gap-4 rounded-lg border bg-muted px-4 py-3 text-sm"
-                >
-                  <span className="text-muted-foreground">{label}</span>
-                  <span className="font-medium">{value}</span>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
+              <CardHeader>
+                <CardTitle>Personal details</CardTitle>
+                <CardDescription>
+                  Profile data is managed through your authenticated Doorwise
+                  account.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <FieldGroup>
+                  <Field>
+                    <FieldLabel htmlFor="settings-name">
+                      Display name
+                    </FieldLabel>
+                    <Input
+                      id="settings-name"
+                      defaultValue={user.name}
+                      disabled
+                      className="rounded-md"
+                    />
+                    <FieldDescription>
+                      This comes from your Clerk profile.
+                    </FieldDescription>
+                  </Field>
+                  <Field>
+                    <FieldLabel htmlFor="settings-email">
+                      Email address
+                    </FieldLabel>
+                    <Input
+                      id="settings-email"
+                      defaultValue={user.email}
+                      type="email"
+                      disabled
+                      className="rounded-md"
+                    />
+                    <FieldDescription>
+                      Used for invites, login, and account notifications.
+                    </FieldDescription>
+                  </Field>
+                </FieldGroup>
+              </CardContent>
+            </Card>
+          </div>
+
+          <aside className="space-y-4">
+            <Card className="rounded-xl shadow-sm">
+              <CardHeader>
+                <CardTitle>Account status</CardTitle>
+                <CardDescription>
+                  Identity and access state for this session.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <AccountStatusRow
+                  icon={RiShieldUserLine}
+                  label="Access"
+                  value="Owner account"
+                />
+                <AccountStatusRow
+                  icon={RiMailLine}
+                  label="Email"
+                  value="Verified by Clerk"
+                />
+                <AccountStatusRow
+                  icon={RiShieldCheckLine}
+                  label="Security"
+                  value="Session active"
+                />
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-xl shadow-sm">
+              <CardHeader>
+                <CardTitle>Managed sign-in</CardTitle>
+                <CardDescription>
+                  Passwords, sessions, and connected login methods stay in
+                  Clerk.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  Use the account menu in the sidebar footer to manage your
+                  profile photo, password, and active sessions.
+                </p>
+              </CardContent>
+            </Card>
+          </aside>
         </TabsContent>
 
         <TabsContent value="notifications">
@@ -228,7 +267,29 @@ function SettingsPage() {
           </Card>
         </TabsContent>
       </Tabs>
-    </main>
+    </OwnerPage>
+  )
+}
+
+function AccountStatusRow({
+  icon: Icon,
+  label,
+  value,
+}: {
+  icon: React.ComponentType<{ className?: string }>
+  label: string
+  value: string
+}) {
+  return (
+    <div className="flex items-center gap-3 rounded-lg border bg-muted px-3.5 py-3">
+      <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-background text-primary">
+        <Icon className="size-4.5" />
+      </span>
+      <div className="min-w-0">
+        <div className="text-[12px] text-muted-foreground">{label}</div>
+        <div className="truncate text-sm font-medium">{value}</div>
+      </div>
+    </div>
   )
 }
 

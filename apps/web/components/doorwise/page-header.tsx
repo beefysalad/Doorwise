@@ -42,10 +42,12 @@ type OwnerPageProps = OwnerPageHeaderProps & {
 /** Full owner page scaffold — sticky topbar + scrollable padded body. */
 function OwnerPage({ title, sub, actions, children }: OwnerPageProps) {
   return (
-    <>
+    <section className="flex min-h-0 flex-1 flex-col overflow-hidden">
       <OwnerPageHeader title={title} sub={sub} actions={actions} />
-      <div className="min-h-0 flex-1 overflow-auto p-7">{children}</div>
-    </>
+      <div className="min-h-0 flex-1 overflow-auto overscroll-none p-7">
+        {children}
+      </div>
+    </section>
   )
 }
 
