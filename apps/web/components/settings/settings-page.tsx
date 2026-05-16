@@ -5,7 +5,6 @@ import {
   RiCheckLine,
   RiLockPasswordLine,
   RiMailLine,
-  RiMoonLine,
   RiNotification3Line,
   RiShieldCheckLine,
   RiUser3Line,
@@ -74,10 +73,6 @@ function SettingsPage() {
           <TabsTrigger value="profile">
             <RiUser3Line />
             Profile
-          </TabsTrigger>
-          <TabsTrigger value="appearance">
-            <RiMoonLine />
-            Appearance
           </TabsTrigger>
           <TabsTrigger value="notifications">
             <RiNotification3Line />
@@ -159,22 +154,6 @@ function SettingsPage() {
                   <span className="font-medium">{value}</span>
                 </div>
               ))}
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="appearance" className="grid gap-4">
-          <Card className="rounded-lg shadow-sm">
-            <CardHeader>
-              <CardTitle>Display theme</CardTitle>
-              <CardDescription>
-                Doorwise always runs in dark mode.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Dark mode is always on — no toggle needed.
-              </p>
             </CardContent>
           </Card>
         </TabsContent>
