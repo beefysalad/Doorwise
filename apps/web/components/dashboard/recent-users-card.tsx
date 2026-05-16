@@ -40,7 +40,7 @@ export function RecentUsersCard() {
             </div>
           ))
         ) : users.length === 0 ? (
-          <div className="border-border text-muted-foreground flex h-32 items-center justify-center rounded-lg border border-dashed text-sm">
+          <div className="flex h-32 items-center justify-center rounded-lg border border-dashed border-border text-sm text-muted-foreground">
             No recent users found.
           </div>
         ) : (
@@ -57,10 +57,10 @@ export function RecentUsersCard() {
                 </AvatarFallback>
               </Avatar>
               <div className="min-w-0">
-                <p className="text-foreground truncate text-sm font-bold">
+                <p className="truncate text-sm font-bold text-foreground">
                   {user.name}
                 </p>
-                <p className="text-muted-foreground truncate text-xs">
+                <p className="truncate text-xs text-muted-foreground">
                   {user.email}
                 </p>
               </div>

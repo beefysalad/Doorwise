@@ -32,14 +32,14 @@ function NavigationMenuShowcase() {
       <div className="space-y-3 rounded-xl border p-4">
         <div className="space-y-1">
           <p className="text-sm font-medium">Xero-style product header</p>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-sm text-muted-foreground">
             A full-width application bar with module navigation, utility
             actions, and a clean secondary organization row.
           </p>
         </div>
 
         <div className="overflow-hidden rounded-2xl border shadow-sm">
-          <div className="bg-primary text-primary-foreground flex items-center justify-between gap-4 px-4 py-3">
+          <div className="flex items-center justify-between gap-4 bg-primary px-4 py-3 text-primary-foreground">
             <div className="flex min-w-0 items-center gap-4">
               <div className="text-2xl font-semibold tracking-tight">atlas</div>
 
@@ -120,7 +120,7 @@ function NavigationMenuShowcase() {
           <div className="flex flex-col gap-3 border-t bg-background px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1">
               <p className="text-lg font-semibold tracking-tight">Atlas</p>
-              <p className="text-muted-foreground text-sm">
+              <p className="text-sm text-muted-foreground">
                 Inventory, purchasing, and accounting organization
               </p>
             </div>
@@ -138,14 +138,14 @@ function NavigationMenuShowcase() {
       <div className="space-y-3 rounded-xl border p-4">
         <div className="space-y-1">
           <p className="text-sm font-medium">Section header variant</p>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-sm text-muted-foreground">
             Same general feel, but more grounded for a module-level product
             screen.
           </p>
         </div>
 
         <div className="overflow-hidden rounded-2xl border shadow-sm">
-          <div className="bg-primary text-primary-foreground flex items-center justify-between gap-4 px-4 py-3">
+          <div className="flex items-center justify-between gap-4 bg-primary px-4 py-3 text-primary-foreground">
             <div className="flex min-w-0 items-center gap-4">
               <div className="text-xl font-semibold tracking-tight">atlas</div>
 
@@ -179,13 +179,13 @@ function NavigationMenuShowcase() {
             </div>
           </div>
 
-          <div className="bg-surface-subtle border-t px-4 py-4">
+          <div className="border-t bg-surface-subtle px-4 py-4">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div className="space-y-1">
                 <p className="text-xl font-semibold tracking-tight">
                   Products and services
                 </p>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-sm text-muted-foreground">
                   Track stocked items, service lines, and operational supplies.
                 </p>
               </div>
@@ -203,9 +203,9 @@ function NavigationMenuShowcase() {
 
             <div className="mt-4 rounded-2xl border bg-background p-4">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                <div className="bg-background flex min-w-0 flex-1 items-center gap-3 rounded-xl border px-4 py-3">
-                  <RiSearchLine className="text-muted-foreground size-4 shrink-0" />
-                  <span className="text-muted-foreground text-sm">
+                <div className="flex min-w-0 flex-1 items-center gap-3 rounded-xl border bg-background px-4 py-3">
+                  <RiSearchLine className="size-4 shrink-0 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground">
                     Search products and services
                   </span>
                 </div>
@@ -303,9 +303,9 @@ function MenuPanelLink({
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <p className="text-sm font-medium">{title}</p>
-              <RiArrowRightUpLine className="text-muted-foreground size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <RiArrowRightUpLine className="size-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </div>
-            <p className="text-muted-foreground text-sm leading-5">
+            <p className="text-sm leading-5 text-muted-foreground">
               {description}
             </p>
           </div>

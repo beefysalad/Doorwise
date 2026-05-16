@@ -28,11 +28,11 @@ function DashboardOverview() {
     <main className="flex flex-1 flex-col gap-6 p-4 md:p-8">
       <section className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div className="space-y-1">
-          <p className="text-muted-foreground text-sm">Overview</p>
+          <p className="text-sm text-muted-foreground">Overview</p>
           <h1 className="font-heading text-3xl font-semibold tracking-normal md:text-4xl">
             {getGreeting()}, {user.name.split(" ")[0]}
           </h1>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-sm text-muted-foreground">
             System status:{" "}
             <span className="font-medium text-green-600 dark:text-green-400">
               All systems operational

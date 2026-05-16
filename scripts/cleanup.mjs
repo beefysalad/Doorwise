@@ -1,22 +1,22 @@
-import fs from 'fs'
-import path from 'path'
-import { fileURLToPath } from 'url'
+import fs from "fs"
+import path from "path"
+import { fileURLToPath } from "url"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const projectRoot = path.join(__dirname, '..')
-const sampleContentDir = path.join(projectRoot, '_sample_content')
+const projectRoot = path.join(__dirname, "..")
+const sampleContentDir = path.join(projectRoot, "_sample_content")
 
 const itemsToMove = [
-  'apps/web/components/home',
-  'apps/web/hooks/api',
-  'apps/web/lib/api/health.ts',
+  "apps/web/components/home",
+  "apps/web/hooks/api",
+  "apps/web/lib/api/health.ts",
 ]
 
 const filesToReset = [
   {
-    path: 'apps/web/app/page.tsx',
+    path: "apps/web/app/page.tsx",
     content: `export default function Page() {
   return (
     <main className="flex min-h-svh flex-col items-center justify-center bg-background p-6 text-center text-foreground">
@@ -74,12 +74,12 @@ function resetFile(file) {
 
 ensureDir(sampleContentDir)
 
-console.log('Moving frontend sample content to _sample_content directory...')
+console.log("Moving frontend sample content to _sample_content directory...")
 itemsToMove.forEach(moveToSampleContent)
 
-console.log('Overwriting frontend sample pages with minimal boilerplate...')
+console.log("Overwriting frontend sample pages with minimal boilerplate...")
 filesToReset.forEach(resetFile)
 
 console.log(
-  'Cleanup complete. Run `npm run restore` to restore the previous frontend sample content.'
+  "Cleanup complete. Run `npm run restore` to restore the previous frontend sample content."
 )

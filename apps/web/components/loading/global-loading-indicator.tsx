@@ -29,12 +29,12 @@ function GlobalLoadingIndicator() {
     >
       <div className="flex flex-col items-center gap-4 text-center">
         <div className="relative grid size-16 place-items-center">
-          <div className="text-primary absolute inset-0 rounded-full border-2 border-current opacity-20" />
-          <Spinner className="text-primary size-10" />
+          <div className="absolute inset-0 rounded-full border-2 border-current text-primary opacity-20" />
+          <Spinner className="size-10 text-primary" />
         </div>
         <div>
-          <p className="text-foreground text-sm font-semibold">{label}</p>
-          <p className="text-muted-foreground mt-1 text-xs">
+          <p className="text-sm font-semibold text-foreground">{label}</p>
+          <p className="mt-1 text-xs text-muted-foreground">
             Please wait a moment.
           </p>
         </div>

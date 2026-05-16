@@ -20,11 +20,23 @@ const TYPE_META: Record<
   NotificationType,
   { icon: typeof RiMoneyDollarCircleLine; tone: string }
 > = {
-  payment: { icon: RiMoneyDollarCircleLine, tone: "bg-paid text-paid-foreground" },
-  overdue: { icon: RiErrorWarningLine, tone: "bg-overdue text-overdue-foreground" },
-  lease: { icon: RiFileList3Line, tone: "bg-status-info text-status-info-foreground" },
+  payment: {
+    icon: RiMoneyDollarCircleLine,
+    tone: "bg-paid text-paid-foreground",
+  },
+  overdue: {
+    icon: RiErrorWarningLine,
+    tone: "bg-overdue text-overdue-foreground",
+  },
+  lease: {
+    icon: RiFileList3Line,
+    tone: "bg-status-info text-status-info-foreground",
+  },
   system: { icon: RiSettings3Line, tone: "bg-muted text-muted-foreground" },
-  maintenance: { icon: RiToolsLine, tone: "bg-maintenance text-maintenance-foreground" },
+  maintenance: {
+    icon: RiToolsLine,
+    tone: "bg-maintenance text-maintenance-foreground",
+  },
 }
 
 const SETTINGS = [
@@ -54,10 +66,26 @@ function OwnerNotifications() {
             onChange={setFilter}
             options={[
               { value: "all", label: "All", count: NOTIFICATIONS.length },
-              { value: "unread", label: "Unread", count: NOTIFICATIONS.filter((n) => !n.read).length },
-              { value: "payment", label: "Payments", count: NOTIFICATIONS.filter((n) => n.type === "payment").length },
-              { value: "overdue", label: "Overdue", count: NOTIFICATIONS.filter((n) => n.type === "overdue").length },
-              { value: "system", label: "System", count: NOTIFICATIONS.filter((n) => n.type === "system").length },
+              {
+                value: "unread",
+                label: "Unread",
+                count: NOTIFICATIONS.filter((n) => !n.read).length,
+              },
+              {
+                value: "payment",
+                label: "Payments",
+                count: NOTIFICATIONS.filter((n) => n.type === "payment").length,
+              },
+              {
+                value: "overdue",
+                label: "Overdue",
+                count: NOTIFICATIONS.filter((n) => n.type === "overdue").length,
+              },
+              {
+                value: "system",
+                label: "System",
+                count: NOTIFICATIONS.filter((n) => n.type === "system").length,
+              },
             ]}
           />
           <Button variant="outline" size="sm" className="ml-auto rounded-md">
@@ -85,20 +113,20 @@ function OwnerNotifications() {
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-semibold">{n.title}</span>
                     {!n.read && (
-                      <span className="bg-primary size-1.5 rounded-full" />
+                      <span className="size-1.5 rounded-full bg-primary" />
                     )}
                   </div>
-                  <div className="text-muted-foreground mt-0.5 text-[13px]">
+                  <div className="mt-0.5 text-[13px] text-muted-foreground">
                     {n.body}
                   </div>
-                  <div className="text-muted-foreground/70 mt-1.5 text-[11.5px]">
+                  <div className="mt-1.5 text-[11.5px] text-muted-foreground/70">
                     {n.time}
                   </div>
                 </div>
                 <Button
                   variant="outline"
                   size="icon-sm"
-                  className="text-muted-foreground rounded-sm"
+                  className="rounded-sm text-muted-foreground"
                 >
                   <RiMore2Line />
                 </Button>
@@ -106,7 +134,7 @@ function OwnerNotifications() {
             )
           })}
           {notes.length === 0 && (
-            <div className="text-muted-foreground p-10 text-center text-sm">
+            <div className="p-10 text-center text-sm text-muted-foreground">
               Nothing here — you&apos;re all caught up.
             </div>
           )}
@@ -129,7 +157,7 @@ function OwnerNotifications() {
             </div>
           ))}
         </div>
-        <div className="text-muted-foreground mt-4.5 border-t pt-4 text-xs leading-relaxed">
+        <div className="mt-4.5 border-t pt-4 text-xs leading-relaxed text-muted-foreground">
           SMS reminders go out at 7:00 AM Manila time on the day a bill is due.
           Adjust in <span className="text-primary">Settings</span>.
         </div>

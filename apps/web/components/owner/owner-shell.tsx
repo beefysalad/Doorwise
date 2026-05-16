@@ -10,7 +10,7 @@ type OwnerShellProps = {
  *  Each page renders its own <OwnerPageHeader /> as the first child. */
 function OwnerShell({ children }: OwnerShellProps) {
   return (
-    <div className="bg-background flex h-svh w-full overflow-hidden">
+    <div className="flex h-svh w-full overflow-hidden bg-background">
       <OwnerSidebar />
       <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
         {children}

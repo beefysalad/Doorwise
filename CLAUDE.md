@@ -57,6 +57,7 @@ Installing deps: `npm install <pkg> -w web | -w api | -w @workspace/ui | -w @wor
 Templates are committed in `.env.example`, `apps/web/.env.example`, `apps/api/.env.example`. Local files: `apps/web/.env.local`, `apps/api/.env`, and root `.env` for Docker Compose. Browser-exposed vars must be `NEXT_PUBLIC_`-prefixed; backend secrets must never be. Update the matching `.env.example` whenever a new required var is added.
 
 `DATABASE_URL` differs by host:
+
 - Host-run API → `localhost:5433` (Docker Postgres is published on 5433).
 - Inside Docker Compose → hostname `postgres:5432`.
 

@@ -1,4 +1,4 @@
-export type SignupRole = "owner" | "tenant"
+export type SignupRole = "owner" | "resident"
 
 export type CurrentUserResponse = {
   id: string

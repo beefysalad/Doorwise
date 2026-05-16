@@ -8,6 +8,7 @@ import { REQUEST } from '@nestjs/core';
 import type { OrgRole } from '@workspace/shared';
 import type { RequestWithClerkAuth } from '../guards/clerk-auth.guard';
 import { PrismaService } from '../../prisma/prisma.service';
+import { buildTenantScopedExtension } from '../../prisma/tenant-scoped-extension';
 
 type ResolvedScope = {
   userId: string;
@@ -21,11 +22,33 @@ const ACTIVE_ORG_HEADER = 'x-active-org';
 @Injectable({ scope: Scope.REQUEST })
 export class TenantScope {
   private resolved: ResolvedScope | null = null;
+  private scopedClient: ReturnType<PrismaService['db']['$extends']> | null =
+    null;
 
   constructor(
     @Inject(REQUEST) private readonly request: RequestWithClerkAuth,
     private readonly prisma: PrismaService,
   ) {}
+
+  /**
+   * Prisma client that auto-injects `organizationId` filtering on
+   * SCOPED_MODELS for read-/write-many operations. Call after `require()`.
+   * For unique-by-id reads or upserts, use `PrismaService.db` directly and
+   * scope explicitly.
+   */
+  db(): ReturnType<PrismaService['db']['$extends']> {
+    if (!this.resolved) {
+      throw new UnauthorizedException(
+        'TenantScope.db() called before require()',
+      );
+    }
+    if (!this.scopedClient) {
+      this.scopedClient = this.prisma.db.$extends(
+        buildTenantScopedExtension(this.resolved.organizationId),
+      );
+    }
+    return this.scopedClient;
+  }
 
   async require(): Promise<ResolvedScope> {
     if (this.resolved) {

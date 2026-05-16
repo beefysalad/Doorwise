@@ -37,9 +37,4 @@ export class UsersController {
     const dto = parseWithZod(setIntendedRoleSchema, body);
     return this.usersService.setIntendedRole(clerkUserId, dto.role);
   }
-
-  @Get('all')
-  async getAllUsers(): Promise<GetAllUsersResponse> {
-    return await this.usersService.getAllUsers();
-  }
 }

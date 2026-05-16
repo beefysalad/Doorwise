@@ -12,8 +12,8 @@ function DwCard({ children, className }: DwCardProps) {
   return (
     <div
       className={cn(
-        "bg-card text-card-foreground rounded-xl border shadow-sm",
-        className,
+        "rounded-xl border bg-card text-card-foreground shadow-sm",
+        className
       )}
     >
       {children}

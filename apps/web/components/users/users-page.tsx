@@ -40,12 +40,12 @@ export function UsersPage() {
     <main className="flex flex-1 flex-col gap-6 p-4 md:p-8">
       <section className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div className="space-y-1">
-          <p className="text-muted-foreground text-sm">User</p>
+          <p className="text-sm text-muted-foreground">User</p>
           <h1 className="font-heading text-3xl font-semibold tracking-normal md:text-4xl">
             Accounts
           </h1>
-          <p className="text-muted-foreground text-sm">
-            <span className="text-foreground font-semibold">
+          <p className="text-sm text-muted-foreground">
+            <span className="font-semibold text-foreground">
               {users.length}
             </span>{" "}
             total members across synced accounts.
@@ -53,7 +53,7 @@ export function UsersPage() {
         </div>
         <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
           <div className="relative w-full sm:max-w-sm">
-            <RiSearchLine className="text-muted-foreground absolute top-1/2 left-3 size-4 -translate-y-1/2" />
+            <RiSearchLine className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               placeholder="Search members..."
               className="h-9 w-full border-input bg-muted pl-9 focus-visible:ring-1"
@@ -84,18 +84,18 @@ export function UsersPage() {
                 <TableRow key={i} className="animate-pulse">
                   <TableCell className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="bg-muted size-9 rounded-full" />
-                      <div className="bg-muted h-4 w-24 rounded" />
+                      <div className="size-9 rounded-full bg-muted" />
+                      <div className="h-4 w-24 rounded bg-muted" />
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className="bg-muted h-4 w-32 rounded" />
+                    <div className="h-4 w-32 rounded bg-muted" />
                   </TableCell>
                   <TableCell>
-                    <div className="bg-muted h-4 w-16 rounded" />
+                    <div className="h-4 w-16 rounded bg-muted" />
                   </TableCell>
                   <TableCell className="px-6 text-right">
-                    <div className="bg-muted ml-auto size-8 rounded" />
+                    <div className="ml-auto size-8 rounded bg-muted" />
                   </TableCell>
                 </TableRow>
               ))
@@ -103,7 +103,7 @@ export function UsersPage() {
               <TableRow>
                 <TableCell
                   colSpan={4}
-                  className="text-muted-foreground h-32 text-center"
+                  className="h-32 text-center text-muted-foreground"
                 >
                   No members found in this organization.
                 </TableCell>
@@ -129,18 +129,18 @@ export function UsersPage() {
                             .slice(0, 2)}
                         </AvatarFallback>
                       </Avatar>
-                      <p className="text-foreground truncate text-sm font-bold">
+                      <p className="truncate text-sm font-bold text-foreground">
                         {user.name}
                       </p>
                     </div>
                   </TableCell>
                   <TableCell>
-                    <span className="text-muted-foreground text-sm">
+                    <span className="text-sm text-muted-foreground">
                       {user.email}
                     </span>
                   </TableCell>
                   <TableCell>
-                    <code className="bg-muted text-muted-foreground rounded px-1.5 py-0.5 font-mono text-[10px]">
+                    <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
                       {user.clerkId.slice(-8)}
                     </code>
                   </TableCell>
@@ -150,7 +150,7 @@ export function UsersPage() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="hover:bg-muted size-8 transition-colors"
+                          className="size-8 transition-colors hover:bg-muted"
                         >
                           <RiMore2Fill className="size-4" />
                         </Button>
@@ -169,13 +169,13 @@ export function UsersPage() {
                             </ItemMedia>
                             <ItemTitle>Edit permissions</ItemTitle>
                           </Item>
-                          <div className="border-border my-1 border-t" />
+                          <div className="my-1 border-t border-border" />
                           <Item
                             size="xs"
-                            className="text-destructive hover:bg-destructive/10 cursor-pointer"
+                            className="cursor-pointer text-destructive hover:bg-destructive/10"
                           >
                             <ItemMedia variant="icon">
-                              <RiShieldUserLine className="text-destructive size-4" />
+                              <RiShieldUserLine className="size-4 text-destructive" />
                             </ItemMedia>
                             <ItemTitle>Deactivate</ItemTitle>
                           </Item>

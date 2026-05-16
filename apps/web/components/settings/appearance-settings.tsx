@@ -62,13 +62,12 @@ export function AppearanceSettings() {
                 onClick={() => setTheme(option.value)}
                 className={cn(
                   "relative h-auto flex-col items-center gap-3 rounded-xl bg-background p-6 text-center transition-all hover:border-primary hover:bg-accent",
-                  isActive &&
-                    "border-primary bg-accent ring-primary ring-1"
+                  isActive && "border-primary bg-accent ring-1 ring-primary"
                 )}
               >
                 <div
                   className={cn(
-                    "bg-muted flex size-12 items-center justify-center rounded-full transition-colors",
+                    "flex size-12 items-center justify-center rounded-full bg-muted transition-colors",
                     isActive && "bg-primary text-primary-foreground"
                   )}
                 >
@@ -79,7 +78,7 @@ export function AppearanceSettings() {
                 </div>
                 {isActive && (
                   <div className="absolute top-3 right-3">
-                    <RiCheckLine className="text-primary size-5" />
+                    <RiCheckLine className="size-5 text-primary" />
                   </div>
                 )}
               </Button>

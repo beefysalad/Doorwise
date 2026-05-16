@@ -1,17 +1,16 @@
 "use client"
 
-import { RiBankCardLine, RiFileList3Line, RiReceiptLine } from "@remixicon/react"
+import {
+  RiBankCardLine,
+  RiFileList3Line,
+  RiReceiptLine,
+} from "@remixicon/react"
 
 import { DwCard } from "@/components/doorwise/card"
 import { OwnerBills } from "@/components/owner/screens/owner-bills"
 import { OwnerLeases } from "@/components/owner/screens/owner-leases"
 import { OwnerPayments } from "@/components/owner/screens/owner-payments"
-import {
-  BILLS,
-  LEASES,
-  PAYMENTS,
-  fmtMoneyShort,
-} from "@/lib/mock/doorwise"
+import { BILLS, LEASES, PAYMENTS, fmtMoneyShort } from "@/lib/mock/doorwise"
 import {
   Tabs,
   TabsContent,
@@ -29,7 +28,7 @@ const financeStats = [
     icon: RiBankCardLine,
     label: "Collected",
     value: fmtMoneyShort(
-      PAYMENTS.reduce((sum, payment) => sum + payment.amount, 0),
+      PAYMENTS.reduce((sum, payment) => sum + payment.amount, 0)
     ),
   },
   {
@@ -49,11 +48,11 @@ function OwnerFinance() {
           return (
             <DwCard key={stat.label} className="p-4">
               <div className="flex items-center gap-3">
-                <span className="bg-accent text-primary flex size-10 items-center justify-center rounded-md">
+                <span className="flex size-10 items-center justify-center rounded-md bg-accent text-primary">
                   <Icon className="size-5" />
                 </span>
                 <div>
-                  <div className="text-muted-foreground text-xs">
+                  <div className="text-xs text-muted-foreground">
                     {stat.label}
                   </div>
                   <div className="font-mono text-xl font-semibold tracking-tight tabular-nums">

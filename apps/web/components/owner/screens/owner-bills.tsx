@@ -85,7 +85,7 @@ const billColumns: ColumnDef<BillTableRow>[] = [
           <div className="text-[13.5px] font-medium">
             {row.original.tenantName}
           </div>
-          <div className="text-muted-foreground text-[11.5px]">
+          <div className="text-[11.5px] text-muted-foreground">
             {row.original.tenantPhone}
           </div>
         </div>
@@ -100,7 +100,7 @@ const billColumns: ColumnDef<BillTableRow>[] = [
     cell: ({ row }) => (
       <div>
         <div className="text-[13px]">{row.original.propertyName}</div>
-        <div className="text-muted-foreground text-[11.5px]">
+        <div className="text-[11.5px] text-muted-foreground">
           {row.original.room}
         </div>
       </div>
@@ -121,7 +121,7 @@ const billColumns: ColumnDef<BillTableRow>[] = [
       <div>
         <div>{fmtDateShort(row.original.due)}</div>
         {row.original.status === "overdue" ? (
-          <div className="text-overdue-foreground text-[11px]">
+          <div className="text-[11px] text-overdue-foreground">
             {row.original.daysLate} days late
           </div>
         ) : null}
@@ -156,8 +156,8 @@ const billColumns: ColumnDef<BillTableRow>[] = [
       <div
         className={
           row.original.paid > 0
-            ? "text-paid-foreground text-right font-mono tabular-nums"
-            : "text-muted-foreground text-right font-mono tabular-nums"
+            ? "text-right font-mono text-paid-foreground tabular-nums"
+            : "text-right font-mono text-muted-foreground tabular-nums"
         }
       >
         {row.original.paid > 0 ? fmtMoney(row.original.paid) : "-"}
@@ -256,17 +256,17 @@ function OwnerBills() {
         pageSizeOptions={[10, 20, 50]}
       />
 
-      <div className="text-muted-foreground flex justify-between gap-4 text-[13px]">
+      <div className="flex justify-between gap-4 text-[13px] text-muted-foreground">
         <span>
           Showing {filtered.length} of {billRows.length} bills
         </span>
         <span>
           Total billed:{" "}
-          <span className="text-foreground font-mono font-semibold tabular-nums">
+          <span className="font-mono font-semibold text-foreground tabular-nums">
             {fmtMoney(totalBilled)}
           </span>{" "}
           · Outstanding:{" "}
-          <span className="text-overdue-foreground font-mono font-semibold tabular-nums">
+          <span className="font-mono font-semibold text-overdue-foreground tabular-nums">
             {fmtMoney(outstanding)}
           </span>
         </span>
@@ -278,17 +278,17 @@ function OwnerBills() {
             <DialogTitle>Generate bills for June 2026</DialogTitle>
             <DialogDescription>
               This will create monthly rent bills for{" "}
-              <span className="text-foreground font-medium">
+              <span className="font-medium text-foreground">
                 22 active leases
               </span>
               , totaling{" "}
-              <span className="text-foreground font-mono font-medium">
+              <span className="font-mono font-medium text-foreground">
                 {fmtMoney(261500)}
               </span>
               .
             </DialogDescription>
           </DialogHeader>
-          <div className="bg-status-info text-status-info-foreground flex gap-2 rounded-md p-3 text-[12.5px]">
+          <div className="flex gap-2 rounded-md bg-status-info p-3 text-[12.5px] text-status-info-foreground">
             <RiInformationLine className="size-4 shrink-0" />
             <span>
               Tenants with active notifications will receive a bill alert via

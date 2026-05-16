@@ -37,7 +37,10 @@ function useActiveOrg() {
       window.localStorage.removeItem(STORAGE_KEY)
     }
     window.dispatchEvent(
-      new StorageEvent("storage", { key: STORAGE_KEY, newValue: organizationId })
+      new StorageEvent("storage", {
+        key: STORAGE_KEY,
+        newValue: organizationId,
+      })
     )
   }, [])
 

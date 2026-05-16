@@ -32,14 +32,14 @@ function StatCard({
   return (
     <DwCard className="p-4.5">
       <div className="mb-3.5 flex items-start justify-between">
-        <div className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+        <div className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
           {label}
         </div>
         {icon && (
           <div
             className={cn(
               "flex size-8 items-center justify-center rounded-md",
-              ACCENT_BOX[accent],
+              ACCENT_BOX[accent]
             )}
           >
             {icon}
@@ -50,9 +50,9 @@ function StatCard({
         {value}
       </div>
       {(sub || trend) && (
-        <div className="text-muted-foreground mt-1.5 flex items-center gap-1.5 text-xs">
+        <div className="mt-1.5 flex items-center gap-1.5 text-xs text-muted-foreground">
           {trend && (
-            <span className="text-paid-foreground font-medium">{trend}</span>
+            <span className="font-medium text-paid-foreground">{trend}</span>
           )}
           {sub && <span>{sub}</span>}
         </div>

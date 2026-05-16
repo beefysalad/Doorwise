@@ -45,13 +45,13 @@ function OwnerBillDetail({ billId }: { billId: string }) {
   const property = PROPERTIES.find((p) => p.id === tenant.property)!
   const payments = PAYMENTS.filter((p) => p.bill === bill.id)
   const otherBills = BILLS.filter(
-    (b) => b.tenant === tenant.id && b.id !== bill.id,
+    (b) => b.tenant === tenant.id && b.id !== bill.id
   ).slice(0, 4)
 
   return (
     <div className="flex flex-col gap-4">
       {/* Breadcrumb */}
-      <div className="text-muted-foreground flex items-center gap-2 text-[13px]">
+      <div className="flex items-center gap-2 text-[13px] text-muted-foreground">
         <Link href="/bills" className="inline-flex items-center gap-1">
           <RiArrowLeftLine className="size-3.5" /> Bills
         </Link>
@@ -67,13 +67,13 @@ function OwnerBillDetail({ billId }: { billId: string }) {
           <DwCard className="p-6">
             <div className="mb-4.5 flex items-start justify-between">
               <div>
-                <div className="text-muted-foreground mb-1 text-xs tracking-wide uppercase">
+                <div className="mb-1 text-xs tracking-wide text-muted-foreground uppercase">
                   {bill.label}
                 </div>
                 <h1 className="font-mono text-3xl font-bold tracking-tight tabular-nums">
                   {fmtMoney(bill.balance > 0 ? bill.balance : bill.amount)}
                 </h1>
-                <div className="text-muted-foreground mt-1.5 text-[13px]">
+                <div className="mt-1.5 text-[13px] text-muted-foreground">
                   Due {fmtDate(bill.due)} · invoice #{bill.id.toUpperCase()}
                 </div>
               </div>
@@ -84,12 +84,20 @@ function OwnerBillDetail({ billId }: { billId: string }) {
               <BillStat
                 label="Paid"
                 value={fmtMoney(bill.paid)}
-                className={bill.paid > 0 ? "text-paid-foreground" : "text-muted-foreground"}
+                className={
+                  bill.paid > 0
+                    ? "text-paid-foreground"
+                    : "text-muted-foreground"
+                }
               />
               <BillStat
                 label="Balance"
                 value={fmtMoney(bill.balance)}
-                className={bill.balance > 0 ? "text-overdue-foreground" : "text-paid-foreground"}
+                className={
+                  bill.balance > 0
+                    ? "text-overdue-foreground"
+                    : "text-paid-foreground"
+                }
               />
             </div>
             <div className="mt-4 flex flex-wrap items-center gap-2.5">
@@ -105,7 +113,7 @@ function OwnerBillDetail({ billId }: { billId: string }) {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-overdue-foreground ml-auto rounded-md"
+                className="ml-auto rounded-md text-overdue-foreground"
                 onClick={() => setShowVoid(true)}
               >
                 Void bill
@@ -117,13 +125,13 @@ function OwnerBillDetail({ billId }: { billId: string }) {
           <DwCard className="overflow-hidden">
             <div className="px-4.5 pt-3.5 pb-3">
               <div className="text-sm font-semibold">Payment history</div>
-              <div className="text-muted-foreground mt-0.5 text-xs">
+              <div className="mt-0.5 text-xs text-muted-foreground">
                 {payments.length} payment{payments.length === 1 ? "" : "s"} on
                 this bill
               </div>
             </div>
             {payments.length === 0 ? (
-              <div className="text-muted-foreground border-t p-10 text-center text-sm">
+              <div className="border-t p-10 text-center text-sm text-muted-foreground">
                 No payments yet — record the first payment to start the history.
               </div>
             ) : (
@@ -144,7 +152,9 @@ function OwnerBillDetail({ billId }: { billId: string }) {
                       <td className={TD}>
                         <MethodPill method={p.method} />
                       </td>
-                      <td className={`${TD} text-muted-foreground font-mono text-xs`}>
+                      <td
+                        className={`${TD} font-mono text-xs text-muted-foreground`}
+                      >
                         {p.ref || "—"}
                       </td>
                       <td className={TD}>{p.recordedBy}</td>
@@ -189,14 +199,14 @@ function OwnerBillDetail({ billId }: { billId: string }) {
         {/* Right */}
         <div className="flex flex-col gap-3.5">
           <DwCard className="p-4.5">
-            <div className="text-muted-foreground mb-2.5 text-xs tracking-wide uppercase">
+            <div className="mb-2.5 text-xs tracking-wide text-muted-foreground uppercase">
               Billed to
             </div>
             <div className="mb-3.5 flex items-center gap-3">
               <AvatarInitials name={tenant.name} size={44} />
               <div>
                 <div className="text-[15px] font-semibold">{tenant.name}</div>
-                <div className="text-muted-foreground text-xs">
+                <div className="text-xs text-muted-foreground">
                   {tenant.email}
                 </div>
               </div>
@@ -220,7 +230,7 @@ function OwnerBillDetail({ billId }: { billId: string }) {
           </DwCard>
 
           <DwCard className="p-4.5">
-            <div className="text-muted-foreground mb-2.5 text-xs tracking-wide uppercase">
+            <div className="mb-2.5 text-xs tracking-wide text-muted-foreground uppercase">
               Other bills
             </div>
             <div className="flex flex-col gap-2">
@@ -228,11 +238,11 @@ function OwnerBillDetail({ billId }: { billId: string }) {
                 <Link
                   key={b.id}
                   href={`/bills/${b.id}`}
-                  className="bg-surface-subtle hover:bg-accent flex items-center gap-2.5 rounded-md px-3 py-2.5 text-[12.5px] transition-colors"
+                  className="flex items-center gap-2.5 rounded-md bg-surface-subtle px-3 py-2.5 text-[12.5px] transition-colors hover:bg-accent"
                 >
                   <div className="min-w-0 flex-1">
                     <div className="font-medium">{b.label}</div>
-                    <div className="text-muted-foreground text-[11px]">
+                    <div className="text-[11px] text-muted-foreground">
                       Due {fmtDateShort(b.due)}
                     </div>
                   </div>
@@ -286,10 +296,12 @@ function BillStat({
 }) {
   return (
     <div>
-      <div className="text-muted-foreground mb-1 text-[11.5px] tracking-wide uppercase">
+      <div className="mb-1 text-[11.5px] tracking-wide text-muted-foreground uppercase">
         {label}
       </div>
-      <div className={`font-mono text-[15px] font-semibold tabular-nums ${className ?? ""}`}>
+      <div
+        className={`font-mono text-[15px] font-semibold tabular-nums ${className ?? ""}`}
+      >
         {value}
       </div>
     </div>
@@ -299,7 +311,7 @@ function BillStat({
 function KVRow({ k, v }: { k: string; v: React.ReactNode }) {
   return (
     <div className="flex items-baseline justify-between gap-3">
-      <span className="text-muted-foreground text-[12.5px]">{k}</span>
+      <span className="text-[12.5px] text-muted-foreground">{k}</span>
       <span className="text-right font-medium">{v}</span>
     </div>
   )
@@ -318,12 +330,14 @@ function ActivityItem({
 }) {
   return (
     <div className="flex gap-3">
-      <div className={`flex size-7.5 shrink-0 items-center justify-center rounded ${tone}`}>
+      <div
+        className={`flex size-7.5 shrink-0 items-center justify-center rounded ${tone}`}
+      >
         {icon}
       </div>
       <div>
         <div className="text-[13px] font-medium">{title}</div>
-        <div className="text-muted-foreground mt-0.5 text-[11.5px]">{time}</div>
+        <div className="mt-0.5 text-[11.5px] text-muted-foreground">{time}</div>
       </div>
     </div>
   )

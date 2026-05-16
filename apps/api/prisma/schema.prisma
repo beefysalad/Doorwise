@@ -27,12 +27,18 @@ model User {
 enum OrgRole {
   owner
   staff
-  tenant
+  resident
 }
 
 enum SignupRole {
   owner
-  tenant
+  resident
+}
+
+enum PlanTier {
+  free
+  starter
+  medium
 }
 
 model Organization {
@@ -42,6 +48,7 @@ model Organization {
   address   String?
   phone     String?
   logoUrl   String?
+  plan      PlanTier @default(free)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 
@@ -66,15 +73,14 @@ model OrganizationMember {
 }
 
 model OrganizationInvite {
-  id              String    @id @default(uuid())
-  organizationId  String
-  email           String
-  role            OrgRole
-  tokenHash       String    @unique
-  tenantProfileId String?
-  expiresAt       DateTime
-  consumedAt      DateTime?
-  createdAt       DateTime  @default(now())
+  id             String    @id @default(uuid())
+  organizationId String
+  email          String
+  role           OrgRole
+  tokenHash      String    @unique
+  expiresAt      DateTime
+  consumedAt     DateTime?
+  createdAt      DateTime  @default(now())
 
   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 

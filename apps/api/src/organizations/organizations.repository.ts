@@ -3,6 +3,7 @@ import type {
   Organization,
   OrganizationMembership,
   OrgRole,
+  PlanTier,
 } from '@workspace/shared';
 import { PrismaService } from '../prisma/prisma.service';
 
@@ -11,6 +12,7 @@ type CreateOrganizationWithOwnerInput = {
   slug: string;
   address?: string;
   phone?: string;
+  plan: PlanTier;
   ownerUserId: string;
 };
 
@@ -36,6 +38,7 @@ export class OrganizationsRepository {
           slug: input.slug,
           address: input.address ?? null,
           phone: input.phone ?? null,
+          plan: input.plan,
         },
       });
 
@@ -121,6 +124,7 @@ export class OrganizationsRepository {
     address: string | null;
     phone: string | null;
     logoUrl: string | null;
+    plan: PlanTier;
     createdAt: Date;
   }): Organization {
     return {
@@ -130,6 +134,7 @@ export class OrganizationsRepository {
       address: org.address,
       phone: org.phone,
       logoUrl: org.logoUrl,
+      plan: org.plan,
       createdAt: org.createdAt.toISOString(),
     };
   }

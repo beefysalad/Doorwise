@@ -79,9 +79,9 @@ function SettingsPage() {
     <main className="flex flex-1 flex-col gap-6 p-4 md:p-8">
       <section className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div className="space-y-1">
-          <p className="text-muted-foreground text-sm">Modify your settings</p>
+          <p className="text-sm text-muted-foreground">Modify your settings</p>
           <h1 className="font-heading text-3xl font-semibold tracking-normal md:text-4xl">
-             Settings
+            Settings
           </h1>
         </div>
         <Button className="w-full sm:w-auto">
@@ -120,9 +120,7 @@ function SettingsPage() {
           <Card className="rounded-lg shadow-sm">
             <CardHeader>
               <CardTitle>Profile</CardTitle>
-              <CardDescription>
-                Identity used across Doorwise.
-              </CardDescription>
+              <CardDescription>Identity used across Doorwise.</CardDescription>
             </CardHeader>
             <CardContent>
               <FieldGroup>
@@ -160,7 +158,6 @@ function SettingsPage() {
                     disabled
                   />
                 </Field>
-                
               </FieldGroup>
             </CardContent>
           </Card>
@@ -212,17 +209,17 @@ function SettingsPage() {
                     onClick={() => setTheme(option.value)}
                     className={cn(
                       "h-auto min-h-24 justify-between rounded-lg bg-background p-4 text-left transition-colors hover:border-primary",
-                      isActive && "border-primary ring-ring/25 ring-2"
+                      isActive && "border-primary ring-2 ring-ring/25"
                     )}
                   >
                     <span className="flex items-center gap-3">
-                      <span className="bg-muted flex size-9 items-center justify-center rounded-lg">
-                        <Icon className="text-primary size-5" />
+                      <span className="flex size-9 items-center justify-center rounded-lg bg-muted">
+                        <Icon className="size-5 text-primary" />
                       </span>
                       <span className="font-medium">{option.label}</span>
                     </span>
                     {isActive ? (
-                      <RiCheckLine className="text-primary size-5" />
+                      <RiCheckLine className="size-5 text-primary" />
                     ) : null}
                   </Button>
                 )
@@ -292,7 +289,7 @@ function SettingsPage() {
                 <div className="flex flex-col gap-3 rounded-lg border bg-muted p-4 sm:flex-row sm:items-center sm:justify-between">
                   <div className="space-y-1">
                     <p className="text-sm font-medium">Active sessions</p>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-sm text-muted-foreground">
                       Manage sessions from the account menu.
                     </p>
                   </div>
@@ -341,8 +338,8 @@ function SettingSwitch({
       className="items-start justify-between gap-4"
     >
       <FieldContent className="flex-row items-start gap-3">
-        <span className="bg-muted mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg">
-          <Icon className="text-primary size-5" />
+        <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-muted">
+          <Icon className="size-5 text-primary" />
         </span>
         <span className="space-y-1">
           <FieldTitle>{label}</FieldTitle>

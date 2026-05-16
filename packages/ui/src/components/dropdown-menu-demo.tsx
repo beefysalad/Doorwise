@@ -31,7 +31,9 @@ function DropdownMenuDemo() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Project actions</DropdownMenuLabel>
-        <DropdownMenuItem onClick={() => navigator.clipboard.writeText("nxn-01")}>
+        <DropdownMenuItem
+          onClick={() => navigator.clipboard.writeText("nxn-01")}
+        >
           Copy project ID
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setStarred((value) => !value)}>

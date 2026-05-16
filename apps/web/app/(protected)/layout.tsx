@@ -1,4 +1,5 @@
 import { auth } from "@clerk/nextjs/server"
+import { redirect } from "next/navigation"
 import type { ReactNode } from "react"
 
 import { OrganizationGate } from "@/components/auth/organization-gate"
@@ -12,7 +13,11 @@ export default async function ProtectedLayout({
 }: {
   children: ReactNode
 }) {
-  await auth.protect()
+  const { userId } = await auth()
+
+  if (!userId) {
+    redirect("/")
+  }
 
   const user = await getCurrentDashboardUser()
 

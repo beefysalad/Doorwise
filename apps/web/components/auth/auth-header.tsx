@@ -26,7 +26,7 @@ function AuthHeader() {
                 Sign in
               </Button>
             </SignInButton>
-            <SignUpButton mode="modal" fallbackRedirectUrl="/dashboard">
+            <SignUpButton mode="modal" fallbackRedirectUrl="/onboarding">
               <Button size="sm">Sign up</Button>
             </SignUpButton>
           </Show>
