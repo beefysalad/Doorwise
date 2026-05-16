@@ -41,7 +41,7 @@ const viewportOnce = { once: true, amount: 0.22 }
 const NAV_LINKS = [
   { label: "Features", href: "#features" },
   { label: "Pricing", href: "#pricing" },
-  { label: "For tenants", href: "#tenants" },
+  { label: "For residents", href: "#residents" },
   { label: "Help", href: "#faq" },
 ]
 
@@ -59,11 +59,11 @@ const FEATURES = [
   {
     icon: RiErrorWarningLine,
     title: "Overdue, surfaced.",
-    body: "See every tenant who's behind, how many days late, and how much they owe. One tap to send a friendly reminder.",
+    body: "See every resident who's behind, how many days late, and how much they owe. One tap to send a friendly reminder.",
   },
   {
     icon: RiGroupLine,
-    title: "Tenants get a portal.",
+    title: "Residents get a portal.",
     body: 'Renters log in to see their bill, pay it, and pull up old receipts. No more "Sir, magkano ulit po?"',
   },
   {
@@ -123,12 +123,12 @@ const FAQS = [
     a: "No. Doorwise runs in your browser. There's also a mobile-friendly view so you can check things on the jeepney.",
   },
   {
-    q: "Can I import my existing tenants?",
+    q: "Can I import my existing residents?",
     a: "Yes — drop in a spreadsheet of names, rooms, and rents and we'll set up bills for the next cycle automatically.",
   },
   {
     q: "How do payments work?",
-    a: "Doorwise doesn't hold your money — tenants pay you directly via GCash, Maya, bank, or cash. You just record the payment with one tap; we keep the ledger clean.",
+    a: "Doorwise doesn't hold your money — residents pay you directly via GCash, Maya, bank, or cash. You just record the payment with one tap; we keep the ledger clean.",
   },
   {
     q: "Is my data safe?",
@@ -147,7 +147,7 @@ const FAQS = [
 const FOOTER_COLS = [
   {
     title: "Product",
-    links: ["Features", "Pricing", "Tenant portal", "Changelog", "Roadmap"],
+    links: ["Features", "Pricing", "Resident portal", "Changelog", "Roadmap"],
   },
   {
     title: "Company",
@@ -395,7 +395,7 @@ export function LandingPage() {
               Built for the Philippines
             </div>
             <h2 className="font-heading text-3xl font-bold tracking-tight text-balance">
-              Every payment method your tenants actually use.
+              Every payment method your residents actually use.
             </h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">
               Cash, GCash, Maya, bank transfer — whatever they use, Doorwise
@@ -473,9 +473,9 @@ export function LandingPage() {
         </motion.div>
       </section>
 
-      {/* Tenant portal */}
+      {/* Resident portal */}
       <motion.section
-        id="tenants"
+        id="residents"
         initial="hidden"
         whileInView="show"
         viewport={viewportOnce}
@@ -490,15 +490,15 @@ export function LandingPage() {
           </motion.div>
           <motion.div variants={fadeUp}>
             <div className="mb-3 text-xs font-semibold tracking-widest text-primary uppercase">
-              Your tenants love it too
+              Your residents love it too
             </div>
             <h2 className="font-heading text-3xl font-bold tracking-tight text-balance">
               A portal renters actually open.
             </h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              Tenants get a clean, friendly view of their current bill, payment
-              history, and your landlord contact info. Pay GCash directly to
-              your number — Doorwise reminds them where to send it.
+              Residents get a clean, friendly view of their current bill,
+              payment history, and your landlord contact info. Pay GCash
+              directly to your number — Doorwise reminds them where to send it.
             </p>
             <ul className="mt-6 flex flex-col gap-3.5">
               {TENANT_BULLETS.map((b) => (

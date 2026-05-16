@@ -16,9 +16,9 @@ function TenantWaitingCard({ onBack }: { onBack: () => void }) {
           Join your landlord 🔑
         </h2>
         <p className="mx-auto max-w-sm text-sm leading-relaxed text-muted-foreground">
-          Tenants join Doorwise through their landlord. Ask them to send you an
-          invite link — open it here while signed in and you&apos;ll be added to
-          their organization automatically.
+          Residents join Doorwise through their landlord. Ask them to send you
+          an invite link — open it here while signed in and you&apos;ll be added
+          to their organization automatically.
         </p>
       </div>
       <div className="flex w-full max-w-xs items-center gap-3 rounded-xl border bg-card p-3.5 text-left">

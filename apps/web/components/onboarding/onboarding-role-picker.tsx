@@ -21,12 +21,12 @@ const options: Array<{
     value: "owner",
     label: "I'm a landlord or property owner",
     description:
-      "I manage properties and collect rent from tenants. Set up an organization, add rooms, and start billing.",
+      "I manage properties and collect rent from residents. Set up an organization, add rooms, and start billing.",
     icon: RiBuilding2Line,
   },
   {
     value: "resident",
-    label: "I'm a tenant or renter",
+    label: "I'm a resident or renter",
     description:
       "I rent a room or unit from a landlord. Use an invite code or request access by their email.",
     icon: RiKey2Line,

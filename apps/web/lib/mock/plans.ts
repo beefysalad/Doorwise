@@ -31,7 +31,7 @@ export const PLANS: Plan[] = [
       "Up to 2 properties",
       "Up to 5 residents",
       "Unlimited bills + payments",
-      "Tenant portal",
+      "Resident portal",
       "Email support",
     ],
     highlight: false,

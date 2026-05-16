@@ -126,7 +126,7 @@ function OnboardingPlanPicker({ value, onChange }: OnboardingPlanPickerProps) {
 
             <div className="mt-5 grid grid-cols-2 gap-2">
               <PlanLimit label="Properties" value={plan.limits.properties} />
-              <PlanLimit label="Tenants" value={plan.limits.residents} />
+              <PlanLimit label="Residents" value={plan.limits.residents} />
             </div>
 
             <p className="mt-4 text-[13px] leading-relaxed text-muted-foreground">
