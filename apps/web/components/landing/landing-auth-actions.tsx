@@ -16,7 +16,7 @@ function LandingSignUpAction({
   return (
     <>
       <Show when="signed-out">
-        <SignUpButton mode="modal" fallbackRedirectUrl="/dashboard">
+        <SignUpButton mode="modal" fallbackRedirectUrl="/onboarding">
           <Button {...buttonProps}>{children}</Button>
         </SignUpButton>
       </Show>
@@ -43,7 +43,7 @@ function LandingHeaderActions() {
             Sign in
           </Button>
         </SignInButton>
-        <SignUpButton mode="modal" fallbackRedirectUrl="/dashboard">
+        <SignUpButton mode="modal" fallbackRedirectUrl="/onboarding">
           <Button size="sm" className="rounded-md">
             Get started
           </Button>

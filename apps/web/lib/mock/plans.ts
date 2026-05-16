@@ -29,7 +29,7 @@ export const PLANS: Plan[] = [
     limits: PLAN_LIMITS.free,
     features: [
       "Up to 2 properties",
-      "Up to 5 tenants",
+      "Up to 5 residents",
       "Unlimited bills + payments",
       "Tenant portal",
       "Email support",
@@ -46,7 +46,7 @@ export const PLANS: Plan[] = [
     limits: PLAN_LIMITS.starter,
     features: [
       "Up to 10 properties",
-      "Up to 50 tenants",
+      "Up to 50 residents",
       "Bulk SMS reminders",
       "CSV / Excel export",
       "Priority chat support",
@@ -64,7 +64,7 @@ export const PLANS: Plan[] = [
     limits: PLAN_LIMITS.medium,
     features: [
       "Unlimited properties",
-      "Unlimited tenants",
+      "Unlimited residents",
       "Detailed financial reports",
       "API access",
       "Dedicated success manager",

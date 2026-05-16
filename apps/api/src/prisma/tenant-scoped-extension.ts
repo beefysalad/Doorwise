@@ -45,7 +45,7 @@ export function buildTenantScopedExtension(organizationId: string) {
             return query(args);
           }
 
-          const next = args;
+          const next: Record<string, unknown> = args;
 
           if (operation === 'create') {
             next.data = injectScopeIntoData(next.data, organizationId);

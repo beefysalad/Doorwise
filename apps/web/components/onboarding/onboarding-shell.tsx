@@ -73,7 +73,7 @@ function OnboardingShell() {
       </div>
 
       {/* Content */}
-      <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center py-10">
+      <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center py-10 has-[.plan-picker]:max-w-5xl">
         <StepIndicator step={step} total={3} className="mb-8" />
 
         {role === null && (
@@ -95,7 +95,7 @@ function OnboardingShell() {
         )}
 
         {role === "owner" && ownerStep === "plan" && (
-          <div>
+          <div className="plan-picker">
             <Button
               variant="ghost"
               size="sm"
@@ -106,11 +106,12 @@ function OnboardingShell() {
               Change role
             </Button>
             <h1 className="font-heading text-2xl font-bold tracking-tight">
-              Pick a plan that fits 📦
+              Pick the plan for your rental setup
             </h1>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Start free and upgrade anytime. You can change this later — no
-              card needed to begin.
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              Start with the size that matches your operation today. Billing
+              upgrades will be verified later, so this just shapes the setup
+              flow for now.
             </p>
             <div className="mt-7">
               <OnboardingPlanPicker

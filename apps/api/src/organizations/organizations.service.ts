@@ -35,7 +35,7 @@ export class OrganizationsService {
       slug,
       address: dto.address,
       phone: dto.phone,
-      plan: 'free',
+      plan: dto.plan ?? 'free',
       ownerUserId: user.id,
     });
 

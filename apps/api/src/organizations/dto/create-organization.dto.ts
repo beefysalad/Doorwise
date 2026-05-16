@@ -19,6 +19,7 @@ const createOrganizationSchema = z.object({
     .transform((value) => (value && value.length > 0 ? value : undefined)),
   address: optionalTrimmed(200),
   phone: optionalTrimmed(40),
+  plan: z.enum(['free', 'starter', 'medium']).optional(),
 });
 
 type CreateOrganizationDto = z.infer<typeof createOrganizationSchema>;

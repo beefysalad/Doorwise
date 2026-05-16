@@ -1,9 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type {
-  CurrentUserResponse,
-  GetAllUsersResponse,
-  SignupRole,
-} from '@workspace/shared';
+import type { CurrentUserResponse, SignupRole } from '@workspace/shared';
 import { PrismaService } from '../prisma/prisma.service';
 
 type UpsertClerkUserInput = {
@@ -83,31 +79,5 @@ export class UsersRepository {
         clerkId,
       },
     });
-  }
-  async getAllUsers(): Promise<GetAllUsersResponse> {
-    const users = await this.prisma.db.user.findMany({
-      where: {
-        clerkId: {
-          not: null,
-        },
-      },
-      select: {
-        id: true,
-        clerkId: true,
-        email: true,
-        name: true,
-        imageUrl: true,
-      },
-    });
-
-    return {
-      users: users.map((user) => ({
-        id: user.id,
-        clerkId: user.clerkId!,
-        email: user.email,
-        name: user.name,
-        imageUrl: user.imageUrl,
-      })),
-    };
   }
 }

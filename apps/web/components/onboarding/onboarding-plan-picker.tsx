@@ -1,10 +1,16 @@
 "use client"
 
-import { RiCheckLine } from "@remixicon/react"
+import {
+  RiArrowRightLine,
+  RiBuilding2Line,
+  RiCheckLine,
+  RiHomeSmileLine,
+  RiShieldCheckLine,
+} from "@remixicon/react"
 
 import type { PlanTier } from "@workspace/shared"
 
-import { fmtLimit, PLANS } from "@/lib/mock/plans"
+import { fmtLimit, type Plan, PLANS } from "@/lib/mock/plans"
 import { cn } from "@workspace/ui/lib/utils"
 
 type OnboardingPlanPickerProps = {
@@ -12,11 +18,39 @@ type OnboardingPlanPickerProps = {
   onChange: (planId: PlanTier) => void
 }
 
+const planDetails: Record<
+  PlanTier,
+  {
+    icon: typeof RiHomeSmileLine
+    eyebrow: string
+    proof: string
+  }
+> = {
+  free: {
+    icon: RiHomeSmileLine,
+    eyebrow: "Try the system",
+    proof: "Best if you are still setting up your first rental flow.",
+  },
+  starter: {
+    icon: RiShieldCheckLine,
+    eyebrow: "Recommended",
+    proof: "The practical starting point for active boarding houses.",
+  },
+  medium: {
+    icon: RiBuilding2Line,
+    eyebrow: "Scale up",
+    proof: "For operators managing multiple locations and reporting needs.",
+  },
+}
+
 function OnboardingPlanPicker({ value, onChange }: OnboardingPlanPickerProps) {
   return (
-    <div className="grid gap-4 md:grid-cols-3">
+    <div className="grid gap-4 lg:grid-cols-3">
       {PLANS.map((plan) => {
         const selected = value === plan.id
+        const details = planDetails[plan.id]
+        const Icon = details.icon
+
         return (
           <button
             key={plan.id}
@@ -24,74 +58,129 @@ function OnboardingPlanPicker({ value, onChange }: OnboardingPlanPickerProps) {
             onClick={() => onChange(plan.id)}
             aria-pressed={selected}
             className={cn(
-              "relative flex flex-col gap-4 rounded-2xl border bg-card p-5 text-left transition-colors",
-              "hover:border-primary",
-              selected ? "border-primary ring-1 ring-primary" : "border-input"
+              "group relative flex min-h-[430px] flex-col overflow-hidden rounded-3xl border bg-card p-5 text-left shadow-xs transition-[border-color,box-shadow,transform]",
+              "hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-md",
+              selected
+                ? "border-primary shadow-md ring-1 ring-primary"
+                : "border-border"
             )}
           >
-            {plan.highlight && (
-              <span className="absolute top-4 right-4 rounded-full bg-accent px-2 py-0.5 text-[10.5px] font-semibold tracking-wide text-primary uppercase">
-                Most popular
-              </span>
-            )}
+            <span
+              className={cn(
+                "pointer-events-none absolute inset-x-0 top-0 h-1",
+                selected || plan.highlight ? "bg-primary" : "bg-border"
+              )}
+            />
 
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold">{plan.name}</span>
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <span
+                  className={cn(
+                    "flex size-10 items-center justify-center rounded-2xl border",
+                    selected
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-border bg-muted text-foreground"
+                  )}
+                >
+                  <Icon className="size-5" />
+                </span>
+                <div>
+                  <div className="text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
+                    {details.eyebrow}
+                  </div>
+                  <div className="font-heading text-xl font-bold tracking-tight">
+                    {plan.name}
+                  </div>
+                </div>
+              </div>
               <span
                 className={cn(
-                  "flex size-4 items-center justify-center rounded-full border",
+                  "flex size-5 items-center justify-center rounded-full border transition-colors",
                   selected
                     ? "border-primary bg-primary text-primary-foreground"
-                    : "border-input"
+                    : "border-border bg-background text-transparent"
                 )}
               >
-                {selected && <RiCheckLine className="size-3" />}
+                <RiCheckLine className="size-3.5" />
               </span>
             </div>
 
-            <div>
-              <div className="flex items-baseline gap-1.5">
-                <span className="font-mono text-3xl font-bold tracking-tight">
+            <div className="mt-6">
+              <div className="flex items-end gap-1.5">
+                <span className="font-mono text-4xl font-bold tracking-tight">
                   {plan.price}
                 </span>
                 {plan.price !== "₱0" && (
-                  <span className="text-[13px] text-muted-foreground">
+                  <span className="pb-1 text-[13px] text-muted-foreground">
                     / month
                   </span>
                 )}
+              </div>
+              <div className="mt-1 text-sm font-medium text-foreground">
+                {plan.tagline}
               </div>
               <div className="mt-1 text-[12.5px] text-muted-foreground">
                 {plan.priceNote}
               </div>
             </div>
 
-            <div className="flex items-center justify-between rounded-md bg-muted px-3 py-2 text-[12.5px] text-muted-foreground">
-              <span>
-                <span className="font-semibold text-foreground">
-                  {fmtLimit(plan.limits.properties)}
-                </span>{" "}
-                properties
-              </span>
-              <span className="h-3.5 w-px bg-border" />
-              <span>
-                <span className="font-semibold text-foreground">
-                  {fmtLimit(plan.limits.residents)}
-                </span>{" "}
-                tenants
-              </span>
+            <div className="mt-5 grid grid-cols-2 gap-2">
+              <PlanLimit label="Properties" value={plan.limits.properties} />
+              <PlanLimit label="Tenants" value={plan.limits.residents} />
             </div>
 
-            <ul className="flex flex-col gap-2">
+            <p className="mt-4 text-[13px] leading-relaxed text-muted-foreground">
+              {details.proof}
+            </p>
+
+            <ul className="mt-5 flex flex-1 flex-col gap-2.5">
               {plan.features.map((f) => (
                 <li key={f} className="flex items-start gap-2 text-[13px]">
-                  <RiCheckLine className="mt-0.5 size-3.5 shrink-0 text-paid-foreground" />
+                  <span className="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full bg-muted text-foreground">
+                    <RiCheckLine className="size-3" />
+                  </span>
                   <span className="text-muted-foreground">{f}</span>
                 </li>
               ))}
             </ul>
+
+            <div
+              className={cn(
+                "mt-6 flex items-center justify-between rounded-2xl border px-4 py-3 text-sm font-semibold transition-colors",
+                selected
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-border bg-muted text-foreground group-hover:border-primary/50"
+              )}
+            >
+              <span>{selected ? "Selected plan" : "Choose plan"}</span>
+              {selected ? (
+                <RiCheckLine className="size-4" />
+              ) : (
+                <RiArrowRightLine className="size-4" />
+              )}
+            </div>
           </button>
         )
       })}
+    </div>
+  )
+}
+
+function PlanLimit({
+  label,
+  value,
+}: {
+  label: string
+  value: Plan["limits"]["properties"]
+}) {
+  return (
+    <div className="rounded-2xl border border-border bg-muted px-3 py-2.5">
+      <div className="font-mono text-lg font-bold tracking-tight">
+        {fmtLimit(value)}
+      </div>
+      <div className="text-[11px] font-medium text-muted-foreground">
+        {label}
+      </div>
     </div>
   )
 }

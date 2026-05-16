@@ -614,7 +614,7 @@ export function LandingPage() {
                   <span className="font-semibold">
                     {fmtLimit(tier.limits.residents)}
                   </span>{" "}
-                  tenants
+                  residents
                 </span>
               </div>
               <LandingSignUpAction

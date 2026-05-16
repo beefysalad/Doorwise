@@ -37,15 +37,4 @@ export class UsersController {
     const dto = parseWithZod(setIntendedRoleSchema, body);
     return this.usersService.setIntendedRole(clerkUserId, dto.role);
   }
-
-  /**
-   * @deprecated Returns every user in the database to any authenticated caller.
-   * This is a cross-tenant data leak retained only because the dev-only
-   * dashboard/users/data scaffolding pages still consume it. Replace with an
-   * org-scoped membership listing endpoint before going to production.
-   */
-  @Get('all')
-  async getAllUsers(): Promise<GetAllUsersResponse> {
-    return await this.usersService.getAllUsers();
-  }
 }
