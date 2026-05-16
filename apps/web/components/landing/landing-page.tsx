@@ -117,6 +117,54 @@ const TENANT_BULLETS = [
   "Optional Tagalog interface",
 ]
 
+const HOW_IT_WORKS = [
+  {
+    n: "01",
+    title: "Add your properties & rooms",
+    body: "Set up your boarding house, apartments, or bed-spacer units in about five minutes. Import a spreadsheet or type them in.",
+  },
+  {
+    n: "02",
+    title: "Residents get their portal link",
+    body: "Send each resident a link by SMS. They open it on their phone — no app install, no signup friction.",
+  },
+  {
+    n: "03",
+    title: "Collect and track",
+    body: "Bills auto-generate every month. Record payments in one tap. Doorwise keeps the ledger clean for you.",
+  },
+]
+
+const TESTIMONIALS = [
+  {
+    initials: "AC",
+    avatarBg: "#fce7f3",
+    avatarFg: "#9d174d",
+    quote: "Dati Excel na Excel ako. Ngayon isang click na lang.",
+    name: "Ate Cynthia",
+    location: "Sampaloc",
+    meta: "12 rooms",
+  },
+  {
+    initials: "RS",
+    avatarBg: "#dbeafe",
+    avatarFg: "#1e40af",
+    quote: "My tenants actually pay on time now because they get reminders.",
+    name: "Ricky Santos",
+    location: "Davao",
+    meta: "8 units",
+  },
+  {
+    initials: "GL",
+    avatarBg: "#dcfce7",
+    avatarFg: "#166534",
+    quote: "Nag-refund ng sobrang bayad in 30 seconds. Sana all.",
+    name: "Grace Lim",
+    location: "Cebu City",
+    meta: "3 boarding houses",
+  },
+]
+
 const FAQS = [
   {
     q: "Do I need to install anything?",
@@ -176,149 +224,173 @@ function Logo({ className }: { className?: string }) {
 export function LandingPage() {
   return (
     <div className="min-h-svh bg-background text-foreground">
-      {/* Nav */}
-      <header className="sticky top-0 z-50 border-b bg-background/85 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center gap-8 px-6 py-3.5">
-          <Link href="/" className="flex items-center gap-2.5">
-            <Logo />
-            <span className="font-heading text-base font-bold tracking-tight">
-              Doorwise
-            </span>
-          </Link>
-          <nav className="hidden items-center gap-6 text-[13.5px] text-muted-foreground md:flex">
-            {NAV_LINKS.map((l) => (
-              <Link
-                key={l.label}
-                href={l.href}
-                className="transition-colors hover:text-foreground"
-              >
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="ml-auto">
-            <LandingHeaderActions />
+      {/* Dark hero + trust strip scope */}
+      <div className="relative bg-zinc-950 text-white">
+        {/* Nav */}
+        <header className="sticky top-0 z-50 border-b border-white/10 bg-zinc-950/80 backdrop-blur-md">
+          <div className="mx-auto flex max-w-6xl items-center gap-8 px-6 py-3.5">
+            <Link href="/" className="flex items-center gap-2.5">
+              <Logo />
+              <span className="font-heading text-base font-bold tracking-tight text-white">
+                Doorwise
+              </span>
+            </Link>
+            <nav className="hidden items-center gap-6 text-[13.5px] text-zinc-400 md:flex">
+              {NAV_LINKS.map((l) => (
+                <Link
+                  key={l.label}
+                  href={l.href}
+                  className="transition-colors hover:text-white"
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+            <div className="ml-auto">
+              <LandingHeaderActions />
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle_at_1px_1px,var(--border)_1px,transparent_0)] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_30%,black_30%,transparent_70%)] [background-size:20px_20px]"
-        />
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="show"
-          className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 md:py-20 lg:grid-cols-[5fr_6fr]"
-        >
-          <motion.div variants={fadeUp}>
-            <motion.div
-              whileHover={{ y: -2 }}
-              className="mb-5 inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground shadow-sm"
-            >
-              <motion.span
-                animate={{ scale: [1, 1.6, 1], opacity: [1, 0.6, 1] }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="size-1.5 rounded-full bg-paid-foreground"
-              />
-              Trusted by 1,800+ landlords across the Philippines
-            </motion.div>
-            <h1 className="font-heading text-4xl leading-[1.04] font-bold tracking-tight text-balance md:text-5xl lg:text-[3.5rem]">
-              Collect rent{" "}
-              <em className="font-medium text-muted-foreground">without</em> the
-              group chat.
-            </h1>
-            <p className="mt-4 max-w-md text-[17px] leading-relaxed text-muted-foreground">
-              Doorwise is a calm, no-nonsense way to run your boarding house,
-              apartment, or bed-spacer. Bills, payments, GCash receipts, overdue
-              tracking — all in one place. Tagalog and English friendly.
-            </p>
-            <div className="mt-7 flex flex-wrap items-center gap-2.5">
-              <LandingSignUpAction size="lg" className="rounded-md">
-                Start free
-                <RiArrowRightLine />
-              </LandingSignUpAction>
-              <Button variant="outline" size="lg" className="rounded-md">
-                <RiEyeLine />
-                Watch demo (2 min)
-              </Button>
-            </div>
-            <div className="mt-4.5 flex flex-wrap gap-4 text-[12.5px] text-muted-foreground">
-              {["Free up to 5 rooms", "No credit card", "Setup in 5 min"].map(
-                (t) => (
-                  <span key={t} className="inline-flex items-center gap-1.5">
-                    <RiCheckLine className="size-3.5 text-paid-foreground" />
-                    {t}
-                  </span>
-                )
-              )}
-            </div>
-          </motion.div>
+        {/* Hero */}
+        <section className="relative overflow-hidden">
+          {/* dot grid overlay tuned for dark bg */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.08)_1px,transparent_0)] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_30%,black_30%,transparent_70%)] [background-size:20px_20px]"
+          />
+          {/* ambient glow blobs */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-32 left-1/2 size-[640px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]"
+          />
           <motion.div
-            variants={fadeUp}
-            transition={{ delay: 0.15 }}
-            className="relative"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="show"
+            className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 md:py-20 lg:grid-cols-[5fr_6fr]"
           >
-            <motion.div
-              aria-hidden
-              animate={{ rotate: 360 }}
-              transition={{ duration: 28, ease: "linear", repeat: Infinity }}
-              className="absolute -inset-6 -z-10 rounded-full bg-gradient-to-r from-primary/20 via-paid/20 to-overdue/20 blur-3xl"
-            />
-            <motion.div animate={floatSlow}>
-              <HeroPreview />
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Trust strip — marquee */}
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        viewport={viewportOnce}
-        variants={fadeUp}
-        className="pt-10 pb-2 text-center text-xs font-medium tracking-widest text-muted-foreground uppercase"
-      >
-        Trusted across Metro Manila, Cebu, and Davao
-      </motion.div>
-      <section className="border-y bg-card">
-        <div className="relative overflow-hidden py-5">
-          {/* fade edges */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-card to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-card to-transparent" />
-          <motion.div
-            animate={{ x: ["-50%", "0%"] }}
-            transition={{ duration: 22, ease: "linear", repeat: Infinity }}
-            className="flex w-max items-center gap-16 text-xl font-semibold whitespace-nowrap text-muted-foreground/50"
-          >
-            {/* duplicate set for seamless loop */}
-            {[0, 1].map((copy) => (
-              <div key={copy} className="flex items-center gap-16">
-                <span className="italic">Mabini Houses</span>
-                <span>
-                  KATIPUNAN<span className="font-normal">Apts</span>
-                </span>
-                <span className="tracking-[0.25em]">
-                  TAFT<span className="tracking-normal">·hub</span>
-                </span>
-                <span className="font-mono">halfway/quarter</span>
-                <span>Cebu Living Co.</span>
-                <span>Sampaloc Suites</span>
-                <span className="font-mono">EDSA/rooms</span>
-                <span className="italic">Davao Dorm Co.</span>
+            <motion.div variants={fadeUp}>
+              <motion.div
+                whileHover={{ y: -2 }}
+                className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1.5 text-xs font-medium text-zinc-300 ring-1 ring-white/10 backdrop-blur-sm"
+              >
+                <motion.span
+                  animate={{ scale: [1, 1.6, 1], opacity: [1, 0.6, 1] }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="size-1.5 rounded-full bg-emerald-400"
+                />
+                Trusted by landlords across the Philippines
+              </motion.div>
+              <h1 className="bg-gradient-to-r from-white to-zinc-400 bg-clip-text font-heading text-4xl leading-[1.04] font-bold tracking-tight text-balance text-transparent md:text-5xl lg:text-[3.5rem]">
+                Collect rent <em className="font-medium opacity-70">without</em>{" "}
+                the group chat.
+              </h1>
+              <p className="mt-4 max-w-md text-[17px] leading-relaxed text-zinc-400">
+                Doorwise is a calm, no-nonsense way to run your boarding house,
+                apartment, or bed-spacer. Bills, payments, GCash receipts,
+                overdue tracking — all in one place. Tagalog and English
+                friendly.
+              </p>
+              <div className="mt-7 flex flex-wrap items-center gap-2.5">
+                <LandingSignUpAction size="lg" className="rounded-md">
+                  Start free
+                  <RiArrowRightLine />
+                </LandingSignUpAction>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="rounded-md border-white/15 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+                >
+                  <RiEyeLine />
+                  Watch demo (2 min)
+                </Button>
               </div>
-            ))}
+              <div className="mt-4.5 flex flex-wrap gap-4 text-[12.5px] text-zinc-400">
+                {["Free up to 5 rooms", "No credit card", "Setup in 5 min"].map(
+                  (t) => (
+                    <span key={t} className="inline-flex items-center gap-1.5">
+                      <RiCheckLine className="size-3.5 text-emerald-400" />
+                      {t}
+                    </span>
+                  )
+                )}
+              </div>
+            </motion.div>
+            <motion.div
+              variants={fadeUp}
+              transition={{ delay: 0.15 }}
+              className="relative"
+            >
+              {/* Glowing blob behind the preview */}
+              <motion.div
+                aria-hidden
+                animate={{ rotate: 360 }}
+                transition={{ duration: 28, ease: "linear", repeat: Infinity }}
+                className="absolute -inset-10 -z-10 rounded-full bg-gradient-to-r from-primary/40 via-fuchsia-500/20 to-cyan-400/30 blur-3xl"
+              />
+              <motion.div
+                aria-hidden
+                animate={{ opacity: [0.5, 0.85, 0.5] }}
+                transition={{
+                  duration: 4,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                }}
+                className="absolute inset-0 -z-10 rounded-3xl bg-primary/30 blur-2xl"
+              />
+              <motion.div animate={floatSlow}>
+                <HeroPreview />
+              </motion.div>
+            </motion.div>
           </motion.div>
-        </div>
-      </section>
+        </section>
+
+        {/* Trust strip — marquee */}
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+          variants={fadeUp}
+          className="pt-10 pb-2 text-center text-xs font-medium tracking-widest text-zinc-500 uppercase"
+        >
+          Trusted across Metro Manila, Cebu, and Davao
+        </motion.div>
+        <section className="border-y border-white/10 bg-zinc-900/60">
+          <div className="relative overflow-hidden py-5">
+            {/* fade edges */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-zinc-900 to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-zinc-900 to-transparent" />
+            <motion.div
+              animate={{ x: ["-50%", "0%"] }}
+              transition={{ duration: 22, ease: "linear", repeat: Infinity }}
+              className="flex w-max items-center gap-16 text-xl font-semibold whitespace-nowrap text-zinc-500"
+            >
+              {/* duplicate set for seamless loop */}
+              {[0, 1].map((copy) => (
+                <div key={copy} className="flex items-center gap-16">
+                  <span className="italic">Mabini Houses</span>
+                  <span>
+                    KATIPUNAN<span className="font-normal">Apts</span>
+                  </span>
+                  <span className="tracking-[0.25em]">
+                    TAFT<span className="tracking-normal">·hub</span>
+                  </span>
+                  <span className="font-mono">halfway/quarter</span>
+                  <span>Cebu Living Co.</span>
+                  <span>Sampaloc Suites</span>
+                  <span className="font-mono">EDSA/rooms</span>
+                  <span className="italic">Davao Dorm Co.</span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      </div>
 
       {/* Features */}
       <motion.section
@@ -355,7 +427,7 @@ export function LandingPage() {
                 key={f.title}
                 variants={fadeUp}
                 whileHover={{ y: -6 }}
-                className="rounded-xl border bg-card p-6 shadow-sm transition-shadow hover:shadow-lg"
+                className="rounded-xl border border-t-2 border-t-primary/40 bg-card p-6 shadow-sm transition-shadow hover:shadow-lg"
               >
                 <motion.div
                   animate={{ scale: [1, 1.08, 1] }}
@@ -381,8 +453,67 @@ export function LandingPage() {
         </motion.div>
       </motion.section>
 
-      {/* Payments */}
+      {/* How it works */}
       <section className="border-y bg-card">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+          variants={staggerContainer}
+          className="mx-auto max-w-6xl px-6 py-20"
+        >
+          <motion.div
+            variants={fadeUp}
+            className="mx-auto mb-12 max-w-xl text-center"
+          >
+            <div className="mb-3 text-xs font-semibold tracking-widest text-primary uppercase">
+              How it works
+            </div>
+            <h2 className="font-heading text-3xl font-bold tracking-tight text-balance md:text-4xl">
+              Three steps. That&apos;s it.
+            </h2>
+            <p className="mt-3.5 leading-relaxed text-muted-foreground">
+              No onboarding calls, no training. Most landlords are collecting
+              their first bill within the hour.
+            </p>
+          </motion.div>
+          <div className="relative">
+            {/* Connector line (desktop only) */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute top-7 right-[12%] left-[12%] hidden h-px bg-gradient-to-r from-transparent via-border to-transparent md:block"
+            />
+            <motion.div
+              variants={staggerContainer}
+              className="relative grid gap-8 md:grid-cols-3 md:gap-6"
+            >
+              {HOW_IT_WORKS.map((step) => (
+                <motion.div
+                  key={step.n}
+                  variants={fadeUp}
+                  className="relative flex flex-col items-center text-center"
+                >
+                  <div className="relative mb-5">
+                    <div className="absolute inset-0 -z-10 rounded-full bg-primary/20 blur-xl" />
+                    <div className="flex size-14 items-center justify-center rounded-full border bg-background font-mono text-base font-bold text-primary shadow-sm ring-4 ring-card">
+                      {step.n}
+                    </div>
+                  </div>
+                  <div className="mb-2 text-[15.5px] font-semibold">
+                    {step.title}
+                  </div>
+                  <div className="max-w-xs text-[13.5px] leading-relaxed text-muted-foreground">
+                    {step.body}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Payments */}
+      <section className="border-b bg-background">
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -402,13 +533,13 @@ export function LandingPage() {
               records it with the reference number, date, and method. No more
               guessing whose deposit slip is whose.
             </p>
-            <div className="mt-5.5 flex flex-col gap-3">
+            <div className="mt-5.5 flex flex-col gap-2.5">
               {PAYMENT_ROWS.map((p) => (
                 <motion.div
                   key={p.name}
                   variants={fadeUp}
                   whileHover={{ x: 6 }}
-                  className="flex items-center gap-3.5 rounded-md border bg-background p-3.5"
+                  className="group flex items-center gap-3.5 rounded-lg border bg-card p-3.5 transition-colors hover:border-primary/30"
                 >
                   <div
                     className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-md border text-sm font-bold text-white"
@@ -430,19 +561,20 @@ export function LandingPage() {
                       p.logo
                     )}
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <div className="text-sm font-semibold">{p.name}</div>
                     <div className="font-mono text-xs text-muted-foreground">
                       {p.line}
                     </div>
                   </div>
+                  <RiCheckLine className="size-4 text-paid-foreground opacity-0 transition-opacity group-hover:opacity-100" />
                 </motion.div>
               ))}
             </div>
           </motion.div>
           {/* Payment confirmed card */}
           <motion.div variants={fadeUp} className="mx-auto w-full max-w-sm">
-            <div className="rounded-2xl border bg-background p-6 shadow-lg">
+            <div className="rounded-2xl border bg-card p-6 shadow-lg">
               <motion.div
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2.4, repeat: Infinity }}
@@ -513,6 +645,86 @@ export function LandingPage() {
           </motion.div>
         </div>
       </motion.section>
+
+      {/* Testimonials */}
+      <section className="relative overflow-hidden border-y border-white/10 bg-zinc-950 text-white">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.06)_1px,transparent_0)] [mask-image:radial-gradient(ellipse_60%_70%_at_50%_50%,black_40%,transparent_75%)] [background-size:24px_24px]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-1/2 left-1/2 size-[480px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/15 blur-[120px]"
+        />
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+          variants={staggerContainer}
+          className="relative mx-auto max-w-6xl px-6 py-20"
+        >
+          <motion.div
+            variants={fadeUp}
+            className="mx-auto mb-12 max-w-xl text-center"
+          >
+            <div className="mb-3 text-xs font-semibold tracking-widest text-primary uppercase">
+              Loved by landlords
+            </div>
+            <h2 className="bg-gradient-to-r from-white to-zinc-400 bg-clip-text font-heading text-3xl font-bold tracking-tight text-balance text-transparent md:text-4xl">
+              Sana all, may Doorwise na.
+            </h2>
+            <p className="mt-3.5 leading-relaxed text-zinc-400">
+              Real landlords, real boarding houses, real receipts. Here&apos;s
+              what they say after switching from notebooks and group chats.
+            </p>
+          </motion.div>
+          <motion.div
+            variants={staggerContainer}
+            className="grid gap-5 md:grid-cols-3"
+          >
+            {TESTIMONIALS.map((t) => (
+              <motion.div
+                key={t.name}
+                variants={fadeUp}
+                whileHover={{ y: -6 }}
+                className="relative flex flex-col gap-4 rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-sm transition-shadow hover:shadow-[0_0_40px_rgba(120,119,198,0.25)]"
+              >
+                <div className="flex gap-0.5 text-amber-400">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <svg
+                      key={i}
+                      viewBox="0 0 20 20"
+                      className="size-4 fill-current"
+                      aria-hidden
+                    >
+                      <path d="M10 1.5l2.7 5.47 6.04.88-4.37 4.26 1.03 6.01L10 15.27l-5.4 2.84 1.03-6.01L1.26 7.85l6.04-.88L10 1.5z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-[14.5px] leading-relaxed text-zinc-200">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div className="mt-auto flex items-center gap-3 border-t border-white/10 pt-4">
+                  <span
+                    className="flex size-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold"
+                    style={{ background: t.avatarBg, color: t.avatarFg }}
+                  >
+                    {t.initials}
+                  </span>
+                  <div className="min-w-0">
+                    <div className="text-sm font-semibold text-white">
+                      {t.name}
+                    </div>
+                    <div className="text-[12px] text-zinc-400">
+                      {t.location} · {t.meta}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </section>
 
       {/* Pricing */}
       <motion.section

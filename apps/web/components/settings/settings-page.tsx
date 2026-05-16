@@ -1,20 +1,16 @@
 "use client"
 
 import { useState } from "react"
-import { useTheme } from "next-themes"
 import {
   RiCheckLine,
-  RiComputerLine,
   RiLockPasswordLine,
   RiMailLine,
   RiMoonLine,
   RiNotification3Line,
   RiShieldCheckLine,
-  RiSunLine,
   RiUser3Line,
 } from "@remixicon/react"
 
-import { BrandThemeSettings } from "@/components/dashboard/brand-theme-settings"
 import { useDashboardUser } from "@/components/dashboard/dashboard-user-provider"
 import {
   Avatar,
@@ -46,29 +42,9 @@ import {
   TabsList,
   TabsTrigger,
 } from "@workspace/ui/components/tabs"
-import { cn } from "@workspace/ui/lib/utils"
-
-const themeOptions = [
-  {
-    icon: RiSunLine,
-    label: "Light",
-    value: "light",
-  },
-  {
-    icon: RiMoonLine,
-    label: "Dark",
-    value: "dark",
-  },
-  {
-    icon: RiComputerLine,
-    label: "System",
-    value: "system",
-  },
-]
 
 function SettingsPage() {
   const user = useDashboardUser()
-  const { setTheme, theme } = useTheme()
   const initials = getInitials(user.name, user.email)
   const [weeklyDigestEnabled, setWeeklyDigestEnabled] = useState(true)
   const [productUpdatesEnabled, setProductUpdatesEnabled] = useState(true)
@@ -100,7 +76,7 @@ function SettingsPage() {
             Profile
           </TabsTrigger>
           <TabsTrigger value="appearance">
-            <RiSunLine />
+            <RiMoonLine />
             Appearance
           </TabsTrigger>
           <TabsTrigger value="notifications">
@@ -190,44 +166,17 @@ function SettingsPage() {
         <TabsContent value="appearance" className="grid gap-4">
           <Card className="rounded-lg shadow-sm">
             <CardHeader>
-              <CardTitle>Display</CardTitle>
+              <CardTitle>Display theme</CardTitle>
               <CardDescription>
-                Theme preferences for this browser.
+                Doorwise always runs in dark mode.
               </CardDescription>
             </CardHeader>
-            <CardContent className="grid gap-3 md:grid-cols-3">
-              {themeOptions.map((option) => {
-                const Icon = option.icon
-                const isActive = theme === option.value
-
-                return (
-                  <Button
-                    key={option.value}
-                    type="button"
-                    variant="outline"
-                    aria-pressed={isActive}
-                    onClick={() => setTheme(option.value)}
-                    className={cn(
-                      "h-auto min-h-24 justify-between rounded-lg bg-background p-4 text-left transition-colors hover:border-primary",
-                      isActive && "border-primary ring-2 ring-ring/25"
-                    )}
-                  >
-                    <span className="flex items-center gap-3">
-                      <span className="flex size-9 items-center justify-center rounded-lg bg-muted">
-                        <Icon className="size-5 text-primary" />
-                      </span>
-                      <span className="font-medium">{option.label}</span>
-                    </span>
-                    {isActive ? (
-                      <RiCheckLine className="size-5 text-primary" />
-                    ) : null}
-                  </Button>
-                )
-              })}
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                Dark mode is always on — no toggle needed.
+              </p>
             </CardContent>
           </Card>
-
-          <BrandThemeSettings />
         </TabsContent>
 
         <TabsContent value="notifications">

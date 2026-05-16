@@ -24,11 +24,11 @@ function OwnerPageHeader({ title, sub, actions }: OwnerPageHeaderProps) {
         {actions}
         <Link
           href="/notifications"
-          className="relative flex size-9 items-center justify-center rounded-md border bg-card text-muted-foreground transition-colors hover:text-foreground"
+          className="relative flex size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           aria-label="Notifications"
         >
           <RiNotification3Line className="size-4.5" />
-          <span className="absolute top-1.5 right-1.5 size-2 rounded-full border-2 border-card bg-overdue-foreground" />
+          <span className="absolute top-2 right-2 size-1.5 rounded-full bg-overdue-foreground" />
         </Link>
       </div>
     </header>

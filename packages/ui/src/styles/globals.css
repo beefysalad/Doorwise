@@ -71,8 +71,8 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.185 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.795 0.184 86.047);
-  --primary-foreground: oklch(0.421 0.095 57.708);
+  --primary: oklch(0.86 0.2 132);
+  --primary-foreground: oklch(0.13 0.04 135);
   --secondary: oklch(0.25 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.22 0 0);
@@ -82,7 +82,7 @@
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 8%);
   --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(0.76 0.16 132);
   --chart-1: oklch(0.72 0.16 260);
   --chart-2: oklch(0.76 0.15 155);
   --chart-3: oklch(0.82 0.16 75);
@@ -92,12 +92,12 @@
   --surface-subtle: oklch(0.235 0 0);
   --sidebar: oklch(0.185 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.795 0.184 86.047);
-  --sidebar-primary-foreground: oklch(0.987 0.026 102.212);
+  --sidebar-primary: oklch(0.86 0.2 132);
+  --sidebar-primary-foreground: oklch(0.13 0.04 135);
   --sidebar-accent: oklch(0.25 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 8%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-ring: oklch(0.76 0.16 132);
 
   /* Doorwise status tokens — semantic (dark) */
   --paid: oklch(0.27 0.06 150);
