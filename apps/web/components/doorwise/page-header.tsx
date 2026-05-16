@@ -11,24 +11,24 @@ type OwnerPageHeaderProps = {
 /** Doorwise topbar — page title + subtitle on the left, actions + bell right. */
 function OwnerPageHeader({ title, sub, actions }: OwnerPageHeaderProps) {
   return (
-    <header className="bg-card flex h-16 shrink-0 items-center justify-between border-b px-7">
+    <header className="flex h-16 shrink-0 items-center justify-between border-b bg-card px-7">
       <div>
         <div className="font-heading text-lg font-bold tracking-tight">
           {title}
         </div>
         {sub && (
-          <div className="text-muted-foreground mt-0.5 text-xs">{sub}</div>
+          <div className="mt-0.5 text-xs text-muted-foreground">{sub}</div>
         )}
       </div>
       <div className="flex items-center gap-2.5">
         {actions}
         <Link
           href="/notifications"
-          className="bg-card text-muted-foreground hover:text-foreground relative flex size-9 items-center justify-center rounded-md border transition-colors"
+          className="relative flex size-9 items-center justify-center rounded-md border bg-card text-muted-foreground transition-colors hover:text-foreground"
           aria-label="Notifications"
         >
           <RiNotification3Line className="size-4.5" />
-          <span className="bg-overdue-foreground border-card absolute top-1.5 right-1.5 size-2 rounded-full border-2" />
+          <span className="absolute top-1.5 right-1.5 size-2 rounded-full border-2 border-card bg-overdue-foreground" />
         </Link>
       </div>
     </header>

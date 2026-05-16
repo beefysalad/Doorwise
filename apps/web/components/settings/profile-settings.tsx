@@ -35,13 +35,13 @@ export function ProfileSettings() {
             <FieldGroup>
               <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
                 <Avatar
-                  className="border-background size-20 border-2 shadow-sm"
+                  className="size-20 border-2 border-background shadow-sm"
                   size="lg"
                 >
                   {user.imageUrl ? (
                     <AvatarImage alt={user.name} src={user.imageUrl} />
                   ) : null}
-                  <AvatarFallback className="bg-primary/5 text-primary text-xl font-semibold">
+                  <AvatarFallback className="bg-primary/5 text-xl font-semibold text-primary">
                     {initials}
                   </AvatarFallback>
                 </Avatar>
@@ -53,12 +53,12 @@ export function ProfileSettings() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="text-destructive hover:text-destructive hover:bg-destructive/10"
+                      className="text-destructive hover:bg-destructive/10 hover:text-destructive"
                     >
                       Remove
                     </Button>
                   </div>
-                  <p className="text-muted-foreground text-xs">
+                  <p className="text-xs text-muted-foreground">
                     JPG, GIF or PNG. Max size of 2MB.
                   </p>
                 </div>
@@ -102,8 +102,12 @@ export function ProfileSettings() {
                 <FieldLabel htmlFor="settings-organization">
                   Organization name
                 </FieldLabel>
-                <Input id="settings-organization" defaultValue="Doorwise" disabled />
-                <p className="text-muted-foreground mt-1 text-xs">
+                <Input
+                  id="settings-organization"
+                  defaultValue="Doorwise"
+                  disabled
+                />
+                <p className="mt-1 text-xs text-muted-foreground">
                   Organization names can only be changed by administrators.
                 </p>
               </Field>

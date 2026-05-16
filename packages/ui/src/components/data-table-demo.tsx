@@ -2,11 +2,7 @@
 
 import * as React from "react"
 import type { ColumnDef } from "@tanstack/react-table"
-import {
-  RiArrowRightLine,
-  RiMore2Line,
-  RiUserLine,
-} from "@remixicon/react"
+import { RiArrowRightLine, RiMore2Line, RiUserLine } from "@remixicon/react"
 
 import { Badge } from "@workspace/ui/components/badge"
 import { Button } from "@workspace/ui/components/button"
@@ -65,13 +61,15 @@ const payments: Payment[] = [
   },
 ]
 
-const statusVariantMap: Record<PaymentStatus, "outline" | "secondary" | "destructive"> =
-  {
-    pending: "outline",
-    processing: "secondary",
-    success: "secondary",
-    failed: "destructive",
-  }
+const statusVariantMap: Record<
+  PaymentStatus,
+  "outline" | "secondary" | "destructive"
+> = {
+  pending: "outline",
+  processing: "secondary",
+  success: "secondary",
+  failed: "destructive",
+}
 
 const columns: ColumnDef<Payment>[] = [
   {

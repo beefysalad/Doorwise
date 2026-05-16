@@ -17,17 +17,17 @@ function OwnerSidebar() {
   const organizationName = activeMembership?.organization.name ?? "Doorwise"
 
   return (
-    <aside className="bg-card flex w-58 shrink-0 flex-col border-r">
+    <aside className="flex w-58 shrink-0 flex-col border-r bg-card">
       {/* Brand */}
       <div className="flex h-16 items-center gap-2.5 border-b px-4.5">
-        <span className="bg-primary text-primary-foreground flex size-7.5 items-center justify-center rounded-lg">
+        <span className="flex size-7.5 items-center justify-center rounded-lg bg-primary text-primary-foreground">
           <RiDoorClosedLine className="size-4.5" />
         </span>
         <div className="leading-tight">
           <div className="font-heading text-sm font-bold tracking-tight">
             Doorwise
           </div>
-          <div className="text-muted-foreground text-[11px]">
+          <div className="text-[11px] text-muted-foreground">
             {organizationName}
           </div>
         </div>
@@ -39,7 +39,7 @@ function OwnerSidebar() {
           const Icon = item.icon
           const activeHrefs = item.activeHrefs ?? [item.href]
           const isActive = activeHrefs.some(
-            (href) => pathname === href || pathname.startsWith(href + "/"),
+            (href) => pathname === href || pathname.startsWith(href + "/")
           )
           return (
             <Link
@@ -48,8 +48,8 @@ function OwnerSidebar() {
               className={cn(
                 "flex items-center gap-2.5 rounded-md px-2.5 py-2 text-[13.5px] transition-colors",
                 isActive
-                  ? "bg-accent text-primary font-semibold"
-                  : "text-muted-foreground hover:bg-accent/60 font-medium",
+                  ? "bg-accent font-semibold text-primary"
+                  : "font-medium text-muted-foreground hover:bg-accent/60"
               )}
             >
               <Icon className="size-4.5" />
@@ -72,11 +72,11 @@ function OwnerSidebar() {
         />
         <div className="min-w-0 flex-1">
           <div className="truncate text-[13px] font-semibold">{user.name}</div>
-          <div className="text-muted-foreground text-[11px]">Owner</div>
+          <div className="text-[11px] text-muted-foreground">Owner</div>
         </div>
         <Link
           href="/settings"
-          className="text-muted-foreground hover:text-foreground flex size-7 items-center justify-center rounded-md transition-colors"
+          className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
           aria-label="Settings"
         >
           <RiSettings3Line className="size-4" />

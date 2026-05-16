@@ -62,7 +62,7 @@ const tenantColumns: ColumnDef<TenantTableRow>[] = [
         <AvatarInitials name={row.original.name} size={32} />
         <div>
           <div className="text-[13.5px] font-medium">{row.original.name}</div>
-          <div className="text-muted-foreground text-[11.5px]">
+          <div className="text-[11.5px] text-muted-foreground">
             {row.original.email}
           </div>
         </div>
@@ -77,7 +77,7 @@ const tenantColumns: ColumnDef<TenantTableRow>[] = [
     cell: ({ row }) => (
       <div>
         <div className="text-[13px]">{row.original.room}</div>
-        <div className="text-muted-foreground text-[11.5px]">
+        <div className="text-[11.5px] text-muted-foreground">
           {row.original.propertyName}
         </div>
       </div>
@@ -89,7 +89,7 @@ const tenantColumns: ColumnDef<TenantTableRow>[] = [
       <DataTableColumnHeader column={column} title="Phone" />
     ),
     cell: ({ row }) => (
-      <span className="text-muted-foreground font-mono text-[12.5px]">
+      <span className="font-mono text-[12.5px] text-muted-foreground">
         {row.original.phone}
       </span>
     ),

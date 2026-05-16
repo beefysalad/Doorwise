@@ -73,7 +73,7 @@ export function DashboardSegmentChart() {
                   formatter={(value, name) => (
                     <>
                       <span className="text-muted-foreground">{name}</span>
-                      <span className="text-foreground font-mono font-medium">
+                      <span className="font-mono font-medium text-foreground">
                         {value}%
                       </span>
                     </>
@@ -102,9 +102,9 @@ export function DashboardSegmentChart() {
           {segmentData.map((item) => (
             <div
               key={item.segment}
-              className="bg-surface-subtle rounded-xl border p-3"
+              className="rounded-xl border bg-surface-subtle p-3"
             >
-              <p className="text-muted-foreground text-xs">{item.segment}</p>
+              <p className="text-xs text-muted-foreground">{item.segment}</p>
               <p className="mt-1 text-lg font-semibold">{item.value}%</p>
             </div>
           ))}

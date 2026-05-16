@@ -38,17 +38,17 @@ function BrandThemeSettings() {
                 onClick={() => setBrandTheme(preset.id)}
                 className={cn(
                   "h-auto min-h-20 flex-col items-start justify-between rounded-lg bg-background p-3 text-left text-sm transition-colors hover:border-primary",
-                  isActive && "border-primary ring-ring/25 ring-2"
+                  isActive && "border-primary ring-2 ring-ring/25"
                 )}
               >
                 <span
-                  className="border-border size-7 rounded-full border"
+                  className="size-7 rounded-full border border-border"
                   style={{ backgroundColor: preset.swatch }}
                 />
                 <span className="flex w-full items-center justify-between gap-2">
                   <span className="font-medium">{preset.label}</span>
                   {isActive ? (
-                    <RiCheckLine className="text-primary size-4" />
+                    <RiCheckLine className="size-4 text-primary" />
                   ) : null}
                 </span>
               </Button>
@@ -56,8 +56,8 @@ function BrandThemeSettings() {
           })}
         </div>
 
-        <div className="bg-surface-subtle flex flex-wrap items-center gap-3 rounded-lg border p-4">
-          <span className="text-muted-foreground text-sm">
+        <div className="flex flex-wrap items-center gap-3 rounded-lg border bg-surface-subtle p-4">
+          <span className="text-sm text-muted-foreground">
             Active preset: {activeTheme.label}
           </span>
         </div>

@@ -25,8 +25,8 @@ function SegmentedFilter({
   return (
     <div
       className={cn(
-        "bg-muted inline-flex items-center gap-1 rounded-md p-1",
-        className,
+        "inline-flex items-center gap-1 rounded-md bg-muted p-1",
+        className
       )}
     >
       {options.map((opt) => {
@@ -40,7 +40,7 @@ function SegmentedFilter({
               "inline-flex h-7 items-center gap-1.5 rounded px-3 text-[13px] font-medium transition-colors",
               active
                 ? "bg-card text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground",
+                : "text-muted-foreground hover:text-foreground"
             )}
           >
             {opt.label}
@@ -50,7 +50,7 @@ function SegmentedFilter({
                   "rounded-full px-1.5 text-[11px] tabular-nums",
                   active
                     ? "bg-muted text-muted-foreground"
-                    : "text-muted-foreground/70",
+                    : "text-muted-foreground/70"
                 )}
               >
                 {opt.count}

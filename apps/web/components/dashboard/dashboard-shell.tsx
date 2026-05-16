@@ -32,14 +32,14 @@ function DashboardShell({ children }: DashboardShellProps) {
   return (
     <TooltipProvider>
       <SidebarProvider>
-        <div className="bg-app-canvas dark:bg-background flex min-h-screen w-full">
+        <div className="flex min-h-screen w-full bg-app-canvas dark:bg-background">
           <DashboardSidebar />
-          <SidebarInset className="bg-app-canvas dark:bg-background min-w-0 overflow-x-hidden">
+          <SidebarInset className="min-w-0 overflow-x-hidden bg-app-canvas dark:bg-background">
             <header className="flex h-14 shrink-0 items-center gap-3 overflow-hidden border-b px-4">
               <SidebarTrigger />
               <div
                 aria-hidden="true"
-                className="bg-border my-auto h-4 w-px shrink-0"
+                className="my-auto h-4 w-px shrink-0 bg-border"
               />
               <Breadcrumb className="min-w-0 overflow-hidden">
                 <BreadcrumbList>
@@ -73,7 +73,7 @@ function DashboardShell({ children }: DashboardShellProps) {
                 </BreadcrumbList>
               </Breadcrumb>
             </header>
-            <main className="bg-app-canvas dark:bg-background min-w-0 flex-1 overflow-x-hidden">
+            <main className="min-w-0 flex-1 overflow-x-hidden bg-app-canvas dark:bg-background">
               {children}
             </main>
           </SidebarInset>

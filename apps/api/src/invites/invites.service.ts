@@ -39,16 +39,13 @@ export class InvitesService {
 
     const token = randomBytes(32).toString('base64url');
     const tokenHash = this.hashToken(token);
-    const expiresAt = new Date(
-      Date.now() + INVITE_TTL_DAYS * MS_PER_DAY,
-    );
+    const expiresAt = new Date(Date.now() + INVITE_TTL_DAYS * MS_PER_DAY);
 
     const invite = await this.invitesRepository.create({
       organizationId: scope.organizationId,
       email: dto.email,
       role: dto.role,
       tokenHash,
-      tenantProfileId: dto.tenantProfileId,
       expiresAt,
     });
 

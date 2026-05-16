@@ -87,7 +87,7 @@ function SettingSwitch({
     >
       <FieldContent className="flex-row items-start gap-4">
         <div className="mt-1 flex size-10 shrink-0 items-center justify-center rounded-lg border bg-muted">
-          <Icon className="text-muted-foreground size-5" />
+          <Icon className="size-5 text-muted-foreground" />
         </div>
         <div className="space-y-1">
           <FieldTitle className="text-base">{label}</FieldTitle>

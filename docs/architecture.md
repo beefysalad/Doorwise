@@ -6,13 +6,13 @@
 
 We build on the existing monorepo — no new top-level apps or packages are required.
 
-| Layer | Location | Notes |
-|---|---|---|
-| Frontend | `apps/web` | Next.js App Router, TanStack Query, RHF + Zod, Axios, `@workspace/ui` (shadcn) |
-| Backend | `apps/api` | NestJS modules per feature, Prisma + `@prisma/adapter-pg`, Clerk for auth |
-| HTTP contracts | `packages/shared` | Type-only DTOs/response shapes imported as `@workspace/shared` |
-| UI primitives | `packages/ui` | Shared shadcn components |
-| DB | Postgres (Docker, host port 5433) | Single shared schema, scoped by `organizationId` |
+| Layer          | Location                          | Notes                                                                          |
+| -------------- | --------------------------------- | ------------------------------------------------------------------------------ |
+| Frontend       | `apps/web`                        | Next.js App Router, TanStack Query, RHF + Zod, Axios, `@workspace/ui` (shadcn) |
+| Backend        | `apps/api`                        | NestJS modules per feature, Prisma + `@prisma/adapter-pg`, Clerk for auth      |
+| HTTP contracts | `packages/shared`                 | Type-only DTOs/response shapes imported as `@workspace/shared`                 |
+| UI primitives  | `packages/ui`                     | Shared shadcn components                                                       |
+| DB             | Postgres (Docker, host port 5433) | Single shared schema, scoped by `organizationId`                               |
 
 Routes live under `apps/web/app/(protected)/**`. Backend feature modules under `apps/api/src/<feature>/` follow the existing `users/` + `webhooks/` pattern: thin controller → service → repository.
 
@@ -31,28 +31,32 @@ Clerk webhooks (`user.created`, `user.updated`, `user.deleted`) keep the local `
 Shared DB, shared schema, scoped by `organizationId`. Three structural guarantees:
 
 ### 3.1 `organizationId` on every business table
+
 Every model below carries `organizationId String` + an index. Composite uniques include `organizationId` where appropriate (e.g. `Property.slug` per org, `Room.roomName` per property).
 
 ### 3.2 `tenantScope()` request context
+
 A NestJS request-scoped service resolves once per request:
 
 ```ts
 // apps/api/src/common/tenant-scope/tenant-scope.service.ts
 @Injectable({ scope: Scope.REQUEST })
 export class TenantScope {
-  readonly userId: string;
-  readonly organizationId: string;
-  readonly role: 'owner' | 'staff' | 'tenant';
-  readonly tenantProfileId?: string; // set when role === 'tenant'
+  readonly userId: string
+  readonly organizationId: string
+  readonly role: "owner" | "staff" | "tenant"
+  readonly tenantProfileId?: string // set when role === 'tenant'
 }
 ```
 
 Resolved by a global `TenantScopeInterceptor` that runs after `ClerkAuthGuard`. Every repository takes `TenantScope` via DI and **always** adds `where: { organizationId: scope.organizationId, deletedAt: null }` to Prisma calls. Repositories never accept `organizationId` as a parameter from controllers.
 
 ### 3.3 Prisma extension as a belt-and-suspenders check
+
 A Prisma `$extends` query extension asserts that `where.organizationId` is present for all reads/writes on scoped models — throws in non-prod, logs + reports in prod. This catches accidental unscoped queries even if a repo forgets.
 
 ### 3.4 Tenant-portal scoping
+
 When `role === 'tenant'`, the same interceptor sets `scope.tenantProfileId`. The bills/payments repositories add `tenantId = scope.tenantProfileId` automatically for tenant-role requests. This is enforced at the **DB query layer**, not by hiding routes in the UI.
 
 ## 4. Soft Deletes
@@ -248,16 +252,19 @@ CREATE UNIQUE INDEX lease_room_active_unique
 ## 7. Domain Rules
 
 ### 7.1 Billing
+
 - Generation: a single endpoint `POST /bills/generate` iterates all active leases for the org and creates one bill per lease for the target month. The `Bill.@@unique([leaseId, periodStart])` constraint guarantees idempotency — duplicate inserts are caught and skipped.
 - **Proration policy (decided upfront): no proration on mid-month starts.** A lease that starts mid-month is first billed on the next full cycle beginning on or after `billingStartDate`. Document this in the lease creation UI.
 - Editing `Lease.monthlyRent` does **not** retroactively change past `Bill.totalAmount` — bills are snapshots.
 - Ending a lease mid-month: the in-progress bill (if any) is **not** prorated; staff may manually void or partially adjust via a payment + credit note flow (deferred fine-grained adjustment to v2 — MVP allows void + manual re-bill).
 
 ### 7.2 Overdue detection
+
 - A daily Nest scheduler (`@nestjs/schedule`) job at 02:00 PHT scans bills with `dueDate < today AND status IN ('unpaid','partially_paid')` and sets `status = 'overdue'`, emits a `bill.overdue` notification.
 - Same logic exposed as `POST /bills/check-overdue` for on-demand triggering and for tests.
 
 ### 7.3 Payments
+
 - Recording a payment runs in a transaction:
   1. Insert `Payment`.
   2. `Bill.paidAmount += payment.amount`.
@@ -267,12 +274,14 @@ CREATE UNIQUE INDEX lease_room_active_unique
 - **Voiding a payment** (replaces "deleting"): sets `voidedAt` + `voidReason`, subtracts from `Bill.paidAmount` in the same transaction, recomputes status. The Payment row stays for audit.
 
 ### 7.4 Leases & Rooms
+
 - Creating an active lease sets `Room.status = 'occupied'` in the same transaction.
 - Ending/cancelling a lease sets `Room.status = 'available'` in the same transaction.
 - The partial unique index on `Lease(roomId) WHERE status='active'` enforces "one active lease per room" structurally.
 - A tenant with leases in multiple rooms is allowed — UI lists all and prompts for selection when relevant.
 
 ### 7.5 Invitations
+
 - Single-use, expiring tokens (`OrganizationInvite.token`, `expiresAt`, `consumedAt`). Tokens are random 32-byte URL-safe strings, stored hashed.
 - Three invite flows share the same model: staff invite, tenant-claim invite, owner re-invite.
 

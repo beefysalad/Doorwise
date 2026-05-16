@@ -28,7 +28,12 @@ import {
   LandingHeaderActions,
   LandingSignUpAction,
 } from "@/components/landing/landing-auth-actions"
-import { fadeUp, staggerContainer, float, floatSlow } from "@/components/motion/presets"
+import {
+  fadeUp,
+  staggerContainer,
+  float,
+  floatSlow,
+} from "@/components/motion/presets"
 import { fmtLimit, PLANS } from "@/lib/mock/plans"
 
 const viewportOnce = { once: true, amount: 0.22 }
@@ -41,19 +46,68 @@ const NAV_LINKS = [
 ]
 
 const FEATURES = [
-  { icon: RiReceiptLine, title: "Bills, generated.", body: "One click creates monthly bills for every active lease. Adjustable due day, prorated first month, automated SMS reminders." },
-  { icon: RiMoneyDollarCircleLine, title: "GCash & Maya, sorted.", body: "Record digital payments with reference numbers in seconds. Track who paid what, when, and how — no more screenshots in chat." },
-  { icon: RiErrorWarningLine, title: "Overdue, surfaced.", body: "See every tenant who's behind, how many days late, and how much they owe. One tap to send a friendly reminder." },
-  { icon: RiGroupLine, title: "Tenants get a portal.", body: 'Renters log in to see their bill, pay it, and pull up old receipts. No more "Sir, magkano ulit po?"' },
-  { icon: RiBuilding2Line, title: "Multi-property by default.", body: "Run one boarding house, three apartments, and a transient unit from the same account. Numbers roll up cleanly." },
-  { icon: RiBarChartLine, title: "Real numbers, monthly.", body: "See expected vs collected vs overdue at a glance. Export to spreadsheet for your accountant when tax season hits." },
+  {
+    icon: RiReceiptLine,
+    title: "Bills, generated.",
+    body: "One click creates monthly bills for every active lease. Adjustable due day, prorated first month, automated SMS reminders.",
+  },
+  {
+    icon: RiMoneyDollarCircleLine,
+    title: "GCash & Maya, sorted.",
+    body: "Record digital payments with reference numbers in seconds. Track who paid what, when, and how — no more screenshots in chat.",
+  },
+  {
+    icon: RiErrorWarningLine,
+    title: "Overdue, surfaced.",
+    body: "See every tenant who's behind, how many days late, and how much they owe. One tap to send a friendly reminder.",
+  },
+  {
+    icon: RiGroupLine,
+    title: "Tenants get a portal.",
+    body: 'Renters log in to see their bill, pay it, and pull up old receipts. No more "Sir, magkano ulit po?"',
+  },
+  {
+    icon: RiBuilding2Line,
+    title: "Multi-property by default.",
+    body: "Run one boarding house, three apartments, and a transient unit from the same account. Numbers roll up cleanly.",
+  },
+  {
+    icon: RiBarChartLine,
+    title: "Real numbers, monthly.",
+    body: "See expected vs collected vs overdue at a glance. Export to spreadsheet for your accountant when tax season hits.",
+  },
 ]
 
 const PAYMENT_ROWS = [
-  { logo: "/gcash.jpeg", name: "GCash", color: "#ffffff", line: "₱6,500.00 · GC-2026050412987", image: true, fill: true },
-  { logo: "/Maya.svg", name: "Maya", color: "#050505", line: "₱7,500.00 · MY-2026050518224", image: true },
-  { logo: "/bdo.jpg", name: "Bank Transfer", color: "#ffffff", line: "₱9,250.00 · BPI-771029", image: true, fill: true },
-  { logo: "₱", name: "Cash", color: "#78716c", line: "₱4,500.00 · Hand-delivered" },
+  {
+    logo: "/gcash.jpeg",
+    name: "GCash",
+    color: "#ffffff",
+    line: "₱6,500.00 · GC-2026050412987",
+    image: true,
+    fill: true,
+  },
+  {
+    logo: "/Maya.svg",
+    name: "Maya",
+    color: "#050505",
+    line: "₱7,500.00 · MY-2026050518224",
+    image: true,
+  },
+  {
+    logo: "/bdo.jpg",
+    name: "Bank Transfer",
+    color: "#ffffff",
+    line: "₱9,250.00 · BPI-771029",
+    image: true,
+    fill: true,
+  },
+  {
+    logo: "₱",
+    name: "Cash",
+    color: "#78716c",
+    line: "₱4,500.00 · Hand-delivered",
+  },
 ]
 
 const TENANT_BULLETS = [
@@ -64,25 +118,55 @@ const TENANT_BULLETS = [
 ]
 
 const FAQS = [
-  { q: "Do I need to install anything?", a: "No. Doorwise runs in your browser. There's also a mobile-friendly view so you can check things on the jeepney." },
-  { q: "Can I import my existing tenants?", a: "Yes — drop in a spreadsheet of names, rooms, and rents and we'll set up bills for the next cycle automatically." },
-  { q: "How do payments work?", a: "Doorwise doesn't hold your money — tenants pay you directly via GCash, Maya, bank, or cash. You just record the payment with one tap; we keep the ledger clean." },
-  { q: "Is my data safe?", a: "Your data lives in encrypted Philippine-based servers. We don't share or sell anything. Export and delete anytime." },
-  { q: "Can my staff log in too?", a: "On Pro you can invite staff with role-based access — they can record payments but not change rent or end leases." },
-  { q: "What if I have only one bedspacer?", a: "Doorwise is free up to 5 rooms forever. Use as much as you need; pay nothing until you outgrow it." },
+  {
+    q: "Do I need to install anything?",
+    a: "No. Doorwise runs in your browser. There's also a mobile-friendly view so you can check things on the jeepney.",
+  },
+  {
+    q: "Can I import my existing tenants?",
+    a: "Yes — drop in a spreadsheet of names, rooms, and rents and we'll set up bills for the next cycle automatically.",
+  },
+  {
+    q: "How do payments work?",
+    a: "Doorwise doesn't hold your money — tenants pay you directly via GCash, Maya, bank, or cash. You just record the payment with one tap; we keep the ledger clean.",
+  },
+  {
+    q: "Is my data safe?",
+    a: "Your data lives in encrypted Philippine-based servers. We don't share or sell anything. Export and delete anytime.",
+  },
+  {
+    q: "Can my staff log in too?",
+    a: "On Pro you can invite staff with role-based access — they can record payments but not change rent or end leases.",
+  },
+  {
+    q: "What if I have only one bedspacer?",
+    a: "Doorwise is free up to 5 rooms forever. Use as much as you need; pay nothing until you outgrow it.",
+  },
 ]
 
 const FOOTER_COLS = [
-  { title: "Product", links: ["Features", "Pricing", "Tenant portal", "Changelog", "Roadmap"] },
-  { title: "Company", links: ["About", "Customers", "Blog", "Careers", "Contact"] },
-  { title: "Resources", links: ["Help center", "Guides", "API docs", "Status", "Security"] },
-  { title: "Legal", links: ["Terms", "Privacy", "Data Privacy Act", "Cookies"] },
+  {
+    title: "Product",
+    links: ["Features", "Pricing", "Tenant portal", "Changelog", "Roadmap"],
+  },
+  {
+    title: "Company",
+    links: ["About", "Customers", "Blog", "Careers", "Contact"],
+  },
+  {
+    title: "Resources",
+    links: ["Help center", "Guides", "API docs", "Status", "Security"],
+  },
+  {
+    title: "Legal",
+    links: ["Terms", "Privacy", "Data Privacy Act", "Cookies"],
+  },
 ]
 
 function Logo({ className }: { className?: string }) {
   return (
     <span
-      className={`bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-lg ${className ?? ""}`}
+      className={`flex size-7 items-center justify-center rounded-lg bg-primary text-primary-foreground ${className ?? ""}`}
     >
       <RiDoorClosedLine className="size-4" />
     </span>
@@ -91,9 +175,9 @@ function Logo({ className }: { className?: string }) {
 
 export function LandingPage() {
   return (
-    <div className="bg-background text-foreground min-h-svh">
+    <div className="min-h-svh bg-background text-foreground">
       {/* Nav */}
-      <header className="bg-background/85 sticky top-0 z-50 border-b backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b bg-background/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center gap-8 px-6 py-3.5">
           <Link href="/" className="flex items-center gap-2.5">
             <Logo />
@@ -101,9 +185,13 @@ export function LandingPage() {
               Doorwise
             </span>
           </Link>
-          <nav className="text-muted-foreground hidden items-center gap-6 text-[13.5px] md:flex">
+          <nav className="hidden items-center gap-6 text-[13.5px] text-muted-foreground md:flex">
             {NAV_LINKS.map((l) => (
-              <Link key={l.label} href={l.href} className="hover:text-foreground transition-colors">
+              <Link
+                key={l.label}
+                href={l.href}
+                className="transition-colors hover:text-foreground"
+              >
                 {l.label}
               </Link>
             ))}
@@ -118,7 +206,7 @@ export function LandingPage() {
       <section className="relative overflow-hidden">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle_at_1px_1px,var(--border)_1px,transparent_0)] [background-size:20px_20px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_30%,black_30%,transparent_70%)]"
+          className="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle_at_1px_1px,var(--border)_1px,transparent_0)] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_30%,black_30%,transparent_70%)] [background-size:20px_20px]"
         />
         <motion.div
           variants={staggerContainer}
@@ -129,21 +217,25 @@ export function LandingPage() {
           <motion.div variants={fadeUp}>
             <motion.div
               whileHover={{ y: -2 }}
-              className="bg-card text-muted-foreground mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium shadow-sm"
+              className="mb-5 inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground shadow-sm"
             >
               <motion.span
                 animate={{ scale: [1, 1.6, 1], opacity: [1, 0.6, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="bg-paid-foreground size-1.5 rounded-full"
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="size-1.5 rounded-full bg-paid-foreground"
               />
               Trusted by 1,800+ landlords across the Philippines
             </motion.div>
             <h1 className="font-heading text-4xl leading-[1.04] font-bold tracking-tight text-balance md:text-5xl lg:text-[3.5rem]">
               Collect rent{" "}
-              <em className="text-muted-foreground font-medium">without</em> the
+              <em className="font-medium text-muted-foreground">without</em> the
               group chat.
             </h1>
-            <p className="text-muted-foreground mt-4 max-w-md text-[17px] leading-relaxed">
+            <p className="mt-4 max-w-md text-[17px] leading-relaxed text-muted-foreground">
               Doorwise is a calm, no-nonsense way to run your boarding house,
               apartment, or bed-spacer. Bills, payments, GCash receipts, overdue
               tracking — all in one place. Tagalog and English friendly.
@@ -158,14 +250,14 @@ export function LandingPage() {
                 Watch demo (2 min)
               </Button>
             </div>
-            <div className="text-muted-foreground mt-4.5 flex flex-wrap gap-4 text-[12.5px]">
+            <div className="mt-4.5 flex flex-wrap gap-4 text-[12.5px] text-muted-foreground">
               {["Free up to 5 rooms", "No credit card", "Setup in 5 min"].map(
                 (t) => (
                   <span key={t} className="inline-flex items-center gap-1.5">
-                    <RiCheckLine className="text-paid-foreground size-3.5" />
+                    <RiCheckLine className="size-3.5 text-paid-foreground" />
                     {t}
                   </span>
-                ),
+                )
               )}
             </div>
           </motion.div>
@@ -178,7 +270,7 @@ export function LandingPage() {
               aria-hidden
               animate={{ rotate: 360 }}
               transition={{ duration: 28, ease: "linear", repeat: Infinity }}
-              className="from-primary/20 via-paid/20 to-overdue/20 absolute -inset-6 -z-10 rounded-full bg-gradient-to-r blur-3xl"
+              className="absolute -inset-6 -z-10 rounded-full bg-gradient-to-r from-primary/20 via-paid/20 to-overdue/20 blur-3xl"
             />
             <motion.div animate={floatSlow}>
               <HeroPreview />
@@ -193,26 +285,30 @@ export function LandingPage() {
         whileInView="show"
         viewport={viewportOnce}
         variants={fadeUp}
-        className="text-muted-foreground pt-10 pb-2 text-center text-xs font-medium tracking-widest uppercase"
+        className="pt-10 pb-2 text-center text-xs font-medium tracking-widest text-muted-foreground uppercase"
       >
         Trusted across Metro Manila, Cebu, and Davao
       </motion.div>
-      <section className="bg-card border-y">
+      <section className="border-y bg-card">
         <div className="relative overflow-hidden py-5">
           {/* fade edges */}
-          <div className="from-card pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r to-transparent" />
-          <div className="from-card pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-card to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-card to-transparent" />
           <motion.div
             animate={{ x: ["-50%", "0%"] }}
             transition={{ duration: 22, ease: "linear", repeat: Infinity }}
-            className="text-muted-foreground/50 flex w-max items-center gap-16 whitespace-nowrap text-xl font-semibold"
+            className="flex w-max items-center gap-16 text-xl font-semibold whitespace-nowrap text-muted-foreground/50"
           >
             {/* duplicate set for seamless loop */}
             {[0, 1].map((copy) => (
               <div key={copy} className="flex items-center gap-16">
                 <span className="italic">Mabini Houses</span>
-                <span>KATIPUNAN<span className="font-normal">Apts</span></span>
-                <span className="tracking-[0.25em]">TAFT<span className="tracking-normal">·hub</span></span>
+                <span>
+                  KATIPUNAN<span className="font-normal">Apts</span>
+                </span>
+                <span className="tracking-[0.25em]">
+                  TAFT<span className="tracking-normal">·hub</span>
+                </span>
                 <span className="font-mono">halfway/quarter</span>
                 <span>Cebu Living Co.</span>
                 <span>Sampaloc Suites</span>
@@ -233,14 +329,17 @@ export function LandingPage() {
         variants={staggerContainer}
         className="mx-auto max-w-6xl px-6 py-20"
       >
-        <motion.div variants={fadeUp} className="mx-auto mb-12 max-w-xl text-center">
-          <div className="text-primary mb-3 text-xs font-semibold tracking-widest uppercase">
+        <motion.div
+          variants={fadeUp}
+          className="mx-auto mb-12 max-w-xl text-center"
+        >
+          <div className="mb-3 text-xs font-semibold tracking-widest text-primary uppercase">
             Everything you need
           </div>
           <h2 className="font-heading text-3xl font-bold tracking-tight text-balance md:text-4xl">
             A whole admin team in your pocket.
           </h2>
-          <p className="text-muted-foreground mt-3.5 leading-relaxed">
+          <p className="mt-3.5 leading-relaxed text-muted-foreground">
             Built for people who got into rentals to make money, not to spend
             Sundays chasing payments in a notebook.
           </p>
@@ -256,19 +355,24 @@ export function LandingPage() {
                 key={f.title}
                 variants={fadeUp}
                 whileHover={{ y: -6 }}
-                className="bg-card rounded-xl border p-6 shadow-sm transition-shadow hover:shadow-lg"
+                className="rounded-xl border bg-card p-6 shadow-sm transition-shadow hover:shadow-lg"
               >
                 <motion.div
                   animate={{ scale: [1, 1.08, 1] }}
-                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 }}
-                  className="bg-accent text-primary mb-3.5 flex size-10 items-center justify-center rounded-md"
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: i * 0.4,
+                  }}
+                  className="mb-3.5 flex size-10 items-center justify-center rounded-md bg-accent text-primary"
                 >
                   <Icon className="size-5" />
                 </motion.div>
                 <div className="mb-1.5 text-[15px] font-semibold">
                   {f.title}
                 </div>
-                <div className="text-muted-foreground text-[13.5px] leading-relaxed">
+                <div className="text-[13.5px] leading-relaxed text-muted-foreground">
                   {f.body}
                 </div>
               </motion.div>
@@ -278,7 +382,7 @@ export function LandingPage() {
       </motion.section>
 
       {/* Payments */}
-      <section className="bg-card border-y">
+      <section className="border-y bg-card">
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -287,13 +391,13 @@ export function LandingPage() {
           className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-[5fr_6fr]"
         >
           <motion.div variants={fadeUp}>
-            <div className="text-primary mb-3 text-xs font-semibold tracking-widest uppercase">
+            <div className="mb-3 text-xs font-semibold tracking-widest text-primary uppercase">
               Built for the Philippines
             </div>
             <h2 className="font-heading text-3xl font-bold tracking-tight text-balance">
               Every payment method your tenants actually use.
             </h2>
-            <p className="text-muted-foreground mt-4 leading-relaxed">
+            <p className="mt-4 leading-relaxed text-muted-foreground">
               Cash, GCash, Maya, bank transfer — whatever they use, Doorwise
               records it with the reference number, date, and method. No more
               guessing whose deposit slip is whose.
@@ -304,7 +408,7 @@ export function LandingPage() {
                   key={p.name}
                   variants={fadeUp}
                   whileHover={{ x: 6 }}
-                  className="bg-background flex items-center gap-3.5 rounded-md border p-3.5"
+                  className="flex items-center gap-3.5 rounded-md border bg-background p-3.5"
                 >
                   <div
                     className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-md border text-sm font-bold text-white"
@@ -328,7 +432,7 @@ export function LandingPage() {
                   </div>
                   <div>
                     <div className="text-sm font-semibold">{p.name}</div>
-                    <div className="text-muted-foreground font-mono text-xs">
+                    <div className="font-mono text-xs text-muted-foreground">
                       {p.line}
                     </div>
                   </div>
@@ -338,23 +442,23 @@ export function LandingPage() {
           </motion.div>
           {/* Payment confirmed card */}
           <motion.div variants={fadeUp} className="mx-auto w-full max-w-sm">
-            <div className="bg-background rounded-2xl border p-6 shadow-lg">
+            <div className="rounded-2xl border bg-background p-6 shadow-lg">
               <motion.div
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2.4, repeat: Infinity }}
-                className="bg-paid text-paid-foreground mx-auto mb-4 flex size-14 items-center justify-center rounded-full"
+                className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-paid text-paid-foreground"
               >
                 <RiCheckLine className="size-7" />
               </motion.div>
-              <div className="text-muted-foreground text-center text-[13px]">
+              <div className="text-center text-[13px] text-muted-foreground">
                 Payment recorded
               </div>
               <div className="text-center font-mono text-3xl font-semibold tracking-tight tabular-nums">
                 ₱6,500.00
               </div>
-              <div className="text-muted-foreground mb-4.5 text-center text-[13.5px]">
+              <div className="mb-4.5 text-center text-[13.5px] text-muted-foreground">
                 from{" "}
-                <span className="text-foreground font-semibold">
+                <span className="font-semibold text-foreground">
                   Maria Santos
                 </span>
               </div>
@@ -385,13 +489,13 @@ export function LandingPage() {
             </motion.div>
           </motion.div>
           <motion.div variants={fadeUp}>
-            <div className="text-primary mb-3 text-xs font-semibold tracking-widest uppercase">
+            <div className="mb-3 text-xs font-semibold tracking-widest text-primary uppercase">
               Your tenants love it too
             </div>
             <h2 className="font-heading text-3xl font-bold tracking-tight text-balance">
               A portal renters actually open.
             </h2>
-            <p className="text-muted-foreground mt-4 leading-relaxed">
+            <p className="mt-4 leading-relaxed text-muted-foreground">
               Tenants get a clean, friendly view of their current bill, payment
               history, and your landlord contact info. Pay GCash directly to
               your number — Doorwise reminds them where to send it.
@@ -399,7 +503,7 @@ export function LandingPage() {
             <ul className="mt-6 flex flex-col gap-3.5">
               {TENANT_BULLETS.map((b) => (
                 <li key={b} className="flex items-start gap-3 text-[14.5px]">
-                  <span className="bg-paid text-paid-foreground mt-0.5 flex size-5.5 shrink-0 items-center justify-center rounded-full">
+                  <span className="mt-0.5 flex size-5.5 shrink-0 items-center justify-center rounded-full bg-paid text-paid-foreground">
                     <RiCheckLine className="size-3.5" />
                   </span>
                   {b}
@@ -419,14 +523,17 @@ export function LandingPage() {
         variants={staggerContainer}
         className="mx-auto max-w-6xl px-6 py-20"
       >
-        <motion.div variants={fadeUp} className="mx-auto mb-11 max-w-xl text-center">
-          <div className="text-primary mb-3 text-xs font-semibold tracking-widest uppercase">
+        <motion.div
+          variants={fadeUp}
+          className="mx-auto mb-11 max-w-xl text-center"
+        >
+          <div className="mb-3 text-xs font-semibold tracking-widest text-primary uppercase">
             Pricing
           </div>
           <h2 className="font-heading text-3xl font-bold tracking-tight text-balance md:text-4xl">
             Pay for what you manage, not per tenant.
           </h2>
-          <p className="text-muted-foreground mt-3.5 leading-relaxed">
+          <p className="mt-3.5 leading-relaxed text-muted-foreground">
             Start free, upgrade when you outgrow it. Cancel anytime — no
             contract, no exit fees.
           </p>
@@ -442,21 +549,28 @@ export function LandingPage() {
               whileHover={{ y: -8 }}
               className={
                 tier.highlight
-                  ? "bg-primary text-primary-foreground relative flex flex-col gap-4.5 rounded-2xl p-7 shadow-xl"
-                  : "bg-card relative flex flex-col gap-4.5 rounded-2xl border p-7"
+                  ? "relative flex flex-col gap-4.5 rounded-2xl bg-primary p-7 text-primary-foreground shadow-xl"
+                  : "relative flex flex-col gap-4.5 rounded-2xl border bg-card p-7"
               }
             >
               {/* Animated glow behind the highlighted card */}
               {tier.highlight && (
                 <motion.div
                   aria-hidden
-                  animate={{ opacity: [0.4, 0.7, 0.4], scale: [0.95, 1.02, 0.95] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="bg-primary/30 absolute -inset-1 -z-10 rounded-3xl blur-xl"
+                  animate={{
+                    opacity: [0.4, 0.7, 0.4],
+                    scale: [0.95, 1.02, 0.95],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="absolute -inset-1 -z-10 rounded-3xl bg-primary/30 blur-xl"
                 />
               )}
               {tier.highlight && (
-                <div className="bg-primary-foreground/15 absolute top-4 right-4 rounded-full px-2 py-0.5 text-[10.5px] font-semibold tracking-wide uppercase">
+                <div className="absolute top-4 right-4 rounded-full bg-primary-foreground/15 px-2 py-0.5 text-[10.5px] font-semibold tracking-wide uppercase">
                   Most popular
                 </div>
               )}
@@ -479,8 +593,8 @@ export function LandingPage() {
               <div
                 className={
                   tier.highlight
-                    ? "bg-primary-foreground/10 flex items-center justify-between rounded-md px-3 py-2 text-[12.5px]"
-                    : "bg-muted text-muted-foreground flex items-center justify-between rounded-md px-3 py-2 text-[12.5px]"
+                    ? "flex items-center justify-between rounded-md bg-primary-foreground/10 px-3 py-2 text-[12.5px]"
+                    : "flex items-center justify-between rounded-md bg-muted px-3 py-2 text-[12.5px] text-muted-foreground"
                 }
               >
                 <span>
@@ -492,13 +606,13 @@ export function LandingPage() {
                 <span
                   className={
                     tier.highlight
-                      ? "bg-primary-foreground/30 h-3.5 w-px"
-                      : "bg-border h-3.5 w-px"
+                      ? "h-3.5 w-px bg-primary-foreground/30"
+                      : "h-3.5 w-px bg-border"
                   }
                 />
                 <span>
                   <span className="font-semibold">
-                    {fmtLimit(tier.limits.tenants)}
+                    {fmtLimit(tier.limits.residents)}
                   </span>{" "}
                   tenants
                 </span>
@@ -519,7 +633,7 @@ export function LandingPage() {
                       className={
                         tier.highlight
                           ? "mt-0.5 size-3.5 shrink-0 opacity-85"
-                          : "text-paid-foreground mt-0.5 size-3.5 shrink-0"
+                          : "mt-0.5 size-3.5 shrink-0 text-paid-foreground"
                       }
                     />
                     {f}
@@ -532,7 +646,7 @@ export function LandingPage() {
       </motion.section>
 
       {/* FAQ */}
-      <section id="faq" className="bg-card border-y">
+      <section id="faq" className="border-y bg-card">
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -541,7 +655,7 @@ export function LandingPage() {
           className="mx-auto max-w-3xl px-6 py-20"
         >
           <div className="mb-9 text-center">
-            <div className="text-primary mb-3 text-xs font-semibold tracking-widest uppercase">
+            <div className="mb-3 text-xs font-semibold tracking-widest text-primary uppercase">
               FAQ
             </div>
             <h2 className="font-heading text-3xl font-bold tracking-tight">
@@ -560,7 +674,7 @@ export function LandingPage() {
                   {f.q}
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="text-muted-foreground px-1 pb-4 text-sm leading-relaxed">
+                  <div className="px-1 pb-4 text-sm leading-relaxed text-muted-foreground">
                     {f.a}
                   </div>
                 </AccordionContent>
@@ -571,7 +685,7 @@ export function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-card border-t">
+      <footer className="border-t bg-card">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
           <div>
             <div className="mb-3.5 flex items-center gap-2.5">
@@ -580,7 +694,7 @@ export function LandingPage() {
                 Doorwise
               </span>
             </div>
-            <p className="text-muted-foreground max-w-xs text-[13px] leading-relaxed">
+            <p className="max-w-xs text-[13px] leading-relaxed text-muted-foreground">
               Property management software for Filipino landlords. Made in
               Quezon City. SEC Reg. 2024-118273.
             </p>
@@ -590,11 +704,11 @@ export function LandingPage() {
               <div className="mb-3 text-xs font-semibold tracking-wide uppercase">
                 {col.title}
               </div>
-              <ul className="text-muted-foreground flex flex-col gap-2 text-[13px]">
+              <ul className="flex flex-col gap-2 text-[13px] text-muted-foreground">
                 {col.links.map((l) => (
                   <li
                     key={l}
-                    className="hover:text-foreground transition-colors"
+                    className="transition-colors hover:text-foreground"
                   >
                     {l}
                   </li>
@@ -603,7 +717,7 @@ export function LandingPage() {
             </div>
           ))}
         </div>
-        <div className="text-muted-foreground mx-auto flex max-w-6xl flex-col justify-between gap-3 border-t px-6 py-5 text-xs sm:flex-row">
+        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-3 border-t px-6 py-5 text-xs text-muted-foreground sm:flex-row">
           <span>© 2026 Doorwise Technologies, Inc. All rights reserved.</span>
           <span className="flex gap-3.5">
             <span>Twitter</span>
@@ -620,7 +734,9 @@ function KV({ k, v, mono }: { k: string; v: string; mono?: boolean }) {
   return (
     <div className="flex items-center justify-between">
       <span className="text-muted-foreground">{k}</span>
-      <span className={mono ? "font-mono font-medium" : "font-medium"}>{v}</span>
+      <span className={mono ? "font-mono font-medium" : "font-medium"}>
+        {v}
+      </span>
     </div>
   )
 }
@@ -639,15 +755,15 @@ function HeroPreview() {
     { name: "Sofia Navarro", room: "Unit C", amount: "₱19,000" },
   ]
   return (
-    <div className="bg-card overflow-hidden rounded-2xl border shadow-xl">
+    <div className="overflow-hidden rounded-2xl border bg-card shadow-xl">
       {/* browser bar */}
-      <div className="bg-muted flex items-center gap-2.5 border-b px-3.5 py-2.5">
+      <div className="flex items-center gap-2.5 border-b bg-muted px-3.5 py-2.5">
         <div className="flex gap-1.5">
           <span className="size-2.5 rounded-full bg-[#fe5f57]" />
           <span className="size-2.5 rounded-full bg-[#febc2e]" />
           <span className="size-2.5 rounded-full bg-[#27c93f]" />
         </div>
-        <div className="bg-card text-muted-foreground flex h-5.5 flex-1 items-center justify-center rounded border font-mono text-[11px]">
+        <div className="flex h-5.5 flex-1 items-center justify-center rounded border bg-card font-mono text-[11px] text-muted-foreground">
           app.doorwise.ph / dashboard
         </div>
       </div>
@@ -655,8 +771,11 @@ function HeroPreview() {
         <div className="mb-3.5 text-[13px] font-bold">Dashboard</div>
         <div className="mb-3.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.label} className="bg-background rounded-lg border p-2.5">
-              <div className="text-muted-foreground text-[9px] tracking-wide uppercase">
+            <div
+              key={s.label}
+              className="rounded-lg border bg-background p-2.5"
+            >
+              <div className="text-[9px] tracking-wide text-muted-foreground uppercase">
                 {s.label}
               </div>
               <div
@@ -668,7 +787,7 @@ function HeroPreview() {
           ))}
         </div>
         <div className="overflow-hidden rounded-lg border">
-          <div className="bg-surface-subtle text-muted-foreground flex items-center gap-2 px-3 py-2 text-[11px] font-semibold tracking-wide uppercase">
+          <div className="flex items-center gap-2 bg-surface-subtle px-3 py-2 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
             <span className="relative flex size-1.5">
               <span className="absolute inset-0 animate-ping rounded-full bg-destructive opacity-75" />
               <span className="relative size-1.5 rounded-full bg-destructive" />
@@ -681,11 +800,11 @@ function HeroPreview() {
               className={`flex items-center gap-2 px-3 py-2 text-xs ${i > 0 ? "border-t" : ""}`}
             >
               <span className="font-medium">{o.name}</span>
-              <span className="text-muted-foreground ml-auto text-[11px]">
+              <span className="ml-auto text-[11px] text-muted-foreground">
                 {o.room}
               </span>
               <span className="font-mono font-semibold">{o.amount}</span>
-              <span className="bg-overdue text-overdue-foreground border-overdue-border rounded-full border px-1.5 py-0.5 text-[10px]">
+              <span className="rounded-full border border-overdue-border bg-overdue px-1.5 py-0.5 text-[10px] text-overdue-foreground">
                 Overdue
               </span>
             </div>
@@ -699,20 +818,20 @@ function HeroPreview() {
 /** Stylized tenant-portal phone preview. */
 function TenantPreview() {
   return (
-    <div className="from-surface-subtle to-background flex justify-center overflow-hidden rounded-3xl border bg-gradient-to-b px-6 pt-10">
-      <div className="bg-card w-64 rounded-t-3xl border border-b-0 p-5 shadow-xl">
+    <div className="flex justify-center overflow-hidden rounded-3xl border bg-gradient-to-b from-surface-subtle to-background px-6 pt-10">
+      <div className="w-64 rounded-t-3xl border border-b-0 bg-card p-5 shadow-xl">
         <div className="mb-4 flex items-center gap-3">
           <span className="flex size-10 items-center justify-center rounded-full bg-[#dbeafe] text-sm font-semibold text-[#1e40af]">
             MS
           </span>
           <div>
-            <div className="text-muted-foreground text-[11px]">
+            <div className="text-[11px] text-muted-foreground">
               Good evening,
             </div>
             <div className="text-base font-bold tracking-tight">Maria</div>
           </div>
         </div>
-        <div className="bg-primary text-primary-foreground rounded-2xl p-4">
+        <div className="rounded-2xl bg-primary p-4 text-primary-foreground">
           <div className="text-[11px] tracking-wide uppercase opacity-85">
             Amount due
           </div>
@@ -723,7 +842,7 @@ function TenantPreview() {
             May 2026 · Due May 5, 2026
           </div>
           <div className="mt-3.5 flex gap-2">
-            <div className="bg-primary-foreground text-primary flex h-8 flex-1 items-center justify-center rounded-md text-[12px] font-semibold">
+            <div className="flex h-8 flex-1 items-center justify-center rounded-md bg-primary-foreground text-[12px] font-semibold text-primary">
               Pay now
             </div>
             <div className="flex h-8 items-center px-3 text-[12px] opacity-90">

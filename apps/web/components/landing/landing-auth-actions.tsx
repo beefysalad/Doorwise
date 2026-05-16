@@ -35,7 +35,11 @@ function LandingHeaderActions() {
     <div className="flex items-center gap-2">
       <Show when="signed-out">
         <SignInButton mode="modal" fallbackRedirectUrl="/dashboard">
-          <Button variant="ghost" size="sm" className="hidden rounded-md sm:inline-flex">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="hidden rounded-md sm:inline-flex"
+          >
             Sign in
           </Button>
         </SignInButton>

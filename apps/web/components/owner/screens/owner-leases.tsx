@@ -64,7 +64,7 @@ const leaseRows: LeaseTableRow[] = LEASES.map((lease) => {
 })
 
 function createLeaseColumns(
-  onEndLease: (leaseId: string) => void,
+  onEndLease: (leaseId: string) => void
 ): ColumnDef<LeaseTableRow>[] {
   return [
     {
@@ -79,7 +79,7 @@ function createLeaseColumns(
             <div className="text-[13.5px] font-medium">
               {row.original.tenantName}
             </div>
-            <div className="text-muted-foreground text-[11.5px]">
+            <div className="text-[11.5px] text-muted-foreground">
               {row.original.email}
             </div>
           </div>
@@ -94,7 +94,7 @@ function createLeaseColumns(
       cell: ({ row }) => (
         <div>
           <div className="text-[13px]">{row.original.room}</div>
-          <div className="text-muted-foreground text-[11.5px]">
+          <div className="text-[11.5px] text-muted-foreground">
             {row.original.propertyName}
           </div>
         </div>
@@ -143,7 +143,7 @@ function createLeaseColumns(
         />
       ),
       cell: ({ row }) => (
-        <div className="text-muted-foreground text-right font-mono tabular-nums">
+        <div className="text-right font-mono text-muted-foreground tabular-nums">
           {fmtMoney(row.original.deposit)}
         </div>
       ),
@@ -168,7 +168,7 @@ function createLeaseColumns(
           <Button
             variant="outline"
             size="icon-sm"
-            className="text-overdue-foreground rounded-sm"
+            className="rounded-sm text-overdue-foreground"
             onClick={() => onEndLease(row.original.id)}
           >
             <span className="sr-only">End lease</span>
@@ -215,7 +215,7 @@ function OwnerLeases() {
           pageSizeOptions={[10, 20, 50]}
         />
       ) : (
-        <div className="text-muted-foreground rounded-md border p-10 text-center text-sm">
+        <div className="rounded-md border p-10 text-center text-sm text-muted-foreground">
           {tab === "ending"
             ? "Leases ending soon will surface here as renewal dates approach."
             : "No ended leases yet."}
@@ -235,7 +235,7 @@ function OwnerLeases() {
               record.
             </DialogDescription>
           </DialogHeader>
-          <div className="bg-overdue text-overdue-foreground flex gap-2 rounded-md p-3 text-[12.5px]">
+          <div className="flex gap-2 rounded-md bg-overdue p-3 text-[12.5px] text-overdue-foreground">
             <RiErrorWarningLine className="size-4 shrink-0" />
             <span>
               This can&apos;t be undone. Make sure deposits and final dues are

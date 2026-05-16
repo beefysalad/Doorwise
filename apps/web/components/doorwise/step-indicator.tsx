@@ -15,8 +15,8 @@ function StepIndicator({ step, total, className }: StepIndicatorProps) {
           key={i}
           className={cn(
             "h-2 rounded-full transition-all",
-            i === step - 1 ? "bg-primary w-7" : "w-2",
-            i < step - 1 ? "bg-primary" : i === step - 1 ? "" : "bg-muted",
+            i === step - 1 ? "w-7 bg-primary" : "w-2",
+            i < step - 1 ? "bg-primary" : i === step - 1 ? "" : "bg-muted"
           )}
         />
       ))}

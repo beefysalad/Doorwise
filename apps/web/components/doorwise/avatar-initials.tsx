@@ -13,8 +13,8 @@ function AvatarInitials({ name, size = 36, className }: AvatarInitialsProps) {
     return (
       <div
         className={cn(
-          "bg-muted text-muted-foreground flex shrink-0 items-center justify-center rounded-full font-semibold",
-          className,
+          "flex shrink-0 items-center justify-center rounded-full bg-muted font-semibold text-muted-foreground",
+          className
         )}
         style={{ width: size, height: size, fontSize: size * 0.4 }}
       >
@@ -27,7 +27,7 @@ function AvatarInitials({ name, size = 36, className }: AvatarInitialsProps) {
     <div
       className={cn(
         "flex shrink-0 items-center justify-center rounded-full font-semibold",
-        className,
+        className
       )}
       style={{
         width: size,

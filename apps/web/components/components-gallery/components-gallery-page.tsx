@@ -347,11 +347,11 @@ function ComponentsGalleryPage() {
       <main className="flex flex-1 flex-col gap-6 p-4 md:p-8">
         <section className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="space-y-2">
-            <p className="text-muted-foreground text-sm">Design System</p>
+            <p className="text-sm text-muted-foreground">Design System</p>
             <h1 className="font-heading text-3xl font-semibold tracking-normal md:text-4xl">
               Components Gallery
             </h1>
-            <p className="text-muted-foreground max-w-2xl text-sm leading-6">
+            <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
               Inspect installed shared components against the active brand
               color, light mode, and dark mode before using them in product
               screens.
@@ -361,7 +361,7 @@ function ComponentsGalleryPage() {
             <Button
               size="sm"
               variant="ghost"
-              className="text-muted-foreground hover:text-foreground h-9 gap-2 rounded-xl px-4 text-xs"
+              className="h-9 gap-2 rounded-xl px-4 text-xs text-muted-foreground hover:text-foreground"
               onClick={handlePreviewLoading}
               isLoading={loading.isLoading && loading.kind === "render"}
               loadingText="Preview loading"
@@ -530,7 +530,7 @@ function ComponentsGalleryPage() {
               <div className="grid gap-2">
                 <Label htmlFor="component-search">Search</Label>
                 <div className="relative">
-                  <RiSearchLine className="text-muted-foreground pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2" />
+                  <RiSearchLine className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
                   <Input
                     id="component-search"
                     placeholder="Search components..."
@@ -583,7 +583,11 @@ function ComponentsGalleryPage() {
                   </Field>
                   <Field data-invalid={true}>
                     <FieldLabel htmlFor="organization-slug">Slug</FieldLabel>
-                    <Input id="organization-slug" aria-invalid defaultValue="" />
+                    <Input
+                      id="organization-slug"
+                      aria-invalid
+                      defaultValue=""
+                    />
                     <FieldError>Slug is required.</FieldError>
                   </Field>
                   <FieldSeparator>Visibility</FieldSeparator>
@@ -840,7 +844,7 @@ function ComponentsGalleryPage() {
                 ["Churn", "2.8%", "-0.6%"],
               ].map(([label, value, change]) => (
                 <div key={label} className="rounded-lg border p-4">
-                  <p className="text-muted-foreground text-sm">{label}</p>
+                  <p className="text-sm text-muted-foreground">{label}</p>
                   <p className="mt-2 text-2xl font-semibold tracking-normal">
                     {value}
                   </p>
@@ -961,7 +965,9 @@ function ComponentsGalleryPage() {
             <Card className="rounded-lg shadow-sm">
               <CardHeader>
                 <CardTitle>Checkbox</CardTitle>
-                <CardDescription>Compact binary selection input.</CardDescription>
+                <CardDescription>
+                  Compact binary selection input.
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <CheckboxDemo />
@@ -1049,7 +1055,7 @@ function ComponentsGalleryPage() {
               <div className="flex items-center justify-between gap-4">
                 <div className="grid gap-1">
                   <Label htmlFor="auto-sync-switch">Auto sync</Label>
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-sm text-muted-foreground">
                     Keep webhook data current.
                   </p>
                 </div>
@@ -1058,7 +1064,7 @@ function ComponentsGalleryPage() {
               <div className="grid gap-3">
                 <div className="flex items-center justify-between gap-4">
                   <Label htmlFor="quality-slider">Quality threshold</Label>
-                  <span className="text-muted-foreground text-sm">72%</span>
+                  <span className="text-sm text-muted-foreground">72%</span>
                 </div>
                 <Slider
                   id="quality-slider"
@@ -1384,7 +1390,7 @@ function ComponentsGalleryPage() {
           <CardContent className="grid gap-6 xl:grid-cols-4">
             <div className="space-y-3 rounded-lg border p-4">
               <p className="text-sm font-medium">Spinner</p>
-              <div className="text-muted-foreground flex items-center gap-3 text-sm">
+              <div className="flex items-center gap-3 text-sm text-muted-foreground">
                 <Spinner className="text-primary" />
                 Syncing dashboard state
               </div>
@@ -1392,7 +1398,7 @@ function ComponentsGalleryPage() {
 
             <div className="space-y-3 rounded-lg border p-4">
               <p className="text-sm font-medium">Keyboard</p>
-              <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-sm">
+              <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                 Search with
                 <KbdGroup>
                   <Kbd>⌘</Kbd>
@@ -1417,7 +1423,7 @@ function ComponentsGalleryPage() {
                 <HoverCardContent align="start">
                   <div className="space-y-2">
                     <p className="font-medium">Brand theme</p>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-sm text-muted-foreground">
                       Button, focus, and sidebar tokens update from the active
                       preset while charts keep their own analytics palette.
                     </p>
@@ -1523,7 +1529,7 @@ function ComponentsGalleryPage() {
                     </SidebarGroup>
                   </SidebarContent>
                 </Sidebar>
-                <div className="bg-background text-muted-foreground flex flex-1 items-center justify-center p-6 text-sm">
+                <div className="flex flex-1 items-center justify-center bg-background p-6 text-sm text-muted-foreground">
                   Sidebar tokens are driven by the selected brand theme.
                 </div>
               </SidebarProvider>

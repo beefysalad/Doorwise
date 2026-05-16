@@ -1,4 +1,6 @@
-export type OrgRole = "owner" | "staff" | "tenant"
+import type { PlanTier } from "./plans"
+
+export type OrgRole = "owner" | "staff" | "resident"
 
 export type Organization = {
   id: string
@@ -7,6 +9,7 @@ export type Organization = {
   address: string | null
   phone: string | null
   logoUrl: string | null
+  plan: PlanTier
   createdAt: string
 }
 
@@ -22,6 +25,7 @@ export type CreateOrganizationRequest = {
   slug?: string
   address?: string
   phone?: string
+  plan?: PlanTier
 }
 
 export type CreateOrganizationResponse = OrganizationMembership

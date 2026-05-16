@@ -55,11 +55,8 @@ function DataTable<TData, TValue>({
   pageSizeOptions,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
-    []
-  )
-  const [columnVisibility, setColumnVisibility] =
-    useState<VisibilityState>({})
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
 
   // eslint-disable-next-line react-hooks/incompatible-library -- TanStack Table return is intentionally not memoized
@@ -93,7 +90,9 @@ function DataTable<TData, TValue>({
           <Input
             placeholder={filterPlaceholder}
             value={(filterColumn.getFilterValue() as string) ?? ""}
-            onChange={(event) => filterColumn.setFilterValue(event.target.value)}
+            onChange={(event) =>
+              filterColumn.setFilterValue(event.target.value)
+            }
             className="w-full sm:max-w-sm"
           />
         ) : (
@@ -151,14 +150,20 @@ function DataTable<TData, TValue>({
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
                   {noResultsMessage}
                 </TableCell>
               </TableRow>
@@ -167,10 +172,7 @@ function DataTable<TData, TValue>({
         </Table>
       </div>
 
-      <DataTablePagination
-        table={table}
-        pageSizeOptions={pageSizeOptions}
-      />
+      <DataTablePagination table={table} pageSizeOptions={pageSizeOptions} />
     </div>
   )
 }

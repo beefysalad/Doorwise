@@ -7,7 +7,6 @@ type CreateInviteInput = {
   email: string;
   role: OrgRole;
   tokenHash: string;
-  tenantProfileId?: string;
   expiresAt: Date;
 };
 
@@ -17,7 +16,6 @@ type InviteRecord = {
   email: string;
   role: OrgRole;
   tokenHash: string;
-  tenantProfileId: string | null;
   expiresAt: Date;
   consumedAt: Date | null;
 };
@@ -46,7 +44,6 @@ export class InvitesRepository {
         email: input.email,
         role: input.role,
         tokenHash: input.tokenHash,
-        tenantProfileId: input.tenantProfileId ?? null,
         expiresAt: input.expiresAt,
       },
     });
@@ -112,6 +109,7 @@ export class InvitesRepository {
           address: membership.organization.address,
           phone: membership.organization.phone,
           logoUrl: membership.organization.logoUrl,
+          plan: membership.organization.plan,
           createdAt: membership.organization.createdAt.toISOString(),
         },
       };

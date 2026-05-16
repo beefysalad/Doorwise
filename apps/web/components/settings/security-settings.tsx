@@ -39,7 +39,7 @@ export function SecuritySettings() {
             >
               <FieldContent className="flex-row items-start gap-4">
                 <div className="mt-1 flex size-10 shrink-0 items-center justify-center rounded-lg border bg-muted">
-                  <RiLockPasswordLine className="text-muted-foreground size-5" />
+                  <RiLockPasswordLine className="size-5 text-muted-foreground" />
                 </div>
                 <div className="space-y-1">
                   <FieldTitle className="text-base">
@@ -68,10 +68,10 @@ export function SecuritySettings() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="border-destructive/20 bg-background flex flex-col gap-4 rounded-lg border p-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-4 rounded-lg border border-destructive/20 bg-background p-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1">
               <p className="text-sm font-medium">Delete account</p>
-              <p className="text-muted-foreground text-sm">
+              <p className="text-sm text-muted-foreground">
                 Permanently remove your account and all associated data.
               </p>
             </div>

@@ -121,7 +121,7 @@ const paymentColumns: ColumnDef<PaymentTableRow>[] = [
       <DataTableColumnHeader column={column} title="Reference" />
     ),
     cell: ({ row }) => (
-      <span className="text-muted-foreground font-mono text-xs">
+      <span className="font-mono text-xs text-muted-foreground">
         {row.original.reference}
       </span>
     ),
@@ -132,7 +132,7 @@ const paymentColumns: ColumnDef<PaymentTableRow>[] = [
       <DataTableColumnHeader column={column} title="Recorded by" />
     ),
     cell: ({ row }) => (
-      <span className="text-muted-foreground text-[12.5px]">
+      <span className="text-[12.5px] text-muted-foreground">
         {row.original.recordedBy}
       </span>
     ),
@@ -188,7 +188,7 @@ function OwnerPayments() {
   const totalFor = (name: PaymentMethod) =>
     PAYMENTS.filter((payment) => payment.method === name).reduce(
       (sum, payment) => sum + payment.amount,
-      0,
+      0
     )
   const countFor = (name: PaymentMethod) =>
     PAYMENTS.filter((payment) => payment.method === name).length
@@ -205,14 +205,12 @@ function OwnerPayments() {
               {method.logo}
             </div>
             <div className="min-w-0 flex-1">
-              <div className="text-muted-foreground text-xs">
-                {method.name}
-              </div>
+              <div className="text-xs text-muted-foreground">{method.name}</div>
               <div className="font-mono text-lg font-semibold tracking-tight tabular-nums">
                 {fmtMoneyShort(totalFor(method.name))}
               </div>
             </div>
-            <div className="text-muted-foreground text-[11px]">
+            <div className="text-[11px] text-muted-foreground">
               {countFor(method.name)} pmts
             </div>
           </DwCard>

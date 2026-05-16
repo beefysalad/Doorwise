@@ -77,11 +77,11 @@ export function DataPage() {
     <main className="flex flex-1 flex-col gap-6 p-4 md:p-8">
       <section className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div className="space-y-1">
-          <p className="text-muted-foreground text-sm">Data</p>
+          <p className="text-sm text-muted-foreground">Data</p>
           <h1 className="font-heading text-3xl font-semibold tracking-normal md:text-4xl">
             Data Center
           </h1>
-          <p className="text-muted-foreground max-w-2xl text-sm">
+          <p className="max-w-2xl text-sm text-muted-foreground">
             Monitor synced records, API readiness, and profile completeness
             across the protected app surfaces.
           </p>
@@ -182,7 +182,7 @@ export function DataPage() {
                     <TableRow>
                       <TableCell
                         colSpan={4}
-                        className="text-muted-foreground h-28 text-center"
+                        className="h-28 text-center text-muted-foreground"
                       >
                         We could not load synced user records right now.
                       </TableCell>
@@ -191,7 +191,7 @@ export function DataPage() {
                     <TableRow>
                       <TableCell
                         colSpan={4}
-                        className="text-muted-foreground h-28 text-center"
+                        className="h-28 text-center text-muted-foreground"
                       >
                         No synced records yet.
                       </TableCell>
@@ -213,7 +213,7 @@ export function DataPage() {
                           </Badge>
                         </TableCell>
                         <TableCell className="px-6 text-right">
-                          <code className="bg-muted text-muted-foreground rounded px-1.5 py-0.5 text-[10px]">
+                          <code className="rounded bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground">
                             {user.clerkId.slice(-8)}
                           </code>
                         </TableCell>
@@ -289,7 +289,7 @@ export function DataPage() {
               ) : (
                 <>
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground text-sm">
+                    <span className="text-sm text-muted-foreground">
                       Status
                     </span>
                     <Badge
@@ -348,7 +348,7 @@ function MetricCard({
         </div>
       </CardHeader>
       <CardContent>
-        <p className="text-muted-foreground text-sm">{description}</p>
+        <p className="text-sm text-muted-foreground">{description}</p>
       </CardContent>
     </Card>
   )
@@ -357,8 +357,8 @@ function MetricCard({
 function StatusBlock({ label, value }: { label: string; value: string }) {
   return (
     <div className="space-y-1">
-      <p className="text-muted-foreground text-sm">{label}</p>
-      <p className="text-foreground text-base font-medium">{value}</p>
+      <p className="text-sm text-muted-foreground">{label}</p>
+      <p className="text-base font-medium text-foreground">{value}</p>
     </div>
   )
 }

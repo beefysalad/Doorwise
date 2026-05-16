@@ -1,16 +1,11 @@
-// Doorwise — subscription plans (frontend-only for now).
-// Single source of truth shared by the landing page pricing section and the
-// onboarding plan-picker step. Not yet persisted to the backend.
+// Doorwise — subscription plan display metadata.
+// Quota limits live in @workspace/shared (PLAN_LIMITS) and are the source of
+// truth for backend enforcement. This file is display copy only.
 
-export type PlanLimits = {
-  /** Max properties; null = unlimited. */
-  properties: number | null
-  /** Max tenants; null = unlimited. */
-  tenants: number | null
-}
+import { PLAN_LIMITS, type PlanLimits, type PlanTier } from "@workspace/shared"
 
 export type Plan = {
-  id: "free" | "starter" | "medium"
+  id: PlanTier
   name: string
   /** Display price, e.g. "Free" or "₱200". */
   price: string
@@ -31,7 +26,7 @@ export const PLANS: Plan[] = [
     price: "₱0",
     priceNote: "Free trial · no card needed",
     tagline: "Try Doorwise with a small place",
-    limits: { properties: 2, tenants: 5 },
+    limits: PLAN_LIMITS.free,
     features: [
       "Up to 2 properties",
       "Up to 5 tenants",
@@ -48,7 +43,7 @@ export const PLANS: Plan[] = [
     price: "₱200",
     priceNote: "per month · best for boarding houses",
     tagline: "For a growing boarding house",
-    limits: { properties: 10, tenants: 50 },
+    limits: PLAN_LIMITS.starter,
     features: [
       "Up to 10 properties",
       "Up to 50 tenants",
@@ -66,7 +61,7 @@ export const PLANS: Plan[] = [
     price: "₱500",
     priceNote: "per month · for serious operators",
     tagline: "For multi-property operators",
-    limits: { properties: null, tenants: null },
+    limits: PLAN_LIMITS.medium,
     features: [
       "Unlimited properties",
       "Unlimited tenants",

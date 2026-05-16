@@ -7,7 +7,13 @@ import { AvatarInitials } from "@/components/doorwise/avatar-initials"
 import { DwCard } from "@/components/doorwise/card"
 import { SegmentedFilter } from "@/components/doorwise/segmented-filter"
 import { StatusBadge } from "@/components/doorwise/status-badge"
-import { PROPERTIES, ROOMS, fmtMoney, fmtMoneyShort, tenantOf } from "@/lib/mock/doorwise"
+import {
+  PROPERTIES,
+  ROOMS,
+  fmtMoney,
+  fmtMoneyShort,
+  tenantOf,
+} from "@/lib/mock/doorwise"
 import { Button } from "@workspace/ui/components/button"
 
 function OwnerRooms({ propertyId }: { propertyId: string }) {
@@ -25,7 +31,7 @@ function OwnerRooms({ propertyId }: { propertyId: string }) {
       <div className="flex flex-wrap items-center gap-3">
         <div className="mr-auto">
           <div className="text-[15px] font-semibold">{property.name}</div>
-          <div className="text-muted-foreground text-xs">
+          <div className="text-xs text-muted-foreground">
             {property.address}
           </div>
         </div>
@@ -34,15 +40,31 @@ function OwnerRooms({ propertyId }: { propertyId: string }) {
           onChange={setFilter}
           options={[
             { value: "all", label: "All", count: rooms.length },
-            { value: "occupied", label: "Occupied", count: rooms.filter((r) => r.status === "occupied").length },
-            { value: "available", label: "Available", count: rooms.filter((r) => r.status === "available").length },
-            { value: "reserved", label: "Reserved", count: rooms.filter((r) => r.status === "reserved").length },
-            { value: "maintenance", label: "Maintenance", count: rooms.filter((r) => r.status === "maintenance").length },
+            {
+              value: "occupied",
+              label: "Occupied",
+              count: rooms.filter((r) => r.status === "occupied").length,
+            },
+            {
+              value: "available",
+              label: "Available",
+              count: rooms.filter((r) => r.status === "available").length,
+            },
+            {
+              value: "reserved",
+              label: "Reserved",
+              count: rooms.filter((r) => r.status === "reserved").length,
+            },
+            {
+              value: "maintenance",
+              label: "Maintenance",
+              count: rooms.filter((r) => r.status === "maintenance").length,
+            },
           ]}
         />
-        <div className="text-muted-foreground ml-auto text-[13px]">
+        <div className="ml-auto text-[13px] text-muted-foreground">
           Monthly potential:{" "}
-          <span className="text-foreground font-mono font-semibold tabular-nums">
+          <span className="font-mono font-semibold text-foreground tabular-nums">
             {fmtMoney(monthlyPotential)}
           </span>
         </div>
@@ -59,10 +81,13 @@ function OwnerRooms({ propertyId }: { propertyId: string }) {
         {filtered.map((room) => {
           const tenant = room.tenant ? tenantOf(room.tenant) : null
           return (
-            <DwCard key={room.id} className="flex min-h-32 flex-col gap-2.5 p-4">
+            <DwCard
+              key={room.id}
+              className="flex min-h-32 flex-col gap-2.5 p-4"
+            >
               <div className="flex items-start justify-between">
                 <div>
-                  <div className="text-muted-foreground mb-0.5 font-mono text-xs">
+                  <div className="mb-0.5 font-mono text-xs text-muted-foreground">
                     Floor {room.floor ?? 1}
                   </div>
                   <div className="text-[17px] font-bold tracking-tight">
@@ -81,7 +106,7 @@ function OwnerRooms({ propertyId }: { propertyId: string }) {
                     </div>
                   </>
                 ) : (
-                  <span className="text-muted-foreground flex-1 text-[12.5px]">
+                  <span className="flex-1 text-[12.5px] text-muted-foreground">
                     {room.status === "maintenance"
                       ? "Under maintenance"
                       : room.status === "reserved"

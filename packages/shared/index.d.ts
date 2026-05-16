@@ -22,3 +22,5 @@ export type {
   CreateInviteRequest,
   CreateInviteResponse,
 } from "./api/invites"
+export type { PlanTier, PlanLimits } from "./api/plans"
+export { PLAN_TIERS, PLAN_LIMITS } from "./api/plans"
